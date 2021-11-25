@@ -13,50 +13,66 @@ Team Member #1  [Adam Patrick]
         Portfolio links: (PokeRandom) -- https://coderap931.github.io/pokeRandom/ || (CSS Creature) -- https://codepen.io/coderap931/full/GRmbBeW || (GIPHY Search) -- https://giphyapi-afc12.web.app/
 
 Assigned Tasks
-Endpoint 1
+
+Git Master
+
+Endpoint: /game/create
 Completion Date: WIP / [completion date]
 [date]: [focused items / files] */consider your commit message
 [date]: [focused items / files]
 [date]: [focused items / files]
 Ex: 11/29: Navbar.jsx – build out routing and styling.
-Endpoint 2
+
+Endpoint: /game/edit
 Completion Date: WIP / [completion date]
 [date]: [focused items / files]
 [date]: [focused items / files]
-*additional / optional
+
+Endpoint: /game/delete
+Completion Date: WIP / [completion date]
+[date]: [focused items / files]
+[date]: [focused items / files]
+
+Server components: games table, model, and controller, and headers middleware
  
 
-Team Member #2  [NAME]
+Team Member #2  [Alex Myers]
 
               GitHub, LinkedIn, Portfolio links
 
 Assigned Tasks
-Endpoint 1
+
+Endpoint: /user/register
 Completion Date: WIP / [completion date]
 [date]: [focused items / files] */consider your commit message
 [date]: [focused items / files]
 [date]: [focused items / files]
 Ex: 11/29: Navbar.jsx – build out routing and styling.
-Endpoint 2
+
+Endpoint: /user/login
 Completion Date: WIP / [completion date]
 [date]: [focused items / files]
 [date]: [focused items / files]
-*additional / optional
+
+Server components: users table, model, and controller, and validate-jwt middleware
  
 
-Team Member #3  [NAME]
+Team Member #3  [Jaylen Wilson]
 
               GitHub, LinkedIn, and Portfolio links
 
 Assigned Tasks
-Endpoint 1
+
+Endpoint: /game/listAll
 Completion Date: WIP / [completion date]
 [date]: [focused items / files] */consider your commit message
 [date]: [focused items / files]
 [date]: [focused items / files]
 Ex: 11/29: Navbar.jsx – build out routing and styling.
-Endpoint 2
+
+Endpoint: /game/view/{id}
 Completion Date: WIP / [completion date]
 [date]: [focused items / files]
 [date]: [focused items / files]
-*additional / optional
+
+Server components: index model and controller
