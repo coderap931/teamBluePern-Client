@@ -3,7 +3,7 @@ import GameViewModal from './games/GameViewModal'; //Game View Modal with Single
 
 const HomePage = (props) => {
     //* functions replaced here
-
+    // this where my code will go 
     return (
         <div className="home-page">
             <Sidebar />
