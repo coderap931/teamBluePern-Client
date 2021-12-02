@@ -2,14 +2,16 @@
 import React, { UseState } from 'react';
 import { MDBContainer, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBBtn, MDBIcon, MDBInput, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
+//import from reactstrap the modal component, and the button component, and the input component, and the row and col components, and the container component
+import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 const Login = (props) => {
-    const [username, setUsername] = useState(''); 
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState(''); 
+    const [password, setPassword] = useState('');
     const [modal, setModal] = useState(false);
 
-// login function that sets username+email and password to state
+    // login function that sets username+email and password to state
     const handleSubmit = (event) => {
         event.preventDefault();
         fetch('http://localhost:3000/user/login', {
@@ -25,64 +27,36 @@ const Login = (props) => {
         })
     }
 
-    const toggle = () => { 
+    const toggle = () => {
         setModal(!modal);
     }
 
     return (
         //* Modal opens on login button click and closes on cancel button click. onChange set username and email to same value. prompt for register if user doesn't exist.
-        <MDBContainer>
-        <MDBBtn onClick={toggle}>Login</MDBBtn>
-        <MDBModal isOpen={modal} toggle={toggle}>
-            <MDBModalHeader toggle={toggle}>Login</MDBModalHeader>
-            <MDBModalBody>
-                <MDBContainer>
-                    <MDBRow>
-                        <MDBCol>
-                            <form onSubmit={handleSubmit}>
-                                <MDBInput
-                                    label="Username"
-                                    icon="user"
-                                    group
-                                    type="text"
-                                    validate
-                                    error="wrong"
-                                    success="right"
-                                    onChange={(e) => setUsername(e.target.value)}
-                                />
-                                <MDBInput
-                                    label="Email"
-                                    icon="envelope"
-                                    group
-                                    type="email"
-                                    validate
-                                    error="wrong"
-                                    success="right"
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
-                                <MDBInput
-                                    label="Password"
-                                    icon="lock"
-                                    group
-                                    type="password"
-                                    validate
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
-                                <div className="text-center">
-                                    <MDBBtn type="submit">Login</MDBBtn>
-                                </div>
-                            </form>
-                        </MDBCol>
-                    </MDBRow>
-                </MDBContainer>
-            </MDBModalBody>
-            <MDBModalFooter>
-                <MDBBtn color="secondary" onClick={toggle}>Cancel</MDBBtn>
-                <MDBBtn color="primary" onClick={handleSubmit}>Login</MDBBtn>
-            </MDBModalFooter>
-        </MDBModal>
-    </MDBContainer>
-);
+        <div>
+            <Button color="primary" onClick={toggle}>Login</Button>
+            <Modal isOpen={modal} toggle={toggle}>
+                <ModalHeader toggle={toggle}>Login</ModalHeader>
+                <ModalBody>
+                    <Form onSubmit={handleSubmit}>
+                        <FormGroup>
+                            <Label for="username">Username</Label>
+                            <Input type="text" name="username" id="username" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="email">Email</Label>
+                            <Input type="email" name="email" id="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="password">Password</Label>
+                            <Input type="password" name="password" id="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        </FormGroup>
+                        <Button type="submit" color="primary">Login</Button>
+                    </Form>
+                </ModalBody>
+            </Modal>
+        </div>
+    );
 }
 
 export default Login;
