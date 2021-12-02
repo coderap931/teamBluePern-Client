@@ -1,9 +1,7 @@
 //* Insert imports here
 import { UseState } from 'react';
 //import material ui modal, button, and form
-import { modal } from '@material-ui/core';
-import { button } from '@material-ui/core';
-import { form } from '@material-ui/core';
+import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 const Signup = (props) => {
     const [username, setUsername] = UseState('');
@@ -37,33 +35,31 @@ const Signup = (props) => {
 
         return (
             <div>
-                <button onClick={toggle}>Sign Up</button>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>Username</label>
-                        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-                    </div>
-                    <div>
-                        <label>Email</label>
-                        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    </div>
-                    <div>
-                        <label>Password</label>
-                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    </div>
-                    <div>
-                        <label>Confirm Password</label>
-                        <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-                    </div>
-                    <div>
-                        <button type="submit" disabled={!validPassword()}>Submit</button>
-                    </div>
-                </form>
-                <modal open={modal} onClose={toggle}>
-                    <div>
-                        <h1>You've Signed Up!</h1>
-                    </div>
-                </modal>
+                <Button color="primary" onClick={toggle}>Sign Up</Button>
+                <Modal isOpen={modal} toggle={toggle}>
+                    <ModalHeader toggle={toggle}>Sign Up</ModalHeader>
+                    <ModalBody>
+                        <Form onSubmit={handleSubmit}>
+                            <FormGroup>
+                                <Label for="username">Username</Label>
+                                <Input type="text" name="username" id="username" placeholder="Username" value={username} onChange={(event) => setUsername(event.target.value)} />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="email">Email</Label>
+                                <Input type="email" name="email" id="email" placeholder="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="password">Password</Label>
+                                <Input type="password" name="password" id="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="confirmPassword">Confirm Password</Label>
+                                <Input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
+                            </FormGroup>
+                            <Button color="primary" disabled={!validPassword()}>Submit</Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
             </div>
         )
 }
