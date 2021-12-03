@@ -8,7 +8,7 @@ const GameCreateModal = (props) => {
     const [esrbrating, setEsrbrating] = useState('');
     const [reviewrating, setReviewrating] = useState('');
     const [reviewdescription, setReviewdescription] = useState('');
-    const [platfroms, setPlatfroms] = useState('');
+    const [platforms, setPlatforms] = useState('');
     const [tags, setTags] = useState('');
     const [owner_id, setOwner_id] = useState('');
 
@@ -16,7 +16,7 @@ const GameCreateModal = (props) => {
         event.preventDefault();
         fetch('http://localhost:3000/game/create', {
             method: 'POST',
-            body: JSON.stringify({ game: { name: name, boxart: boxart, gamedescription: gamedescription, esrbrating: esrbrating, reviewrating: reviewrating, reviewdescription: reviewdescription, platfroms: platfroms, tags: tags, owner_id: owner_id } }),
+            body: JSON.stringify({ game: { name: name, boxart: boxart, gamedescription: gamedescription, esrbrating: esrbrating, reviewrating: reviewrating, reviewdescription: reviewdescription, platforms: platforms, tags: tags, owner_id: owner_id } }),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${props.token}`
@@ -30,7 +30,7 @@ const GameCreateModal = (props) => {
                 setEsrbrating('');
                 setReviewrating('');
                 setReviewdescription('');
-                setPlatfroms('');
+                setPlatforms('');
                 setTags('');
                 setOwner_id('');
                 // props.fetchGames(); --Pretty sure this is only for loading a new page, unneseccary since is modal, leaving for now
@@ -86,7 +86,7 @@ const GameCreateModal = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor='platforms' />
-                        <Input type='select' name='platforms' value={platforms} onChange={(event) => setPlatfroms(event.target.value)}>
+                        <Input type='select' name='platforms' value={platforms} onChange={(event) => setPlatforms(event.target.value)}>
                             <option value='nswitch'>Nintendo Switch</option>
                             <option value='xone'>Xbox One</option>
                             <option value='ps4'>PlayStation 4</option>
