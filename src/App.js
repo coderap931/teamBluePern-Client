@@ -28,18 +28,18 @@ function App() {
     console.log("This is the clearedToken:", sessionToken);
   }
 
-  const protectedViews = () => {
-    return (sessionToken === localStorage.getItem('token') ? <HomePage updateToken={updateToken} clearToken={clearToken} /> : <div>You are not logged in</div>)
-  }
+  // const protectedViews = () => {
+  //   return (sessionToken === localStorage.getItem('token') ? <HomePage updateToken={updateToken} clearToken={clearToken} /> : <div>You are not logged in</div>)
+  // }
 
   return (
     <div className="App">
       <Router>
       <Sidebar updateToken={updateToken} clearToken={clearToken} />
-      {protectedViews()}
+      
       </Router>
     </div>
   );
 }
-
+//{protectedViews()}
 export default App;

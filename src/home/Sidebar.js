@@ -16,7 +16,7 @@ import GameEditDeleteModal from '../games/GameEditDeleteModal';
 // import GameViewModal from './GameViewModal';
 // import React features
 import { useHistory } from 'react-router-dom';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Router, Routes, Route, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 // 
 import {
@@ -29,6 +29,8 @@ import {
     Button,
     NavLink,
 } from 'reactstrap';
+
+//TODO add back to route when completed -> // <Route exact path="/gameview" component={GameView} />
 
 const Sidebar = (props) => {
     // const [open, setOpen] = useState(false);
@@ -43,40 +45,61 @@ const Sidebar = (props) => {
     // reacstrap sidebar where you can click home, log in, sign up, create game, edit game, and delete game
     return (
         <div>
-            <Navbar color="faded" light>
+        <Navbar color="faded" light expand="md">
                 <NavbarToggler onClick={toggleCollapse} />
                 <Collapse isOpen={isOpen} navbar>
-                    <Nav className="mr-auto" navbar>
+                    <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <Link to="/home">Home</Link>
+                            <Link to="/home">
+                                <Button color="primary">
+
+                                </Button>
+                            </Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/login">Login</Link>
+                            <Link to="/login">
+                                <Button color="primary">
+
+                                </Button>
+                            </Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/signup">Signup</Link>
+                            <Link to="/signup">
+                                <Button color="primary">
+
+                                </Button>
+                            </Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/creategame">Create Game</Link>
+                            <Link to="/creategame">
+                                <Button color="primary">
+
+                                </Button>
+                            </Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/editgame">Edit Game</Link>
+                            <Link to="/editgame">
+                                <Button color="primary">
+                                </Button>
+                            </Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/deletegame">Delete Game</Link>
+                            <Link to="/deletegame">
+                                <Button color="primary">
+                                </Button>
+                            </Link>
                         </NavItem>
                     </Nav>
                 </Collapse>
             </Navbar>
-            <Switch>
-                <Route exact path="/home" component={HomePage} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/signup" component={Signup} />
-                <Route exact path="/creategame" component={GameCreateModal} />
-                <Route exact path="/editgame" component={GameEditDeleteModal} />
-                <Route exact path="/deletegame" component={GameEditDeleteModal} />
-                {/* // <Route exact path="/gameview" component={GameView} /> */}
-            </Switch>
+            <Routes>
+                <Route path="/home" element={<HomePage />} />
+                <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken}/>} />
+                <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken}/>} />
+                <Route path="/creategame" element={<GameCreateModal />} />
+                <Route path="/editgame" element={<GameEditDeleteModal />} />
+                <Route path="/deletegame" element={<GameEditDeleteModal />} />
+            </Routes>
         </div>
     );
 }

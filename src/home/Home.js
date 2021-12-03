@@ -2,18 +2,32 @@
 import GameGrid from './GameGrid';
 import { useState, useEffect } from 'react'
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import GameEditDeleteModal from '../games/GameEditDeleteModal';
 
 const HomePage = (props) => {
     const [games, setGames] = useState([]);
     const [updateActive, setUpdateActive] = useState(false);
     const [updateGame, setUpdateGame] = useState({});
 
+    console.log("Home Page", props);
+
+    const editUpdateGame = (games) => {
+        setUpdateGame(games);
+    }
+
+    const updateOn = () => {
+        setUpdateActive(true)
+    }
+
+    const updateOff = () => {
+        setUpdateActive(false);
+    }
+
     const fetchAllGames = () => {
         fetch('http://localhost:3000/all', {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.token}`
             }),
         })
             .then((res) => res.json())
@@ -40,6 +54,47 @@ const HomePage = (props) => {
                     <MDBCol size='md' className='col-example'>
                         <GameGrid />
                     </MDBCol>
+            
+                    <MDBCol size='md' className='col-example'>
+                        {updateActive ? (<GameEditDeleteModal updateGame={updateGame} updateOff={updateOff} token={props.token} fetchAllGames={fetchAllGames} />) : (<></>
+                        )}
+                    </MDBCol>
+
+                </MDBRow>
+            </MDBContainer>
+            <MDBContainer>
+                <MDBRow>
+                    <MDBCol size='md' className='col-example'>
+                        <GameGrid />
+                    </MDBCol>
+                    <MDBCol size='md' className='col-example'>
+                        <GameGrid />
+                    </MDBCol>
+                    <MDBCol size='md' className='col-example'>
+                        <GameGrid />
+                    </MDBCol>
+                    <MDBCol size='md' className='col-example'>
+                        {updateActive ? (<GameEditDeleteModal updateGame={updateGame} updateOff={updateOff} token={props.token} fetchAllGames={fetchAllGames} />) : (<></>
+                        )}
+                    </MDBCol>
+                </MDBRow>
+            </MDBContainer>
+            <MDBContainer>
+                <MDBRow>
+                    <MDBCol size='md' className='col-example'>
+                        <GameGrid />
+                    </MDBCol>
+                    <MDBCol size='md' className='col-example'>
+                        <GameGrid />
+                    </MDBCol>
+                    <MDBCol size='md' className='col-example'>
+                        <GameGrid />
+                    </MDBCol>
+                    <MDBCol size='md' className='col-example'>
+                        {updateActive ? (<GameEditDeleteModal updateGame={updateGame} updateOff={updateOff} token={props.token} fetchAllGames={fetchAllGames} />) : (<></>
+                        )}
+                    </MDBCol>
+
                 </MDBRow>
             </MDBContainer>
 
