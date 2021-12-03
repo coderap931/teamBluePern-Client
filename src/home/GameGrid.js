@@ -4,20 +4,25 @@ import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage, MDBBtn }
 
 const GameGrid = (props) => {
 
+    const gameMapper = () => {
+        return props.games.map((game, index) => {
+            return (
+                <MDBCardBody key={index}>
+                    <MDBCardImage src={game.boxart} />
+                    <MDBCardTitle>{game.name}</MDBCardTitle>
+                    <MDBBtn> View Game </MDBBtn>
+                </MDBCardBody>
+            )
+        })
+    }
 
     return (
         <div>
-            <MDBCard style={{ maxWidth: '22rem' }}>
-                <MDBCardImage src='https://mdbcdn.b-cdn.net/img/new/standard/nature/184.jpg' position='top' alt='...' />
+            <MDBCard>
                 <MDBCardBody>
-                    <MDBCardTitle>Card title</MDBCardTitle>
-                    <MDBCardText>
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                    </MDBCardText>
-                    <MDBBtn href='#'>Button</MDBBtn>
+                    {gameMapper()}
                 </MDBCardBody>
             </MDBCard>
-
         </div>
     )
 }
