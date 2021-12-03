@@ -1,9 +1,7 @@
-import Sidebar from './home/Sidebar'; //Sidebar | Likely being moved into HomePage. //!Alex
-import GameViewModal from './games/GameViewModal'; //Game View Modal with Single Game's Info //!Jaylen
+// import GameViewModal from './games/GameViewModal'; //Game View Modal with Single Game's Info //!Jaylen
 import GameGrid from './GameGrid';
 import { useState, useEffect } from 'react'
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
-
 
 const HomePage = (props) => {
     const [games, setGames] = useState([]);
@@ -30,7 +28,6 @@ const HomePage = (props) => {
 
     return (
         <div className="home-page">
-            <Sidebar />
 
             <MDBContainer>
                 <MDBRow>
