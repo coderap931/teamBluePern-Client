@@ -1,13 +1,54 @@
-//* imports here
+import React from 'react';
+import {Table, Button, Modal, ModalHeader, ModalBody} from 'reactstrap';
 
-const GameEditDeleteModal = (props) => {
-    //*functions replaced here
-    
-    return (
-        <div className="game-edit-delete-modal">
+const GameTable = (props) => {
+    const deleteGame = (game) => {
+        fetch(`http://localhost:3000/game/remove/${game.id}`, {
+            method: 'DELETE',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${props.token}`
+            })
+        }).then(() => props.fetchGames())
+    }
 
-        </div>
+    const gameMapper = () => {
+        return props.games.map((game, index) => {
+            return(
+                <tr key={index}>
+                    <th scope='row'>{game.id}</th>
+                    <td>{game.name}</td>
+                    <td>{game.boxart}</td>
+                    <td>{game.reviewrating}</td>
+                    <td>
+                        <Button color='warning' onClick={() => {props.editUpdateGame(game); props.updateOn()}}>Updated</Button>
+                        <Button color='danger' onClick={() => {deleteGame(game)}}>Delete</Button>
+                    </td>
+                </tr>
+            )
+        })
+    }
+
+    return(
+        <Modal isOpen={true}>
+            <ModalHeader>Edit/Delete a Game</ModalHeader>
+            <ModalBody>
+                <Table striped>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Boxart</th>
+                            <th>Review Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {gameMapper()}
+                    </tbody>
+                </Table>
+            </ModalBody>
+        </Modal>
     )
 }
 
-export default GameEditDeleteModal;
+export default GameTable;
