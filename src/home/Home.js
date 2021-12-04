@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import GameEditDeleteModal from '../games/GameEditDeleteModal';
 import GameUpdateModal from '../games/GameUpdateModal';
+import APIURL from '../helpers/environment';
+
 const HomePage = (props) => {
     const [games, setGames] = useState([]);
     const [updateActive, setUpdateActive] = useState(false);
@@ -23,7 +25,7 @@ const HomePage = (props) => {
     }
 
     const fetchAllGames = () => {
-        fetch('http://localhost:3000/all', {
+        fetch(`${APIURL}/all`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',

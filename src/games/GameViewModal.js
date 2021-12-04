@@ -9,6 +9,7 @@ import {
     MDBModalTitle,
     MDBModalBody
 } from 'mdb-react-ui-kit';
+import APIURL from '../helpers/environment';
 
 
 const GameViewModal = (props) => {
@@ -18,7 +19,7 @@ const GameViewModal = (props) => {
 
     const viewGame = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:3000/game/${props.id}`, {
+        fetch(`${APIURL}/game/${props.id}`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',

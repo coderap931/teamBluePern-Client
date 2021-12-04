@@ -1,9 +1,10 @@
 import React from 'react';
 import { Table, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import APIURL from '../helpers/environment';
 
 const GameTable = (props) => {
     const deleteGame = (game) => {
-        fetch(`http://localhost:3000/game/remove/${game.id}`, {
+        fetch(`${APIURL}/game/remove/${game.id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
