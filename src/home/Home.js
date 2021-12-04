@@ -1,5 +1,4 @@
-import Sidebar from './home/Sidebar'; //Sidebar | Likely being moved into HomePage. //!Alex
-import GameViewModal from './games/GameViewModal'; //Game View Modal with Single Game's Info //!Jaylen
+// import GameViewModal from './games/GameViewModal'; //Game View Modal with Single Game's Info //!Jaylen
 import GameGrid from './GameGrid';
 import { useState, useEffect } from 'react'
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
@@ -9,6 +8,7 @@ const HomePage = (props) => {
     const [games, setGames] = useState([]);
     const [updateActive, setUpdateActive] = useState(false);
     const [updateGame, setUpdateGame] = useState({});
+
 
     const editUpdateGame = (games) => {
         setUpdateGame(games);
@@ -27,7 +27,6 @@ const HomePage = (props) => {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.token}`
             }),
         })
             .then((res) => res.json())
@@ -42,7 +41,6 @@ const HomePage = (props) => {
 
     return (
         <div className="home-page">
-            <Sidebar />
 
             <MDBContainer>
                 <MDBRow>
@@ -61,6 +59,7 @@ const HomePage = (props) => {
                     <MDBCol size='md' className='col-example'>
                         <GameUpdateModal games={games} editUpdateGame={editUpdateGame} updateOn={updateOn} fetchAllGames={fetchAllGames} token={props.token} />
                     </MDBCol>
+
                     <MDBCol size='md' className='col-example'>
                         {updateActive ? (<GameEditDeleteModal updateGame={updateGame} updateOff={updateOff} token={props.token} fetchAllGames={fetchAllGames} />) : (<></>
                         )}
