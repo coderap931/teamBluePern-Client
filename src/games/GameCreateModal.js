@@ -1,53 +1,62 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
-const GameUpdateModal = (props) => {
-    const [editName, setEditName] = useState('');
-    const [editBoxart, setEditBoxart] = useState('');
-    const [editGamedescription, setEditGamedescription] = useState('');
-    const [editEsrbrating, setEditEsrbrating] = useState('');
-    const [editReviewrating, setEditReviewrating] = useState('');
-    const [editReviewdescription, setEditReviewdescription] = useState('');
-    const [editPlatfroms, setEditPlatfroms] = useState('');
-    const [editTags, setEditTags] = useState('');
-    // const [editOwner_id, setEditOwner_id] = useState(''); -- Shouldnt change on edit, but unsure if needed to retain value, keeping for now
+const GameCreateModal = (props) => {
+    const [name, setName] = useState('');
+    const [boxart, setBoxart] = useState('');
+    const [gamedescription, setGamedescription] = useState('');
+    const [esrbrating, setEsrbrating] = useState('');
+    const [reviewrating, setReviewrating] = useState('');
+    const [reviewdescription, setReviewdescription] = useState('');
+    const [platforms, setPlatforms] = useState('');
+    const [tags, setTags] = useState('');
+    const [owner_id, setOwner_id] = useState('');
 
-    const gameUpdate = (event, gameToUpdate) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        fetch(`http://localhost:3000/game/edit=${props.gameToUpdate.id}`, {
-            method: 'PUT',
-            // Add editOwner_id to the body if needed
-            body: JSON.stringify({ game: { name: editName, boxart: editBoxart, gamedescription: editGamedescription, esrbrating: editEsrbrating, reviewrating: editReviewrating, reviewdescription: editReviewdescription, platfroms: editPlatfroms, tags: editTags } }),
+        fetch('http://localhost:3000/game/create', {
+            method: 'POST',
+            body: JSON.stringify({ game: { name: name, boxart: boxart, gamedescription: gamedescription, esrbrating: esrbrating, reviewrating: reviewrating, reviewdescription: reviewdescription, platforms: platforms, tags: tags, owner_id: owner_id } }),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${props.token}`
             })
-        }).then((res) => {
-            props.fetchGames();
-            props.updateOff();
-        })
+        }).then((res) => res.json())
+            .then((gameData) => {
+                console.log(gameData);
+                setName('');
+                setBoxart('');
+                setGamedescription('');
+                setEsrbrating('');
+                setReviewrating('');
+                setReviewdescription('');
+                setPlatforms('');
+                setTags('');
+                setOwner_id('');
+                // props.fetchGames(); --Pretty sure this is only for loading a new page, unneseccary since is modal, leaving for now
+            })
     }
 
     return (
         <Modal isOpen={true}>
-            <ModalHeader>Edit Game/Review Details</ModalHeader>
+            <ModalHeader>Create Game</ModalHeader>
             <ModalBody>
-                <Form onSubmit={gameUpdate}>
+                <Form onSubmit={handleSubmit}>
                     <FormGroup>
                         <Label htmlFor='name' />
-                        <Input name='name' value={editName} onChange={(event) => setEditName(event.target.value)} />
+                        <Input name='name' value={name} onChange={(event) => setName(event.target.value)} />
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor='boxart' />
-                        <Input name='boxart' value={editBoxart} onChange={(event) => setEditBoxart(event.target.value)} />
+                        <Input name='boxart' value={boxart} onChange={(event) => setBoxart(event.target.value)} />
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor='gamedescription' />
-                        <Input name='gamedescription' value={editGamedescription} onChange={(event) => setEditGamedescription(event.target.value)} />
+                        <Input name='gamedescription' value={gamedescription} onChange={(event) => setGamedescription(event.target.value)} />
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor='esrbrating' />
-                        <Input type='select' name='esrbrating' value={editEsrbrating} onChange={(event) => setEditEsrbrating(event.target.value)}>
+                        <Input type='select' name='esrbrating' value={esrbrating} onChange={(event) => setEsrbrating(event.target.value)}>
                             <option value='eC'>Early Childhood (eC)</option>
                             <option value='E'>Everyone (E)</option>
                             <option value='E10+'>Everyone 10+ (E10+)</option>
@@ -58,7 +67,7 @@ const GameUpdateModal = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor='reviewrating' />
-                        <Input type='select' name='reviewrating' value={editReviewrating} onChange={(event) => setEditReviewrating(event.target.value)}>
+                        <Input type='select' name='reviewrating' value={reviewrating} onChange={(event) => setReviewrating(event.target.value)}>
                             <option value='1'>1/10</option>
                             <option value='2'>2/10</option>
                             <option value='3'>3/10</option>
@@ -73,11 +82,11 @@ const GameUpdateModal = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor='reviewdescription' />
-                        <Input name='reviewdescription' value={editReviewdescription} onChange={(event) => setEditReviewdescription(event.target.value)} />
+                        <Input name='reviewdescription' value={reviewdescription} onChange={(event) => setReviewdescription(event.target.value)} />
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor='platforms' />
-                        <Input type='select' name='platforms' value={editPlatfroms} onChange={(event) => setEditPlatfroms(event.target.value)}>
+                        <Input type='select' name='platforms' value={platforms} onChange={(event) => setPlatforms(event.target.value)}>
                             <option value='nswitch'>Nintendo Switch</option>
                             <option value='xone'>Xbox One</option>
                             <option value='ps4'>PlayStation 4</option>
@@ -88,7 +97,7 @@ const GameUpdateModal = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor='tags' />
-                        <Input name='tags' value={editTags} onChange={(event) => setEditTags(event.target.value)} />
+                        <Input name='tags' value={tags} onChange={(event) => setTags(event.target.value)} />
                     </FormGroup>
                     <Button type='submit'>Submit Game</Button>
                 </Form>
@@ -98,4 +107,4 @@ const GameUpdateModal = (props) => {
 }
 
 
-export default GameUpdateModal;
+export default GameCreateModal;
