@@ -45,7 +45,7 @@ const Sidebar = (props) => {
     // reacstrap sidebar where you can click home, log in, sign up, create game, edit game, and delete game
     return (
         <div>
-        <Navbar color="faded" light expand="md">
+            <Navbar color="faded" light expand="md">
                 <NavbarToggler onClick={toggleCollapse} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
@@ -94,8 +94,8 @@ const Sidebar = (props) => {
             </Navbar>
             <Routes>
                 <Route path="/home" element={<HomePage />} />
-                <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken}/>} />
-                <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken}/>} />
+                <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
+                <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
                 <Route path="/creategame" element={<GameCreateModal />} />
                 <Route path="/editgame" element={<GameEditDeleteModal />} />
                 <Route path="/deletegame" element={<GameEditDeleteModal />} />
@@ -103,6 +103,7 @@ const Sidebar = (props) => {
         </div>
     );
 }
+
 
 
 export default Sidebar;

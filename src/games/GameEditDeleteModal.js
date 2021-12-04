@@ -1,5 +1,5 @@
 import React from 'react';
-import {Table, Button, Modal, ModalHeader, ModalBody} from 'reactstrap';
+import { Table, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 const GameTable = (props) => {
     const deleteGame = (game) => {
@@ -14,22 +14,22 @@ const GameTable = (props) => {
 
     const gameMapper = () => {
         return props.games.map((game, index) => {
-            return(
+            return (
                 <tr key={index}>
                     <th scope='row'>{game.id}</th>
                     <td>{game.name}</td>
                     <td>{game.boxart}</td>
                     <td>{game.reviewrating}</td>
                     <td>
-                        <Button color='warning' onClick={() => {props.editUpdateGame(game); props.updateOn()}}>Updated</Button>
-                        <Button color='danger' onClick={() => {deleteGame(game)}}>Delete</Button>
+                        <Button color='warning' onClick={() => { props.editUpdateGame(game); props.updateOn() }}>Updated</Button>
+                        <Button color='danger' onClick={() => { deleteGame(game) }}>Delete</Button>
                     </td>
                 </tr>
             )
         })
     }
 
-    return(
+    return (
         <Modal isOpen={true}>
             <ModalHeader>Edit/Delete a Game</ModalHeader>
             <ModalBody>
@@ -50,5 +50,6 @@ const GameTable = (props) => {
         </Modal>
     )
 }
+
 
 export default GameTable;
