@@ -1,6 +1,5 @@
-import e from "express";
 import React from "react";
-import { useState } from React;
+import { useState, useEffect } from 'react';
 import {
     MDBBtn,
     MDBModal,
@@ -23,7 +22,7 @@ const GameViewModal = (props) => {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.token}`
+                'Authorization': `Bearer ${props.sessionToken}`
             })
         }).then((res) => res.json())
             .then((gameData) => {
@@ -32,7 +31,7 @@ const GameViewModal = (props) => {
     }
 
     useEffect(() => {
-        ViewGame();
+        viewGame();
     }, [])
 
     const gameModalMapper = () => {
@@ -41,7 +40,6 @@ const GameViewModal = (props) => {
                 <MDBModalContent key={index}>
                     <MDBModalHeader>
                         <MDBModalTitle>{game.name}</MDBModalTitle>
-                        <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
                     </MDBModalHeader>
                     <MDBModalBody>
                         {game.gamedescription}

@@ -1,4 +1,4 @@
-// import GameViewModal from './games/GameViewModal'; //Game View Modal with Single Game's Info //!Jaylen
+import GameViewModal from '../games/GameViewModal'; //Game View Modal with Single Game's Info //!Jaylen
 import GameGrid from './GameGrid';
 import { useState, useEffect } from 'react'
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';

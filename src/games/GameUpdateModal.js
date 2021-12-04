@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 const GameUpdateModal = (props) => {
     const [editName, setEditName] = useState('');
@@ -17,7 +17,7 @@ const GameUpdateModal = (props) => {
         fetch(`http://localhost:3000/game/edit=${props.gameToUpdate.id}`, {
             method: 'PUT',
             // Add editOwner_id to the body if needed
-            body: JSON.stringify({game: {name: editName, boxart: editBoxart, gamedescription: editGamedescription, esrbrating: editEsrbrating, reviewrating: editReviewrating, reviewdescription: editReviewdescription, platfroms: editPlatfroms, tags: editTags}}),
+            body: JSON.stringify({ game: { name: editName, boxart: editBoxart, gamedescription: editGamedescription, esrbrating: editEsrbrating, reviewrating: editReviewrating, reviewdescription: editReviewdescription, platfroms: editPlatfroms, tags: editTags } }),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${props.token}`
@@ -77,7 +77,7 @@ const GameUpdateModal = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor='platforms' />
-                        <Input type='select' name='platforms' value={editPlatforms} onChange={(event) => setEditPlatfroms(event.target.value)}>
+                        <Input type='select' name='platforms' value={editPlatfroms} onChange={(event) => setEditPlatfroms(event.target.value)}>
                             <option value='nswitch'>Nintendo Switch</option>
                             <option value='xone'>Xbox One</option>
                             <option value='ps4'>PlayStation 4</option>
