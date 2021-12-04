@@ -7,12 +7,12 @@ import GameEditDeleteModal from '../games/GameEditDeleteModal';
 const HomePage = (props) => {
     const [games, setGames] = useState([]);
     const [updateActive, setUpdateActive] = useState(false);
-    const [updateGame, setUpdateGame] = useState({});
+    const [updateGame, setEditUpdateGame] = useState({});
 
     console.log("Home Page", props);
 
     const editUpdateGame = (games) => {
-        setUpdateGame(games);
+        setEditUpdateGame(games);
     }
 
     const updateOn = () => {
@@ -23,8 +23,8 @@ const HomePage = (props) => {
         setUpdateActive(false);
     }
 
-    const fetchAllGames = () => {
-        fetch('http://localhost:3000/all', {
+    const fetchGames = () => {
+        fetch('http://localhost:3000/game/all', {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ const HomePage = (props) => {
     }
 
     useEffect(() => {
-        fetchAllGames();
+        fetchGames();
     }, [])
 
     return (
@@ -56,7 +56,7 @@ const HomePage = (props) => {
                     </MDBCol>
             
                     <MDBCol size='md' className='col-example'>
-                        {updateActive ? (<GameEditDeleteModal updateGame={updateGame} updateOff={updateOff} token={props.token} fetchAllGames={fetchAllGames} />) : (<></>
+                        {updateActive ? (<GameEditDeleteModal updateGame={updateGame} updateOff={updateOff} token={props.token} fetchGames={fetchGames} />) : (<></>
                         )}
                     </MDBCol>
 
@@ -74,7 +74,7 @@ const HomePage = (props) => {
                         <GameGrid />
                     </MDBCol>
                     <MDBCol size='md' className='col-example'>
-                        {updateActive ? (<GameEditDeleteModal updateGame={updateGame} updateOff={updateOff} token={props.token} fetchAllGames={fetchAllGames} />) : (<></>
+                        {updateActive ? (<GameEditDeleteModal updateGame={updateGame} updateOff={updateOff} token={props.token} fetchGames={fetchGames} />) : (<></>
                         )}
                     </MDBCol>
                 </MDBRow>
@@ -91,7 +91,7 @@ const HomePage = (props) => {
                         <GameGrid />
                     </MDBCol>
                     <MDBCol size='md' className='col-example'>
-                        {updateActive ? (<GameEditDeleteModal updateGame={updateGame} updateOff={updateOff} token={props.token} fetchAllGames={fetchAllGames} />) : (<></>
+                        {updateActive ? (<GameEditDeleteModal updateGame={updateGame} updateOff={updateOff} token={props.token} fetchGames={fetchGames} />) : (<></>
                         )}
                     </MDBCol>
 
