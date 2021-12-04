@@ -1,10 +1,12 @@
 import React from 'react';
 import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
-
+import HomePage from './Home';
 
 const GameGrid = (props) => {
+    console.log("Props:", props)
+    console.log("Props.Games:", props.games)
 
-    const gameMapper = () => {
+    const gameGridMapper = () => {
         return props.games.map((game, index) => {
             return (
                 <MDBCardBody key={index}>
@@ -20,7 +22,7 @@ const GameGrid = (props) => {
         <div>
             <MDBCard>
                 <MDBCardBody>
-                    {gameMapper()}
+                    {gameGridMapper()}
                 </MDBCardBody>
             </MDBCard>
         </div>

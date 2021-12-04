@@ -1,14 +1,15 @@
 //* Insert imports here
-import { UseState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 //import material ui modal, button, and form
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 const Signup = (props) => {
-    const [username, setUsername] = UseState('');
-    const [email, setEmail] = UseState('');
-    const [password, setPassword] = UseState('');
-    const [confirmPassword, setConfirmPassword] = UseState('');
-    const [modal, setModal] = UseState(false);
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [modal, setModal] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -28,6 +29,7 @@ const Signup = (props) => {
     const toggle = () => {
         setModal(!modal);
     }
+
     // validate password
     const validPassword = () => {
         return password.length > 8 && password.match(/[A-Z]/) !== null && password.match(/[a-z]/) !== null && password.match(/[0-9]/) !== null;
