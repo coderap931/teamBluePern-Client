@@ -78,13 +78,7 @@ const Sidebar = (props) => {
                             </Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/editgame">
-                                <Button color="primary">
-                                </Button>
-                            </Link>
-                        </NavItem>
-                        <NavItem>
-                            <Link to="/deletegame">
+                            <Link to="/editdeletegame">
                                 <Button color="primary">
                                 </Button>
                             </Link>
@@ -96,9 +90,8 @@ const Sidebar = (props) => {
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken}/>} />
                 <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken}/>} />
-                <Route path="/creategame" element={<GameCreateModal />} />
-                <Route path="/editgame" element={<GameEditDeleteModal />} />
-                <Route path="/deletegame" element={<GameEditDeleteModal />} />
+                <Route path="/creategame" element={<GameCreateModal sessionToken={props.sessionToken}/>} />
+                <Route path="/editdeletegame" element={<GameEditDeleteModal sessionToken={props.sessionToken}/>} />
             </Routes>
         </div>
     );

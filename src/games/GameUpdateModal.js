@@ -20,7 +20,7 @@ const GameUpdateModal = (props) => {
             body: JSON.stringify({game: {name: editName, boxart: editBoxart, gamedescription: editGamedescription, esrbrating: editEsrbrating, reviewrating: editReviewrating, reviewdescription: editReviewdescription, platfroms: editPlatfroms, tags: editTags}}),
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.token}`
+                'Authorization': `Bearer ${props.sessionToken}`
             })
         }).then((res) => {
             props.fetchGames();
