@@ -8,7 +8,7 @@ const GameUpdateModal = (props) => {
     const [editEsrbrating, setEditEsrbrating] = useState('');
     const [editReviewrating, setEditReviewrating] = useState('');
     const [editReviewdescription, setEditReviewdescription] = useState('');
-    const [editPlatfroms, setEditPlatfroms] = useState('');
+    const [editPlatforms, setEditPlatforms] = useState('');
     const [editTags, setEditTags] = useState('');
     // const [editOwner_id, setEditOwner_id] = useState(''); -- Shouldnt change on edit, but unsure if needed to retain value, keeping for now
 
@@ -17,7 +17,7 @@ const GameUpdateModal = (props) => {
         fetch(`http://localhost:3000/game/edit=${props.gameToUpdate.id}`, {
             method: 'PUT',
             // Add editOwner_id to the body if needed
-            body: JSON.stringify({game: {name: editName, boxart: editBoxart, gamedescription: editGamedescription, esrbrating: editEsrbrating, reviewrating: editReviewrating, reviewdescription: editReviewdescription, platfroms: editPlatfroms, tags: editTags}}),
+            body: JSON.stringify({game: {name: editName, boxart: editBoxart, gamedescription: editGamedescription, esrbrating: editEsrbrating, reviewrating: editReviewrating, reviewdescription: editReviewdescription, platforms: editPlatforms, tags: editTags}}),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${props.sessionToken}`
@@ -77,7 +77,7 @@ const GameUpdateModal = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor='platforms' />
-                        <Input type='select' name='platforms' value={editPlatforms} onChange={(event) => setEditPlatfroms(event.target.value)}>
+                        <Input type='select' name='platforms' value={editPlatforms} onChange={(event) => setEditPlatforms(event.target.value)}>
                             <option value='nswitch'>Nintendo Switch</option>
                             <option value='xone'>Xbox One</option>
                             <option value='ps4'>PlayStation 4</option>

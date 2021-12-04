@@ -1,6 +1,4 @@
-import e from "express";
-import React from "react";
-import { useState } from React;
+import React, { useState, useEffect } from 'react';
 import {
     MDBBtn,
     MDBModal,
@@ -17,7 +15,7 @@ const GameViewModal = (props) => {
     const [optSmModal, setOptSmModal] = useState(false);
 
 
-    const viewGame = (e) => {
+    const ViewGame = (e) => {
         e.preventDefault();
         fetch(`http://localhost:3000/game/${props.id}`, {
             method: 'GET',
@@ -41,7 +39,7 @@ const GameViewModal = (props) => {
                 <MDBModalContent key={index}>
                     <MDBModalHeader>
                         <MDBModalTitle>{game.name}</MDBModalTitle>
-                        <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
+                        <MDBBtn className='btn-close' color='none' onClick={ViewGame}></MDBBtn>
                     </MDBModalHeader>
                     <MDBModalBody>
                         {game.gamedescription}
@@ -58,7 +56,7 @@ const GameViewModal = (props) => {
 
     return (
         <div className="game-view-modal">
-            <MDBBtn onClick={viewGame}>View Game</MDBBtn>
+            <MDBBtn onClick={ViewGame}>View Game</MDBBtn>
             <MDBModal show={optSmModal} tabIndex='-1' setShow={setOptSmModal}>
                 <MDBModalDialog size='sm'>
                     <MDBModalContent>
