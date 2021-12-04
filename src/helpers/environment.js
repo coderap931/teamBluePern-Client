@@ -5,7 +5,7 @@ switch (window.location.hostname) {
         APIURL = 'http://localhost:5432';
         break;
     case 'amp-my-gamechest-react.herokuapp.com':
-        APIURL = 'https://amp-my-gamechest-react.herokuapp.com/'
+        APIURL = 'https://amp-my-gamechest-react.herokuapp.com'
 }
 
 export default APIURL;
