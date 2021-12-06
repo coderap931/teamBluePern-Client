@@ -7,12 +7,14 @@ const GameTable = (props) => {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.token}`
+                'Authorization': `Bearer ${props.sessionToken}`
             })
         }).then(() => props.fetchGames())
     }
 
     const gameMapper = () => {
+        console.log(props.sessionToken);
+        console.log(props);
         return props.games.map((game, index) => {
             return(
                 <tr key={index}>
@@ -21,7 +23,7 @@ const GameTable = (props) => {
                     <td>{game.boxart}</td>
                     <td>{game.reviewrating}</td>
                     <td>
-                        <Button color='warning' onClick={() => {props.editUpdateGame(game); props.updateOn()}}>Updated</Button>
+                        <Button color='warning' onClick={() => {props.editUpdateGame(game); props.updateOn()}}>Update</Button>
                         <Button color='danger' onClick={() => {deleteGame(game)}}>Delete</Button>
                     </td>
                 </tr>

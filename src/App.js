@@ -36,7 +36,6 @@ function App() {
     <div className="App">
       <Router>
       <Sidebar updateToken={updateToken} clearToken={clearToken} />
-      
       </Router>
     </div>
   );

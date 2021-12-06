@@ -13,13 +13,14 @@ const GameCreateModal = (props) => {
     const [owner_id, setOwner_id] = useState('');
 
     const handleSubmit = (event) => {
+        console.log(props.sessionToken)
         event.preventDefault();
         fetch('http://localhost:3000/game/create', {
             method: 'POST',
             body: JSON.stringify({ game: { name: name, boxart: boxart, gamedescription: gamedescription, esrbrating: esrbrating, reviewrating: reviewrating, reviewdescription: reviewdescription, platforms: platforms, tags: tags, owner_id: owner_id } }),
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.token}`
+                'Authorization': `Bearer ${props.sessionToken}`
             })
         }).then((res) => res.json())
             .then((gameData) => {
