@@ -8,6 +8,8 @@ import {
     MDBModalTitle,
     MDBModalBody
 } from 'mdb-react-ui-kit';
+import APIURL from '../helpers/environment';
+// const APIURL = 'http://localhost:3000'
 
 
 const GameViewModal = (props) => {
@@ -17,11 +19,11 @@ const GameViewModal = (props) => {
 
     const ViewGame = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:3000/game/${props.id}`, {
+        fetch(`${APIURL}/game/${props.id}`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.token}`
+                'Authorization': `Bearer ${props.sessionToken}`
             })
         }).then((res) => res.json())
             .then((gameData) => {
@@ -30,7 +32,7 @@ const GameViewModal = (props) => {
     }
 
     useEffect(() => {
-        ViewGame();
+        ViewGame()
     }, [])
 
     const gameModalMapper = () => {
@@ -39,7 +41,6 @@ const GameViewModal = (props) => {
                 <MDBModalContent key={index}>
                     <MDBModalHeader>
                         <MDBModalTitle>{game.name}</MDBModalTitle>
-                        <MDBBtn className='btn-close' color='none' onClick={ViewGame}></MDBBtn>
                     </MDBModalHeader>
                     <MDBModalBody>
                         {game.gamedescription}
@@ -67,5 +68,6 @@ const GameViewModal = (props) => {
         </div>
     )
 }
+
 
 export default GameViewModal;
