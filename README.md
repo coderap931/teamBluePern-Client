@@ -19,24 +19,27 @@
 
 ### Assigned Tasks
 
-- **Endpoint:** /game/create
-- **Completion Date:** WIP / [completion date]
+**Endpoint:** /game/create    
+**Completion Date:** WIP / [completion date]
+
 | Date | Files, Commits and Comments |
 | ------ | ------ |
 | [date] | [focused items / files] */consider your commit message |
 | [date] | [focused items / files] */consider your commit message |
 | [date] | [focused items / files] */consider your commit message |
 
-- **Endpoint:** /game/edit
-- **Completion Date:** WIP / [completion date]
+**Endpoint:** /game/edit   
+**Completion Date:** WIP / [completion date]
+
 | Date | Files, Commits and Comments |
 | ------ | ------ |
 | [date] | [focused items / files] */consider your commit message |
 | [date] | [focused items / files] */consider your commit message |
 | [date] | [focused items / files] */consider your commit message |
 
-- **Endpoint:** /game/delete
-- **Completion Date:** WIP / [completion date]
+**Endpoint:** /game/delete    
+**Completion Date:** WIP / [completion date]
+
 | Date | Files, Commits and Comments |
 | ------ | ------ |
 | [date] | [focused items / files] */consider your commit message |
@@ -47,7 +50,9 @@
 - Git Master
 
 **Client Components:** 
-- <pending>
+- [insert here]
+- [insert here]
+- [insert here]
 ----
 ## Alex Myers
 | Portfolio  Sites | Direct Link |
@@ -58,15 +63,16 @@
 
 ### Assigned Tasks
 
-- **Endpoint:** /user/register
-- **Completion Date:** 12/4
+**Endpoint:** /user/register   
+**Completion Date:** 12/4
+
 | Date | Files, Commits and Comments |
 | ------ | ------ |
 | *11/30* | Signup.js working, but buggy, with MDB design. |
 | *12/4:*  | Signup.js reformatted and debugged. Fully working. Changed to Reactstrap design for consistency. |
 
-- **Endpoint:** /user/login
-- **Completion Date:** TBD
+**Endpoint:** /user/login    
+**Completion Date:** 12/4
 
 | Date | Files, Commits and Comments |
 | ------ | ------ |
@@ -100,14 +106,14 @@
 
 ### Assigned Tasks
 
-- **Endpoint:** /game/listAll
-- **Completion Date:** WIP
+**Endpoint:** /game/listAll    
+**Completion Date:** WIP
 | Date | Files, Commits and Comments |
 | ------ | ------ |
 | Date | Files, Commits and Comments |
 
-- **Endpoint:** /game/view/{id}
-- **Completion Date:** WIP / [completion date]
+**Endpoint:** /game/view/{id}    
+**Completion Date:** WIP / [completion date]
 | Date | Files, Commits and Comments |
 | ------ | ------ |
 | Date | Files, Commits and Comments |
