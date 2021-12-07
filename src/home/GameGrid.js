@@ -1,6 +1,5 @@
 import React from 'react';
-import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
-import HomePage from './Home';
+import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
 
 const GameGrid = (props) => {
     console.log("Props:", props)
@@ -28,5 +27,6 @@ const GameGrid = (props) => {
         </div>
     )
 }
+
 
 export default GameGrid

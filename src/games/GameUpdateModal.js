@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import {Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
+//TODO Switch between Heroku and Localhost here:
+import APIURL from '../helpers/environment';
+// const APIURL = 'http://localhost:3000'
+//TODO Switch back to Heroku URL when committing. 
 
 const GameUpdateModal = (props) => {
     const [editName, setEditName] = useState('');
@@ -14,13 +18,13 @@ const GameUpdateModal = (props) => {
 
     const gameUpdate = (event, gameToUpdate) => {
         event.preventDefault();
-        fetch(`http://localhost:3000/game/edit=${props.gameToUpdate.id}`, {
+        fetch(`${APIURL}/game/edit=${props.gameToUpdate.id}`, {
             method: 'PUT',
             // Add editOwner_id to the body if needed
-            body: JSON.stringify({game: {name: editName, boxart: editBoxart, gamedescription: editGamedescription, esrbrating: editEsrbrating, reviewrating: editReviewrating, reviewdescription: editReviewdescription, platforms: editPlatforms, tags: editTags}}),
+            body: JSON.stringify({ game: { name: editName, boxart: editBoxart, gamedescription: editGamedescription, esrbrating: editEsrbrating, reviewrating: editReviewrating, reviewdescription: editReviewdescription, platforms: editPlatforms, tags: editTags } }),
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.sessionToken}`
+                'Authorization': `Bearer ${props.token}`
             })
         }).then((res) => {
             props.fetchGames();
@@ -96,5 +100,6 @@ const GameUpdateModal = (props) => {
         </Modal>
     )
 }
+
 
 export default GameUpdateModal;

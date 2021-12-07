@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
+//TODO Switch between Heroku and Localhost here:
+import APIURL from '../helpers/environment';
+// const APIURL = 'http://localhost:3000'
+//TODO Switch back to Heroku URL when committing. 
 
 const GameCreateModal = (props) => {
     const [name, setName] = useState('');
@@ -13,14 +17,13 @@ const GameCreateModal = (props) => {
     const [owner_id, setOwner_id] = useState('');
 
     const handleSubmit = (event) => {
-        console.log(props.sessionToken)
         event.preventDefault();
-        fetch('http://localhost:3000/game/create', {
+        fetch(`${APIURL}/game/create`, {
             method: 'POST',
             body: JSON.stringify({ game: { name: name, boxart: boxart, gamedescription: gamedescription, esrbrating: esrbrating, reviewrating: reviewrating, reviewdescription: reviewdescription, platforms: platforms, tags: tags, owner_id: owner_id } }),
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.sessionToken}`
+                'Authorization': `Bearer ${props.token}`
             })
         }).then((res) => res.json())
             .then((gameData) => {
@@ -106,5 +109,6 @@ const GameCreateModal = (props) => {
         </Modal>
     )
 }
+
 
 export default GameCreateModal;

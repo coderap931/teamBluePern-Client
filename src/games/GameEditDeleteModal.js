@@ -1,37 +1,39 @@
 import React from 'react';
-import {Table, Button, Modal, ModalHeader, ModalBody} from 'reactstrap';
+import { Table, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+//TODO Switch between Heroku and Localhost here:
+import APIURL from '../helpers/environment';
+// const APIURL = 'http://localhost:3000'
+//TODO Switch back to Heroku URL when committing. 
 
 const GameTable = (props) => {
     const deleteGame = (game) => {
-        fetch(`http://localhost:3000/game/remove/${game.id}`, {
+        fetch(`${APIURL}/game/remove/${game.id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.sessionToken}`
+                'Authorization': `Bearer ${props.token}`
             })
         }).then(() => props.fetchGames())
     }
 
     const gameMapper = () => {
-        console.log(props.sessionToken);
-        console.log(props);
         return props.games.map((game, index) => {
-            return(
+            return (
                 <tr key={index}>
                     <th scope='row'>{game.id}</th>
                     <td>{game.name}</td>
                     <td>{game.boxart}</td>
                     <td>{game.reviewrating}</td>
                     <td>
-                        <Button color='warning' onClick={() => {props.editUpdateGame(game); props.updateOn()}}>Update</Button>
-                        <Button color='danger' onClick={() => {deleteGame(game)}}>Delete</Button>
+                        <Button color='warning' onClick={() => { props.editUpdateGame(game); props.updateOn() }}>Updated</Button>
+                        <Button color='danger' onClick={() => { deleteGame(game) }}>Delete</Button>
                     </td>
                 </tr>
             )
         })
     }
 
-    return(
+    return (
         <Modal isOpen={true}>
             <ModalHeader>Edit/Delete a Game</ModalHeader>
             <ModalBody>
@@ -52,5 +54,6 @@ const GameTable = (props) => {
         </Modal>
     )
 }
+
 
 export default GameTable;
