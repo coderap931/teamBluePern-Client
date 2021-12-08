@@ -3,7 +3,6 @@ import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } 
 //TODO Switch between Heroku and Localhost here:
 import Sidebar from '../home/Sidebar';
 import APIURL from '../helpers/environment';
-// const APIURL = 'http://localhost:3000'
 //TODO Switch back to Heroku URL when committing. 
 
 const GameCreateModal = (props) => {

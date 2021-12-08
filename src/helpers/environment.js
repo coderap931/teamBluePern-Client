@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 let APIURL = '';
 
 switch (window.location.hostname) {
