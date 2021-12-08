@@ -2,7 +2,7 @@
 
 >  A responsive website that allows public users to see a list of video games and their reviews. 
 >  Registered users are able to create a new video game entry, create new reviews of games,
-> give a rating number, as well as one day being able to keep a log of their video games.
+>  give a rating number, as well as one day being able to keep a log of their video games.
 
 **Technology Used:**
 
@@ -89,6 +89,7 @@
 | *12/6* | LocalHost<->Heroku Setup | Debugged and setup a way to quickly switch between local and deployed testing. Local testing worked perfect, Heroku testing is a WIP and will be done with team.
 | *12/7* | LocalHost<->Heroku Testing Instructions | Created a [guide][LocalHostInstructions] on how to switch between LocalHost and Heroku fetches to test on all instances. Next up is how to properly do so for Heroku specifically with team.
 | *12/7* | ReadMe.md updated completely, reformatted | ReadMe.md updated completely. Reformatted to be more presentable and legible. Updated personal information and commits.
+| *12/7* | Team Updates Props | Spent time with the entire team debugging how props are passing through. The only material at this point not properly going through is updating a game, which we will be working on during our 12/8 meetup. Potentially, GameView and GameGrid need tuned slightly different to become fully functional.  
 
 **Client components:**
 -   App.js
