@@ -6,18 +6,19 @@ import APIURL from '../helpers/environment';
 //TODO Switch back to Heroku URL when committing. 
 
 const GameTable = (props) => {
+    console.log("EditDelete:", props)
     const deleteGame = (game) => {
         fetch(`${APIURL}/game/remove/${game.id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.token}`
+                'Authorization': `Bearer ${props.sessionToken}`
             })
         }).then(() => props.fetchGames())
     }
 
     const gameMapper = () => {
-        return props.games.map((game, index) => {
+        return props.games.games.map((game, index) => {
             return (
                 <tr key={index}>
                     <th scope='row'>{game.id}</th>

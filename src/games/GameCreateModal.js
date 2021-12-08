@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
 //TODO Switch between Heroku and Localhost here:
+import Sidebar from '../home/Sidebar';
 import APIURL from '../helpers/environment';
 // const APIURL = 'http://localhost:3000'
 //TODO Switch back to Heroku URL when committing. 
 
 const GameCreateModal = (props) => {
+    console.log(props)
     const [name, setName] = useState('');
     const [boxart, setBoxart] = useState('');
     const [gamedescription, setGamedescription] = useState('');
@@ -23,7 +25,7 @@ const GameCreateModal = (props) => {
             body: JSON.stringify({ game: { name: name, boxart: boxart, gamedescription: gamedescription, esrbrating: esrbrating, reviewrating: reviewrating, reviewdescription: reviewdescription, platforms: platforms, tags: tags, owner_id: owner_id } }),
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.token}`
+                'Authorization': `Bearer ${props.sessionToken}`
             })
         }).then((res) => res.json())
             .then((gameData) => {

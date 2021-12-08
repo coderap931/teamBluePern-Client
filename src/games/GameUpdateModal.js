@@ -6,6 +6,7 @@ import APIURL from '../helpers/environment';
 //TODO Switch back to Heroku URL when committing. 
 
 const GameUpdateModal = (props) => {
+    console.log("Update:", props)
     const [editName, setEditName] = useState('');
     const [editBoxart, setEditBoxart] = useState('');
     const [editGamedescription, setEditGamedescription] = useState('');
