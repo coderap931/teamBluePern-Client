@@ -7,25 +7,31 @@
 
 ## Files Needing Changed in Client
 
-- Home.js
-- Login.js
-- Signup.js
-- GameCreateModal.js
-- GameEditDeleteModal.js
-- GameUpdateModal.js
-- GameViewerModal.js
+- environment.js
 
 ## Client Side: Code that needs changed for Client:localhost testing
 All files effected are mentioned in "Files Needing Changed"
 - Comment 
-    - // import APIURL from '../helpers/environment';
+        - // switch (window.location.hostname) {
+        case 'localhost' || '127.0.0.1':
+            APIURL = 'http://localhost:5432';
+            break;
+        case 'amp-my-gamechest.herokuapp.com':
+            APIURL = 'https://amp-my-gamechest.herokuapp.com'
+            }
+
 - Uncomment
     - const APIURL = 'http://localhost:3000'
-    - 
 ## Client Side: Code that needs changed before committing
 All files effected are mentioned in "Files Needing Changed"
 - Uncomment 
-    - import APIURL from '../helpers/environment';
+        - switch (window.location.hostname) {
+        case 'localhost' || '127.0.0.1':
+            APIURL = 'http://localhost:5432';
+            break;
+        case 'amp-my-gamechest.herokuapp.com':
+            APIURL = 'https://amp-my-gamechest.herokuapp.com'
+            }"
 - Comment
     - // const APIURL = 'http://localhost:3000'
 
@@ -46,6 +52,6 @@ All files effected are mentioned in "Files Needing Changed"
 - db.js
     - Uncomment the Heroku database object. Comment the local database section.
 - .env
-    - Comment out the Heroku database object that should be the variable named "DATABASE_URL". Ask Adam for that variable info if needed.
-    - Uncomment your local database object that should be the same name as the Heroku variable, "DATABASE URL".
+    - Uncomment the Heroku database object that should be the variable named "DATABASE_URL". Ask Adam for that variable info if needed.
+    - Comment your local database object that should be the same name as the Heroku variable, "DATABASE URL".
         - Ex: DATABASE_URL = "postgres://postgres:<yourPersonalPassword>@localhost/<nameYouGaveYourLocalDatabase>"

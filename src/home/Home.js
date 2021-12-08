@@ -6,7 +6,6 @@ import GameEditDeleteModal from '../games/GameEditDeleteModal';
 import GameUpdateModal from '../games/GameUpdateModal';
 //TODO Switch between Heroku and Localhost here:
 import APIURL from '../helpers/environment';
-// const APIURL = 'http://localhost:3000'
 //TODO Switch back to Heroku URL when committing. 
 
 const HomePage = (props) => {
