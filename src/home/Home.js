@@ -57,7 +57,7 @@ const HomePage = (props) => {
                         <GameViewModal />
                     </MDBCol>
                     <MDBCol size='md' className='col-example'>
-                        <GameUpdateModal games={games} editUpdateGame={editUpdateGame} updateOn={updateOn} fetchAllGames={fetchAllGames} token={props.token} />
+                        <GameUpdateModal games={games} editUpdateGame={editUpdateGame} updateOn={updateOn} fetchAllGames={fetchAllGames} token={props.sessionToken} />
                     </MDBCol>
 
                     <MDBCol size='md' className='col-example'>
