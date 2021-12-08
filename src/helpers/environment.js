@@ -8,4 +8,7 @@ switch (window.location.hostname) {
         APIURL = 'https://amp-my-gamechest.herokuapp.com'
 }
 
+// APIURL = "http://localhost:3000"
+
+
 export default APIURL;
