@@ -25,7 +25,7 @@ const GameTable = (props) => {
                     <td>{game.boxart}</td>
                     <td>{game.reviewrating}</td>
                     <td>
-                        <Button color='warning' onClick={() => { props.editUpdateGame(game); props.updateOn() }}>Updated</Button>
+                        <Button color='warning' onClick={() => { props.changeGame(game); props.updateOn() }}>Update</Button>
                         <Button color='danger' onClick={() => { deleteGame(game) }}>Delete</Button>
                     </td>
                 </tr>

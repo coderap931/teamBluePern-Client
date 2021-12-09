@@ -93,7 +93,7 @@ const Sidebar = (props) => {
                 <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
                 <Route path="/creategame" element={<GameCreateModal sessionToken={props.sessionToken}/>} />
                 {/* <Route path="/editgame" element={<GameEditDeleteModal sessionToken={props.sessionToken} games={props.games} fetchGames={props.fetchGames} updateOn={props.updateOn} updateOff={props.updateOff} editUpdateGame={props.editUpdateGame} />} /> */}
-                <Route path="/editgame" element={<GameEditDeleteModal editUpdateGame={props.editUpdateGame} updateOn={props.updateOn} updateOff={props.updateOff} sessionToken={props.sessionToken} games={props.games} />} />
+                <Route path="/editgame" element={<GameEditDeleteModal changeGame={props.changeGame} updateGame={props.updateGame} updateOn={props.updateOn} updateOff={props.updateOff} sessionToken={props.sessionToken} games={props.games} />} />
             </Routes>
         </div>
     );

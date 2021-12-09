@@ -36,8 +36,8 @@ function App() {
       });
   };
 
-  const editUpdateGame = (games) => {
-    setUpdateGame(games);
+  const changeGame = (game) => {
+    setUpdateGame(game);
   };
 
   const updateOn = () => {
@@ -64,9 +64,11 @@ function App() {
           sessionToken={sessionToken}
           games={games}
           fetchGames={fetchGames}
-          editUpdateGame={editUpdateGame}
+          updateGame={updateGame}
           updateOn={updateOn}
           updateOff={updateOff}
+          updateActive={updateActive}
+          changeGame={changeGame}
         />
       </Router>
     </div>
