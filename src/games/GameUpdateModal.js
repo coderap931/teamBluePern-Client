@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
 //TODO Switch between Heroku and Localhost here:
 import APIURL from '../helpers/environment';
@@ -24,7 +24,7 @@ const GameUpdateModal = (props) => {
             body: JSON.stringify({ game: { name: editName, boxart: editBoxart, gamedescription: editGamedescription, esrbrating: editEsrbrating, reviewrating: editReviewrating, reviewdescription: editReviewdescription, platforms: editPlatforms, tags: editTags } }),
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.token}`
+                'Authorization': `Bearer ${props.sessionToken}`
             })
         }).then((res) => {
             props.fetchGames();
@@ -32,8 +32,12 @@ const GameUpdateModal = (props) => {
         })
     }
 
+    useEffect(() => {
+        console.log(props.drawModal)
+    }, [])
+
     return (
-        <Modal isOpen={true}>
+        <Modal isOpen={!props.drawModal}>
             <ModalHeader>Edit Game/Review Details</ModalHeader>
             <ModalBody>
                 <Form onSubmit={gameUpdate}>
