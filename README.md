@@ -89,7 +89,8 @@
 | *12/6* | LocalHost<->Heroku Setup | Debugged and setup a way to quickly switch between local and deployed testing. Local testing worked perfect, Heroku testing is a WIP and will be done with team.
 | *12/7* | LocalHost<->Heroku Testing Instructions | Created a [guide][LocalHostInstructions] on how to switch between LocalHost and Heroku fetches to test on all instances. Next up is how to properly do so for Heroku specifically with team.
 | *12/7* | ReadMe.md updated completely, reformatted | ReadMe.md updated completely. Reformatted to be more presentable and legible. Updated personal information and commits.
-| *12/7* | Team Updates Props | Spent time with the entire team debugging how props are passing through. The only material at this point not properly going through is updating a game, which we will be working on during our 12/8 meetup. Potentially, GameView and GameGrid need tuned slightly different to become fully functional.  
+| *12/7* | Team Session: Updated Props | Spent time with the entire team debugging how props are passing through. The only material at this point not properly going through is updating a game, which we will be working on during our 12/8 meetup. Potentially, GameView and GameGrid need tuned slightly different to become fully functional. 
+| *12/8* | Team Session: GameEditDeleteModal+GameUpdateModal logic | Spent roughly 4 hours total of working out our logic for how we want to perform our GameEditDeleteModal, a table with a button called "Update", that will call in the GameUpdateModal component to update a pre-existing game. We have a baseline now that we will attempt tomorrow with continued debugging throughout.
 
 **Client components:**
 -   App.js
