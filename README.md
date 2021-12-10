@@ -91,6 +91,7 @@
 | *12/7* | ReadMe.md updated completely, reformatted | ReadMe.md updated completely. Reformatted to be more presentable and legible. Updated personal information and commits.
 | *12/7* | Team Session: Updated Props | Spent time with the entire team debugging how props are passing through. The only material at this point not properly going through is updating a game, which we will be working on during our 12/8 meetup. Potentially, GameView and GameGrid need tuned slightly different to become fully functional. 
 | *12/8* | Team Session: GameEditDeleteModal+GameUpdateModal logic | Spent roughly 4 hours total of working out our logic for how we want to perform our GameEditDeleteModal, a table with a button called "Update", that will call in the GameUpdateModal component to update a pre-existing game. We have a baseline now that we will attempt tomorrow with continued debugging throughout.
+| *12/9* | Team Session: GameEditDeleteModal+GameUpdateModal now functional! | After three days of debugging from getting the modal to properly show up, every prop getting passed correctly, and making sure the fetch for updating a game was working correctly, we have reached the summit of completing those modals. MVP is hit for functionality but not UI, so that is next up in our slate before we declare ourselves at least ready enough for dec 18."
 
 **Client components:**
 -   App.js
