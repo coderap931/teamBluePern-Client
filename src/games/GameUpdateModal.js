@@ -16,9 +16,9 @@ const GameUpdateModal = (props) => {
     const [editTags, setEditTags] = useState('');
     // const [editOwner_id, setEditOwner_id] = useState(''); -- Shouldnt change on edit, but unsure if needed to retain value, keeping for now
 
-    const gameUpdate = (event, gameToUpdate) => {
+    const gameUpdate = (event, props) => {
         event.preventDefault();
-        fetch(`${APIURL}/game/edit=${props.gameToUpdate.id}`, {
+        fetch(`${APIURL}/game/edit/${props.changeGame[0].id}`, {
             method: 'PUT',
             // Add editOwner_id to the body if needed
             body: JSON.stringify({ game: { name: editName, boxart: editBoxart, gamedescription: editGamedescription, esrbrating: editEsrbrating, reviewrating: editReviewrating, reviewdescription: editReviewdescription, platforms: editPlatforms, tags: editTags } }),
@@ -33,11 +33,11 @@ const GameUpdateModal = (props) => {
     }
 
     useEffect(() => {
-        console.log(props.drawModal)
+        console.log(props)
     }, [])
 
     return (
-        <Modal isOpen={!props.drawModal}>
+        <Modal isOpen={true}>
             <ModalHeader>Edit Game/Review Details</ModalHeader>
             <ModalBody>
                 <Form onSubmit={gameUpdate}>

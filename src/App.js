@@ -4,13 +4,17 @@ import "bootstrap/dist/css/bootstrap.css";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import APIURL from "./helpers/environment";
+import GameUpdateModal from './games/GameUpdateModal';
+import { Table, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");
-  const [games, setGames] = useState([]);
+  const [games, setGames] = useState({});
   const [updateGame, setUpdateGame] = useState({});
   const [updateActive, setUpdateActive] = useState(false);
 
+
+//! Token fun for session
   const updateToken = (newToken) => {
     localStorage.setItem("token", newToken);
     setSessionToken(newToken);
@@ -23,6 +27,7 @@ function App() {
     console.log("This is the clearedToken:", sessionToken);
   };
 
+//! This is the fetch for the games
   const fetchGames = () => {
     fetch(`${APIURL}/game/all`, {
       method: "GET",
@@ -36,8 +41,83 @@ function App() {
       });
   };
 
+//! GameEditDeleteModal and GameUpdateModal 
+//TODO - get this thing to work
+
+  const deleteGame = (game) => {
+    console.log("deleteGame Function, games!:", games);
+    console.log("deleteGame Function, games.games.y2k!:", games.games);
+    fetch(`${APIURL}/game/remove/${game.id}`, {
+        method: 'DELETE',
+        headers: new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionToken}`
+        })
+    }).then(() => fetchGames())
+  }
+
+  const gameMapper = (props) => {
+    console.log("gameMapper Function, games!:", games);
+    console.log("gameMapper Function, games.games.y2k!:", games.games);
+    return props.games.games.map((game, index) => {
+        return (
+            <tr key={index}>
+                <th scope='row'>{game.id}</th>
+                <td>{game.name}</td>
+                <td>{game.boxart}</td>
+                <td>{game.reviewrating}</td>
+                <td>
+                    <Button color='warning' onClick={() => { updateModalActive(props); }}>Update</Button>
+                    <Button color='danger' onClick={() => { deleteGame(game) }}>Delete</Button>
+                </td>
+            </tr>
+        )
+    })
+  }
+
+  //! Edit Table
+  const editModalActive = (props) => {
+    console.log("editModalActive:", props)
+
+    return (
+        <Modal isOpen={true}>
+            <ModalHeader>Edit/Delete a Game</ModalHeader>
+            <ModalBody>
+                <Table striped>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Boxart</th>
+                            <th>Review Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {gameMapper(props)}
+                    </tbody>
+                </Table>
+            </ModalBody>
+        </Modal>
+    )
+  
+}
+  //! Modal for Update
+  //TODO - updateOff for GameUpdateModal to set updateActive to false for table to show again?
+  const updateModalActive = (props) => {
+    updateOn(true)
+    console.log("updateModalActive:", props)
+      return (
+        <GameUpdateModal
+            changeGame={changeGame(props.games.games)}
+            updateOn={updateOn()}
+            isOpen={true}
+        />
+      )
+}
+
   const changeGame = (game) => {
     setUpdateGame(game);
+    console.log("changeGame:", updateGame)
   };
 
   const updateOn = () => {
@@ -48,6 +128,7 @@ function App() {
     setUpdateActive(false);
   };
 
+//! useEffect for token session
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setSessionToken(localStorage.getItem("token"));
@@ -55,6 +136,7 @@ function App() {
     fetchGames();
   }, []);
 
+//! App Return
   return (
     <div className="App">
       <Router>
@@ -69,6 +151,9 @@ function App() {
           updateOff={updateOff}
           updateActive={updateActive}
           changeGame={changeGame}
+          updateModalActive={updateModalActive}
+          editModalActive={editModalActive}
+          gameMapper={gameMapper}
         />
       </Router>
     </div>
