@@ -108,9 +108,12 @@ function App() {
     console.log("updateModalActive:", props)
       return (
         <GameUpdateModal
-            changeGame={changeGame(props.games.games)}
-            updateOn={updateOn()}
+            changeGame={changeGame(props.games.games[0])}
+            updateOn={updateOn}
             isOpen={true}
+            sessionToken={sessionToken}
+            updateOff={updateOff}
+            fetchGames={fetchGames}
         />
       )
 }
@@ -118,6 +121,9 @@ function App() {
   const changeGame = (game) => {
     setUpdateGame(game);
     console.log("changeGame:", updateGame)
+    return ( 
+        updateGame
+    )
   };
 
   const updateOn = () => {
