@@ -16,9 +16,9 @@ import GameEditDeleteModal from '../games/GameEditDeleteModal';
 // import GameViewModal from './GameViewModal';
 // import React features
 import { useHistory } from 'react-router-dom';
-import { Router, Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-// 
+
 import {
     Collapse,
     Navbar,
@@ -33,6 +33,7 @@ import {
 //TODO add back to route when completed -> // <Route exact path="/gameview" component={GameView} />
 
 const Sidebar = (props) => {
+    console.log(props);
     // const [open, setOpen] = useState(false);
     // const [user, setUser] = useState(null);
     // const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -83,12 +84,6 @@ const Sidebar = (props) => {
                                 </Button>
                             </Link>
                         </NavItem>
-                        <NavItem>
-                            <Link to="/deletegame">
-                                <Button color="primary">
-                                </Button>
-                            </Link>
-                        </NavItem>
                     </Nav>
                 </Collapse>
             </Navbar>
@@ -96,14 +91,23 @@ const Sidebar = (props) => {
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
                 <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
-                <Route path="/creategame" element={<GameCreateModal />} />
-                <Route path="/editgame" element={<GameEditDeleteModal />} />
-                <Route path="/deletegame" element={<GameEditDeleteModal />} />
+                <Route path="/creategame" element={<GameCreateModal sessionToken={props.sessionToken}/>} />
+                {/* <Route path="/editgame" element={<GameEditDeleteModal sessionToken={props.sessionToken} games={props.games} fetchGames={props.fetchGames} updateOn={props.updateOn} updateOff={props.updateOff} editUpdateGame={props.editUpdateGame} />} /> */}
+                <Route path="/editgame" element={<GameEditDeleteModal 
+                                                        props={props}
+                                                        updateActive={props.updateActive} 
+                                                        updateGame={props.updateGame} 
+                                                        updateOn={props.updateOn} 
+                                                        updateOff={props.updateOff} 
+                                                        sessionToken={props.sessionToken} 
+                                                        games={props.games}
+                                                        updateModalActive={props.updateModalActive}
+                                                        editModalActive={props.editModalActive}
+                                                        gameMapper={props.gameMapper}
+                    />} />
             </Routes>
         </div>
     );
 }
-
-
 
 export default Sidebar;

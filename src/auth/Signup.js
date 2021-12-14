@@ -2,7 +2,9 @@
 import { useState } from 'react';
 //import material ui modal, button, and form
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
+//TODO Switch between Heroku and Localhost here:
 import APIURL from '../helpers/environment';
+//TODO Switch back to Heroku URL when committing. 
 
 const Signup = (props) => {
     const [username, setUsername] = useState('');
