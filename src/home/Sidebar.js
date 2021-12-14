@@ -1,12 +1,8 @@
 // import material ui drawer+elements from material ui
-// import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 // import Drawer from '@material-ui/core/Drawer';
-// import List from '@material-ui/core/List';
-// import ListItem from '@material-ui/core/ListItem';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
-// import ListItemText from '@material-ui/core/ListItemText';
 // import material ui icons for the sidebar visuals
-import { MenuIcon, AddIcon, HomeIcon, LoginIcon, HowToRegIcon, GamesIcon, ModeEditIcon } from '@material-ui/icons/Menu';
+import { Drawer, MenuIcon, AddIcon, HomeIcon, LoginIcon, HowToRegIcon, GamesIcon, ModeEditIcon, ListItemText, ListItem, List, ListItemIcon } from '@material-ui/icons/Menu';
 // imports the components for the sidebar
 import HomePage from './Home';
 import Login from '../auth/Login';
@@ -43,7 +39,73 @@ const Sidebar = (props) => {
         setIsOpen(!isOpen);
     }
 
-    // reacstrap sidebar where you can click home, log in, sign up, create game, edit game, and delete game
+    
+
+    const useStyles = makeStyles({
+        list: {
+            width: 250,
+        },
+        fullList: {
+            width: 'auto',
+        },
+    });
+    
+    const classes = useStyles();
+    const [state, setState] = useState({
+        top: false,
+        left: false,
+        bottom: false,
+        right: false,
+    });
+
+    const toggleDrawer = (side, open) => event => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+            return;
+        }
+
+        setState({ ...state, [side]: open });
+    };
+
+    const sideList = side => (
+        <div
+            className={classes.list}
+            role="presentation"
+            onClick={toggleDrawer(side, false)}
+            onKeyDown={toggleDrawer(side, false)}
+        >
+            <List>
+                <ListItem button key={'Home'}>
+                    <ListItemIcon><HomeIcon /></ListItemIcon>
+                    <ListItemText primary={'Home'} />
+                </ListItem>
+                <ListItem button key={'Login'}>
+                    <ListItemIcon><LoginIcon /></ListItemIcon>
+                    <ListItemText primary={'Login'} />
+                </ListItem>
+                <ListItem button key={'Signup'}>
+                    <ListItemIcon><HowToRegIcon /></ListItemIcon>
+                    <ListItemText primary={'Signup'} />
+                </ListItem>
+                <ListItem button key={'Create Game'}> 
+                    <ListItemIcon><ModeEditIcon /></ListItemIcon>
+                    <ListItemText primary={'Create Game'} />
+                </ListItem>
+                <ListItem button key={'Edit Game'}>
+                    <ListItemIcon><ModeEditIcon /></ListItemIcon>
+                    <ListItemText primary={'Edit Game'} />
+                </ListItem>
+                <ListItem button key={'Delete Game'}>
+                    <ListItemIcon><ModeEditIcon /></ListItemIcon>
+                    <ListItemText primary={'Delete Game'} />
+                </ListItem>
+            </List>
+        </div>
+    );
+
+        // material ui responsive drawer, permanent for wider screen, temporary for small screens.
+
+
+        
     return (
         <div>
             <Navbar color="faded" light expand="md">
@@ -53,28 +115,28 @@ const Sidebar = (props) => {
                         <NavItem>
                             <Link to="/home">
                                 <Button color="primary">
-
+    
                                 </Button>
                             </Link>
                         </NavItem>
                         <NavItem>
                             <Link to="/login">
                                 <Button color="primary">
-
+    
                                 </Button>
                             </Link>
                         </NavItem>
                         <NavItem>
                             <Link to="/signup">
                                 <Button color="primary">
-
+    
                                 </Button>
                             </Link>
                         </NavItem>
                         <NavItem>
                             <Link to="/creategame">
                                 <Button color="primary">
-
+    
                                 </Button>
                             </Link>
                         </NavItem>
