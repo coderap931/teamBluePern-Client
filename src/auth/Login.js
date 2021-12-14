@@ -1,9 +1,9 @@
 //* Imports replaced here
 import React from 'react';
-import { MDBContainer, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBBtn, MDBIcon, MDBInput, MDBRow, MDBCol } from 'mdb-react-ui-kit';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 //import from reactstrap the modal component, and the button component, and the input component, and the row and col components, and the container component
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import APIURL from '../helpers/environment';
 
 const Login = (props) => {
     const [username, setUsername] = useState('');
@@ -14,7 +14,7 @@ const Login = (props) => {
     // login function that sets username+email and password to state
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetch('http://localhost:3000/user/login', {
+        fetch(`${APIURL}/user/login`, {
             method: 'POST',
             body: JSON.stringify({ user: { username: username, email: email, passwordhash: password } }),
             headers: new Headers({
@@ -58,5 +58,6 @@ const Login = (props) => {
         </div>
     );
 }
+
 
 export default Login;

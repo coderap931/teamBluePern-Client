@@ -1,5 +1,4 @@
 import './App.css';
-import HomePage from './home/Home'; //Game Grid with all Games //!Jaylen
 import Sidebar from './home/Sidebar';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useState, useEffect } from 'react';
@@ -28,6 +27,7 @@ function App() {
     console.log("This is the clearedToken:", sessionToken);
   }
 
+
   // const protectedViews = () => {
   //   return (sessionToken === localStorage.getItem('token') ? <HomePage updateToken={updateToken} clearToken={clearToken} /> : <div>You are not logged in</div>)
   // }
@@ -35,8 +35,8 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <Sidebar updateToken={updateToken} clearToken={clearToken} />
-      
+        <Sidebar updateToken={updateToken} clearToken={clearToken} />
+
       </Router>
     </div>
   );

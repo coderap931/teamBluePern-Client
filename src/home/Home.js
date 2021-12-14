@@ -1,18 +1,19 @@
-// import GameViewModal from './games/GameViewModal'; //Game View Modal with Single Game's Info //!Jaylen
+import GameViewModal from '../games/GameViewModal'; //Game View Modal with Single Game's Info //!Jaylen
 import GameGrid from './GameGrid';
 import { useState, useEffect } from 'react'
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import GameEditDeleteModal from '../games/GameEditDeleteModal';
+import GameUpdateModal from '../games/GameUpdateModal';
+import APIURL from '../helpers/environment';
 
 const HomePage = (props) => {
     const [games, setGames] = useState([]);
     const [updateActive, setUpdateActive] = useState(false);
-    const [updateGame, setEditUpdateGame] = useState({});
+    const [updateGame, setUpdateGame] = useState({});
 
-    console.log("Home Page", props);
 
     const editUpdateGame = (games) => {
-        setEditUpdateGame(games);
+        setUpdateGame(games);
     }
 
     const updateOn = () => {
@@ -23,8 +24,8 @@ const HomePage = (props) => {
         setUpdateActive(false);
     }
 
-    const fetchGames = () => {
-        fetch('http://localhost:3000/game/all', {
+    const fetchAllGames = () => {
+        fetch(`${APIURL}/all`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -37,7 +38,7 @@ const HomePage = (props) => {
     }
 
     useEffect(() => {
-        fetchGames();
+        fetchAllGames();
     }, [])
 
     return (
@@ -47,16 +48,22 @@ const HomePage = (props) => {
                 <MDBRow>
                     <MDBCol size='md' className='col-example'>
                         <GameGrid />
+                        <GameViewModal />
                     </MDBCol>
                     <MDBCol size='md' className='col-example'>
                         <GameGrid />
+                        <GameViewModal />
                     </MDBCol>
                     <MDBCol size='md' className='col-example'>
                         <GameGrid />
+                        <GameViewModal />
                     </MDBCol>
-            
                     <MDBCol size='md' className='col-example'>
-                        {updateActive ? (<GameEditDeleteModal updateGame={updateGame} updateOff={updateOff} token={props.token} fetchGames={fetchGames} />) : (<></>
+                        <GameUpdateModal games={games} editUpdateGame={editUpdateGame} updateOn={updateOn} fetchAllGames={fetchAllGames} token={props.token} />
+                    </MDBCol>
+
+                    <MDBCol size='md' className='col-example'>
+                        {updateActive ? (<GameEditDeleteModal updateGame={updateGame} updateOff={updateOff} token={props.token} fetchAllGames={fetchAllGames} />) : (<></>
                         )}
                     </MDBCol>
 
@@ -66,15 +73,21 @@ const HomePage = (props) => {
                 <MDBRow>
                     <MDBCol size='md' className='col-example'>
                         <GameGrid />
+                        <GameViewModal />
                     </MDBCol>
                     <MDBCol size='md' className='col-example'>
                         <GameGrid />
+                        <GameViewModal />
                     </MDBCol>
                     <MDBCol size='md' className='col-example'>
                         <GameGrid />
+                        <GameViewModal />
                     </MDBCol>
                     <MDBCol size='md' className='col-example'>
-                        {updateActive ? (<GameEditDeleteModal updateGame={updateGame} updateOff={updateOff} token={props.token} fetchGames={fetchGames} />) : (<></>
+                        <GameUpdateModal games={games} editUpdateGame={editUpdateGame} updateOn={updateOn} fetchAllGames={fetchAllGames} token={props.token} />
+                    </MDBCol>
+                    <MDBCol size='md' className='col-example'>
+                        {updateActive ? (<GameEditDeleteModal updateGame={updateGame} updateOff={updateOff} token={props.token} fetchAllGames={fetchAllGames} />) : (<></>
                         )}
                     </MDBCol>
                 </MDBRow>
@@ -83,15 +96,21 @@ const HomePage = (props) => {
                 <MDBRow>
                     <MDBCol size='md' className='col-example'>
                         <GameGrid />
+                        <GameViewModal />
                     </MDBCol>
                     <MDBCol size='md' className='col-example'>
                         <GameGrid />
+                        <GameViewModal />
                     </MDBCol>
                     <MDBCol size='md' className='col-example'>
                         <GameGrid />
+                        <GameViewModal />
                     </MDBCol>
                     <MDBCol size='md' className='col-example'>
-                        {updateActive ? (<GameEditDeleteModal updateGame={updateGame} updateOff={updateOff} token={props.token} fetchGames={fetchGames} />) : (<></>
+                        <GameUpdateModal games={games} editUpdateGame={editUpdateGame} updateOn={updateOn} fetchAllGames={fetchAllGames} token={props.token} />
+                    </MDBCol>
+                    <MDBCol size='md' className='col-example'>
+                        {updateActive ? (<GameEditDeleteModal updateGame={updateGame} updateOff={updateOff} token={props.token} fetchAllGames={fetchAllGames} />) : (<></>
                         )}
                     </MDBCol>
 
@@ -102,5 +121,6 @@ const HomePage = (props) => {
         </div>
     );
 };
+
 
 export default HomePage;
