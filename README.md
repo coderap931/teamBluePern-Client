@@ -1,142 +1,90 @@
-# GameChest
 
->  A responsive website that allows public users to see a list of video games and their reviews. 
->  Registered users are able to create a new video game entry, create new reviews of games,
->  give a rating number, as well as one day being able to keep a log of their video games.
+**Project Name**
+
+              [Brief description of project build]  *This will be different between client and server.  It can be detailed as you see fit (look over other ReadMe files for examples)
 
 **Technology Used:**
 
-              React, HTML5, CSS3, Node.js, Express, Heroku, Reactstrap, Material UI
-----
-## Adam Patrick
+              HTML5, CSS3, Node.js, React, Express, Heroku, Reactstrap, Material UI
 
-| Portfolio  Sites | Direct Link |
-| ------ | ------ |
-| GitHub | [https://github.com/coderap931][Adam-Github] |
-| LinkedIn | [https://www.linkedin.com/in/adam-patrick-06a970159/][Adam-LinkedIn] |
-| PokeRandom | [https://coderap931.github.io/pokeRandom/][Adam-Pokemon] |
-| GiphySearch | [https://giphyapi-afc12.web.app/][Adam-Giphy] |
+Team Member #1  [Adam Patrick]
 
-### Assigned Tasks
+        Github: https://github.com/coderap931
+        LinkedIn: https://www.linkedin.com/in/adam-patrick-06a970159/
+        Portfolio links: (PokeRandom) -- https://coderap931.github.io/pokeRandom/ || (CSS Creature) -- https://codepen.io/coderap931/full/GRmbBeW || (GIPHY Search) -- https://giphyapi-afc12.web.app/
 
-**Endpoint:** /game/create    
-**Completion Date:** WIP / [completion date]
+Assigned Tasks
 
-| Date | Files, Commits and Comments |
-| ------ | ------ |
-| [date] | [focused items / files] */consider your commit message |
-| [date] | [focused items / files] */consider your commit message |
-| [date] | [focused items / files] */consider your commit message |
+Git Master
 
-**Endpoint:** /game/edit   
-**Completion Date:** WIP / [completion date]
+Endpoint: /game/create
+Completion Date: WIP / [completion date]
+[date]: [focused items / files] */consider your commit message
+[date]: [focused items / files]
+[date]: [focused items / files]
+Ex: 11/29: Navbar.jsx – build out routing and styling.
 
-| Date | Files, Commits and Comments |
-| ------ | ------ |
-| [date] | [focused items / files] */consider your commit message |
-| [date] | [focused items / files] */consider your commit message |
-| [date] | [focused items / files] */consider your commit message |
+Endpoint: /game/edit
+Completion Date: WIP / [completion date]
+[date]: [focused items / files]
+[date]: [focused items / files]
 
-**Endpoint:** /game/delete    
-**Completion Date:** WIP / [completion date]
+Endpoint: /game/delete
+Completion Date: WIP / [completion date]
+[date]: [focused items / files]
+[date]: [focused items / files]
 
-| Date | Files, Commits and Comments |
-| ------ | ------ |
-| [date] | [focused items / files] */consider your commit message |
-| [date] | [focused items / files] */consider your commit message |
-| [date] | [focused items / files] */consider your commit message |
+Server components: games table, model, and controller, and headers middleware
+ 
 
-**Additional Tasks**
-- Git Master
+__**Team Member #2  [Alex Myers]**__
 
-**Client Components:** 
-- [insert here]
-- [insert here]
-- [insert here]
-----
-## Alex Myers
-| Portfolio  Sites | Direct Link |
-| ------ | ------ |
-| GitHub | [github.com/Alex-Lee-Myers][Alex-Github] |
-| LinkedIn | [linkedin.com/in/alexleemyers][Alex-LinkedIn] |
-| Portfolio | [alex-lee-myers.github.io/][Alex-Portfolio] |
+              **Github:** https://github.com/Alex-Lee-Myers
+              **LinkedIn:** linkedin.com/in/alexleemyers
+              **Portfolio:** https://alex-lee-myers.github.io/
 
-### Assigned Tasks
+__**Assigned Tasks**
+__
+**Endpoint:** /user/register
+__Completion Date:__ TBD
+*11/30:* Login and Register working, but buggy, with MDB design.
+*12/4:* Login and Register reformatted and debugged. Fully working. Changed to Reactstrap design for consistency.
 
-**Endpoint:** /user/register   
-**Completion Date:** 12/4
+**Endpoint:** /user/login
+__Completion Date:__ TBD
+*11/30:* Login and Register working, but buggy, with MDB design.
+*12/4:* Login and Register reformatted and debugged. Fully working. Changed to Reactstrap design for consistency.
 
-| Date | Files, Commits and Comments |
-| ------ | ------ |
-| *11/30* | Signup.js working, but buggy, with MDB design. |
-| *12/4:*  | Signup.js reformatted and debugged. Fully working. Changed to Reactstrap design for consistency. |
+__**Additional Tasks**__ 
 
-**Endpoint:** /user/login    
-**Completion Date:** 12/4
+**Sidebar:** Sidebar.js
+__Completion Date:__ MVP on 12/6, planning to add Sidebar npm for specialized styling.
+*12/2*: Sidebar functional but no design. 
 
-| Date | Files, Commits and Comments |
-| ------ | ------ |
-| *11/30* | Login.js working, but buggy, with MDB design. |
-| *12/4:*  | Login.js reformatted and debugged. Fully working. Changed to Reactstrap design for consistency. |
+**Miscellaneous**
+*11/29:* Setup all base React component templates for all files so teammates could have base code to build off of!
+*11/30:* Restructured app.js to route tokens correctly.
+*12/4:* Heroku deployment began. Due to user management issues from Heroku, Adam took over the deployment. Personal Heroku deployment performed later for practice. 
 
-**Additional Tasks**
+**Client components:** App.js, Login, Register, Sidebar, React-router-dom
+ 
 
-| Date | Task Performed | Files, Commits and Comments |
-| ------ | ------ | ------ |
-| *11/29* | React Components Built | Setup all base React component templates for all files so teammates could have base code to build off of!
-| *11/30* |  React-Router-Dom Setup and Tokens Functional | App.js: Restructed to route tokens correctly by way of proper React-Router-Dom usage of <Routes> functionality. Upgraded from using <Switch>. 
-| *12/4* | Heroku Deployment Began | Heroku deployment began. Due to user management issues from Heroku, Adam took over the deployment. Personal Heroku deployment performed later for practice.
-| *12/6* | LocalHost<->Heroku Setup | Debugged and setup a way to quickly switch between local and deployed testing. Local testing worked perfect, Heroku testing is a WIP and will be done with team.
-| *12/7* | LocalHost<->Heroku Testing Instructions | Created a [guide][LocalHostInstructions] on how to switch between LocalHost and Heroku fetches to test on all instances. Next up is how to properly do so for Heroku specifically with team.
-| *12/7* | ReadMe.md updated completely, reformatted | ReadMe.md updated completely. Reformatted to be more presentable and legible. Updated personal information and commits.
-| *12/7* | Team Session: Updated Props | Spent time with the entire team debugging how props are passing through. The only material at this point not properly going through is updating a game, which we will be working on during our 12/8 meetup. Potentially, GameView and GameGrid need tuned slightly different to become fully functional. 
-| *12/8* | Team Session: GameEditDeleteModal+GameUpdateModal logic | Spent roughly 4 hours total of working out our logic for how we want to perform our GameEditDeleteModal, a table with a button called "Update", that will call in the GameUpdateModal component to update a pre-existing game. We have a baseline now that we will attempt tomorrow with continued debugging throughout.
-| *12/9* | Team Session: GameEditDeleteModal+GameUpdateModal now functional! | After three days of debugging from getting the modal to properly show up, every prop getting passed correctly, and making sure the fetch for updating a game was working correctly, we have reached the summit of completing those modals. MVP is hit for functionality but not UI, so that is next up in our slate before we declare ourselves at least ready enough for dec 18."
+Team Member #3  [Jaylen Wilson]
 
-**Client components:**
--   App.js
--   Login.js
--   Signup.js (Register)
--   Sidebar.js
--   React-router-dom usage
- ----
-## Jaylen Wilson
-| Portfolio  Sites | Direct Link |
-| ------ | ------ |
-| GitHub | [Link Needed][Jaylen-Github] |
-| LinkedIn | [Link Needed][Jaylen-LinkedIn] |
-| Portfolio | [Link Needed][Jaylen-Portfolio] |
+              GitHub, LinkedIn, and Portfolio links
 
-### Assigned Tasks
+Assigned Tasks
 
-**Endpoint:** /game/listAll    
-**Completion Date:** WIP
-| Date | Files, Commits and Comments |
-| ------ | ------ |
-| Date | Files, Commits and Comments |
+Endpoint: /game/listAll
+Completion Date: WIP / [completion date]
+[date]: [focused items / files] */consider your commit message
+[date]: [focused items / files]
+[date]: [focused items / files]
+Ex: 11/29: Navbar.jsx – build out routing and styling.
 
-**Endpoint:** /game/view/{id}    
-**Completion Date:** WIP / [completion date]
-| Date | Files, Commits and Comments |
-| ------ | ------ |
-| Date | Files, Commits and Comments |
+Endpoint: /game/view/{id}
+Completion Date: WIP / [completion date]
+[date]: [focused items / files]
+[date]: [focused items / files]
 
-Client components: 
-- [insert here]
-- [insert here]
-- [insert here]
-
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen.)
-
-   [Adam-Github]: <https://github.com/joemccann/dillinger>
-   [Adam-LinkedIn]: <https://github.com/joemccann/dillinger.git>
-   [Adam-Pokemon]: <http://daringfireball.net>
-   [Adam-CSS]: <http://daringfireball.net/projects/markdown/>
-   [Adam-Giphy]: <https://github.com/markdown-it/markdown-it>
-   [Alex-Github]: <http://ace.ajax.org>
-   [Alex-LinkedIn]: <http://nodejs.org>
-   [Alex-Portfolio]: <http://twitter.github.com/bootstrap/>
-   [Jaylen-GitHub]: <http://www.google.com>
-   [Jaylen-LinkedIn]: <http://www.google.com>
-   [Jaylen-Portfolio]: <http://www.google.com>
-   [LocalHostInstructions]: <https://github.com/coderap931/teamBluePern-Client/blob/develop/src/helpers/LocalhostInstructions.md>
+Server components: index model and controller

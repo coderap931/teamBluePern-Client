@@ -6,7 +6,7 @@ const GameGrid = (props) => {
     console.log("Props.Games:", props.games)
 
     const gameGridMapper = () => {
-        return props.games.map((game, index) => {
+        return props.games.games.map((game, index) => {
             return (
                 <MDBCardBody key={index}>
                     <MDBCardImage src={game.boxart} />

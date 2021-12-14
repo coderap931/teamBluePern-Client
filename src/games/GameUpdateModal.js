@@ -1,33 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
+//TODO Switch between Heroku and Localhost here:
 import APIURL from '../helpers/environment';
+//TODO Switch back to Heroku URL when committing. 
 
 const GameUpdateModal = (props) => {
+    console.log("Update:", props)
     const [editName, setEditName] = useState('');
     const [editBoxart, setEditBoxart] = useState('');
     const [editGamedescription, setEditGamedescription] = useState('');
     const [editEsrbrating, setEditEsrbrating] = useState('');
     const [editReviewrating, setEditReviewrating] = useState('');
     const [editReviewdescription, setEditReviewdescription] = useState('');
-    const [editPlatfroms, setEditPlatfroms] = useState('');
+    const [editPlatforms, setEditPlatforms] = useState('');
     const [editTags, setEditTags] = useState('');
     // const [editOwner_id, setEditOwner_id] = useState(''); -- Shouldnt change on edit, but unsure if needed to retain value, keeping for now
 
-    const gameUpdate = (event, gameToUpdate) => {
+    const gameUpdate = (event) => {
+        console.log("gameUpdate()", props)
         event.preventDefault();
-        fetch(`${APIURL}/game/edit=${props.gameToUpdate.id}`, {
+        fetch(`${APIURL}/game/edit/${props.changeGame.id}`, {
             method: 'PUT',
-            // Add editOwner_id to the body if needed
-            body: JSON.stringify({ game: { name: editName, boxart: editBoxart, gamedescription: editGamedescription, esrbrating: editEsrbrating, reviewrating: editReviewrating, reviewdescription: editReviewdescription, platfroms: editPlatfroms, tags: editTags } }),
+            body: JSON.stringify({ game: { name: editName, boxart: editBoxart, gamedescription: editGamedescription, esrbrating: editEsrbrating, reviewrating: editReviewrating, reviewdescription: editReviewdescription, platforms: editPlatforms, tags: editTags } }),
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.token}`
+                'Authorization': `Bearer ${props.sessionToken}`
             })
         }).then((res) => {
             props.fetchGames();
             props.updateOff();
         })
     }
+
+    useEffect(() => {
+        console.log("UseEffect for GameUpdateModal:", props)
+    }, [])
 
     return (
         <Modal isOpen={true}>
@@ -78,7 +85,7 @@ const GameUpdateModal = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor='platforms' />
-                        <Input type='select' name='platforms' value={editPlatfroms} onChange={(event) => setEditPlatfroms(event.target.value)}>
+                        <Input type='select' name='platforms' value={editPlatforms} onChange={(event) => setEditPlatforms(event.target.value)}>
                             <option value='nswitch'>Nintendo Switch</option>
                             <option value='xone'>Xbox One</option>
                             <option value='ps4'>PlayStation 4</option>
