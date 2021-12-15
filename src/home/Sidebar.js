@@ -38,6 +38,15 @@ const Sidebar = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loginModal, setLoginModal] = useState(false);
+    const [route, setRoute] = useState('');
+    // const [open, setOpen] = useState(false);
+    // const [user, setUser] = useState(null);
+    // const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    const [isOpen, setIsOpen] = useState(false);
+    const toggleCollapse = () => {
+        setIsOpen(!isOpen);
+    }
 
     var styles = {
         bmBurgerButton: {
@@ -123,8 +132,10 @@ const Sidebar = (props) => {
                 </div>
             </Menu>
             <Routes>
-                <Route path="/home" element={<HomePage />} />
-                <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken} loginModal={loginModal} setLoginModal={setLoginModal} />} />
+                {/* <Route path={route} element={<HomePage games={props.games}/>} /> */}
+                <Route path="/" element={<HomePage games={props.games}/>} />
+                <Route path="/home" element={<HomePage games={props.games} gameModalMapper={props.gameModalMapper}/>} />
+                <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
                 <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
                 <Route path="/creategame" element={<GameCreateModal sessionToken={props.sessionToken} />} />
                 <Route path="/editgame" element={<GameEditDeleteModal

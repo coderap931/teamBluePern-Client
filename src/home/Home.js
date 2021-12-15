@@ -1,104 +1,54 @@
-import GameViewModal from '../games/GameViewModal'; //Game View Modal with Single Game's Info //!Jaylen
-import GameGrid from './GameGrid';
-import { useState, useEffect } from 'react'
-import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
-import GameEditDeleteModal from '../games/GameEditDeleteModal';
-import GameUpdateModal from '../games/GameUpdateModal';
+// import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardImage, MDBBtn} from 'mdb-react-ui-kit';
+// //TODO Switch between Heroku and Localhost here:
+// //TODO Switch back to Heroku URL when committing. 
+
+// const HomePage = (props) => {
+//     console.log("Props:", props)
+//     console.log("Props.Games:", props.games)
+
+//     const gameGridMapper = () => {
+//         return props.games.map((game, index) => {
+//             return (
+//                 <MDBCard key={index}>
+//                     <MDBCardBody>
+//                         <MDBCardImage src={game.boxart} />
+//                         <MDBCardTitle>{game.name}</MDBCardTitle>
+//                         <MDBBtn onClick={props.gameModalMapper()}> View Game </MDBBtn>
+//                     </MDBCardBody>
+//                 </MDBCard>
+//             )
+//         })
+//     }
+import React, { useState } from 'react';
+import {Card, Button, CardBody, CardImg, CardTitle} from 'reactstrap';
 //TODO Switch between Heroku and Localhost here:
-import APIURL from '../helpers/environment';
 //TODO Switch back to Heroku URL when committing. 
 
 const HomePage = (props) => {
-    // const [games, setGames] = useState({});
-    // const [updateActive, setUpdateActive] = useState(false);
-    // const [updateGame, setUpdateGame] = useState({});
+    console.log("Props:", props)
+    console.log("Props.Games:", props.games)
+    const [button, setButton] = useState(false);
 
-
-    // const editUpdateGame = (games) => {
-    //     setUpdateGame(games);
-    // }
-
-    // const updateOn = () => {
-    //     setUpdateActive(true)
-    // }
-
-    // const updateOff = () => {
-    //     setUpdateActive(false);
-    // }
-
-    // const fetchGames = () => {
-    //     fetch(`${APIURL}/all`, {
-    //         method: 'GET',
-    //         headers: new Headers({
-    //             'Content-Type': 'application/json',
-    //         }),
-    //     })
-    //         .then((res) => res.json())
-    //         .then((gameData) => {
-    //             setGames(gameData)
-    //         })
-    // }
-
-    // useEffect(() => {
-    //     fetchGames();
-    // }, [])
+    const gameGridMapper = () => {
+        return props.games.map((game, index) => {
+            return (
+                <Card key={index}>
+                    <CardBody>
+                        <CardImg src={game.boxart} />
+                        <CardTitle>{game.name}</CardTitle>
+                        <Button onClick={() => {setButton(!button)}}> View Game </Button>
+                    </CardBody>
+                </Card>
+            )
+        })
+    }
 
     return (
         <div className="home-page">
-
-            <MDBContainer>
-                <MDBRow>
-                    <MDBCol size='md' className='col-example'>
-                        <GameGrid />
-                        <GameViewModal />
-                    </MDBCol>
-                    <MDBCol size='md' className='col-example'>
-                        <GameGrid />
-                        <GameViewModal />
-                    </MDBCol>
-                    <MDBCol size='md' className='col-example'>
-                        <GameGrid />
-                        <GameViewModal />
-                    </MDBCol>
-
-                </MDBRow>
-            </MDBContainer>
-            <MDBContainer>
-                <MDBRow>
-                    <MDBCol size='md' className='col-example'>
-                        <GameGrid />
-                        <GameViewModal />
-                    </MDBCol>
-                    <MDBCol size='md' className='col-example'>
-                        <GameGrid />
-                        <GameViewModal />
-                    </MDBCol>
-                    <MDBCol size='md' className='col-example'>
-                        <GameGrid />
-                        <GameViewModal />
-                    </MDBCol>
-                </MDBRow>
-            </MDBContainer>
-            <MDBContainer>
-                <MDBRow>
-                    <MDBCol size='md' className='col-example'>
-                        <GameGrid />
-                        <GameViewModal />
-                    </MDBCol>
-                    <MDBCol size='md' className='col-example'>
-                        <GameGrid />
-                        <GameViewModal />
-                    </MDBCol>
-                    <MDBCol size='md' className='col-example'>
-                        <GameGrid />
-                        <GameViewModal />
-                    </MDBCol>
-                </MDBRow>
-            </MDBContainer>
-
-
+            {gameGridMapper()}
+            {button ? props.gameModalMapper(props) : null}
         </div>
-    );
+    )
 };
 
 
