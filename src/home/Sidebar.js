@@ -34,6 +34,7 @@ import {
 
 const Sidebar = (props) => {
     console.log(props);
+    const [route, setRoute] = useState('');
     // const [open, setOpen] = useState(false);
     // const [user, setUser] = useState(null);
     // const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -42,6 +43,12 @@ const Sidebar = (props) => {
     const toggleCollapse = () => {
         setIsOpen(!isOpen);
     }
+    // useEffect(() => {
+    //     if (props.games.length == 0) {
+    //       console.log("Loading Games");
+    //     }
+    //     setRoute('/');
+    //   }, []);
 
     // reacstrap sidebar where you can click home, log in, sign up, create game, edit game, and delete game
     return (
@@ -88,7 +95,8 @@ const Sidebar = (props) => {
                 </Collapse>
             </Navbar>
             <Routes>
-                <Route path="/home" element={<HomePage />} />
+                {/* <Route path={route} element={<HomePage games={props.games}/>} /> */}
+                <Route path="/home" element={<HomePage games={props.games} gameModalMapper={props.gameModalMapper}/>} />
                 <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
                 <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
                 <Route path="/creategame" element={<GameCreateModal sessionToken={props.sessionToken}/>} />
