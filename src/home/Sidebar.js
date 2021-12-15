@@ -43,11 +43,6 @@ const Sidebar = (props) => {
     // const [user, setUser] = useState(null);
     // const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const [isOpen, setIsOpen] = useState(false);
-    const toggleCollapse = () => {
-        setIsOpen(!isOpen);
-    }
-
     var styles = {
         bmBurgerButton: {
             position: 'fixed',
