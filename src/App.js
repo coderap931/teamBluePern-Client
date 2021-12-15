@@ -12,20 +12,24 @@ function App() {
   const [games, setGames] = useState({});
   const [updateGame, setUpdateGame] = useState({});
   const [updateActive, setUpdateActive] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
 
 //! Token fun for session
   const updateToken = (newToken) => {
     localStorage.setItem("token", newToken);
     setSessionToken(newToken);
+    setIsAuthenticated(true);
     console.log("This is the sessionToken:", sessionToken);
   };
 
-  const clearToken = () => {
-    localStorage.clear();
-    setSessionToken("");
-    console.log("This is the clearedToken:", sessionToken);
-  };
+//! Logout Function
+  const logout = () => {
+      localStorage.clear();
+      setSessionToken('')
+      setIsAuthenticated(false);
+      console.log("This is the {LogOut} clearedToken:", sessionToken);;
+    }
 
 //! This is the fetch for the games
   const fetchGames = () => {
@@ -148,8 +152,9 @@ function App() {
       <Router>
         <Sidebar
           updateToken={updateToken}
-          clearToken={clearToken}
           sessionToken={sessionToken}
+          logout={logout}
+          isAuthenticated={isAuthenticated}
           games={games}
           fetchGames={fetchGames}
           updateGame={updateGame}

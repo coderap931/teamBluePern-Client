@@ -1,6 +1,7 @@
 //* Insert imports here
 import { useState } from 'react';
-//import material ui modal, button, and form
+// navigate to switch between pages on React-Router-Dom https://dev.to/salehmubashar/usenavigate-tutorial-react-js-aop
+import { useNavigate} from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
 //TODO Switch between Heroku and Localhost here:
 import APIURL from '../helpers/environment';
@@ -12,8 +13,12 @@ const Signup = (props) => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [modal, setModal] = useState(false);
+    const [serverResponse, setServerResponse] = useState('');
+    const [serverStatus, setServerStatus] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
+        let responseStatus;
         event.preventDefault();
         fetch(`${APIURL}/user/register`, {
             method: 'POST',
@@ -22,9 +27,21 @@ const Signup = (props) => {
                 'Content-Type': 'application/json'
             })
         }).then(
-            (response) => response.json()
+            (response) => {
+                setServerStatus(`${response.status}`);
+                console.log(response.status);
+                responseStatus = response.status;
+                console.log(responseStatus);
+                return response.json();
+            }
+
         ).then((data) => {
             props.updateToken(data.sessionToken)
+            setServerResponse(data.message);
+            console.log("data.message: " + data.message);
+            console.log("responseStatus:", responseStatus);
+            if (responseStatus == '200')
+             navigate('/home');
         })
     }
 
@@ -39,8 +56,7 @@ const Signup = (props) => {
 
     return (
         <div>
-            <Button color="primary" onClick={toggle}>Sign Up</Button>
-            <Modal isOpen={modal} toggle={toggle}>
+            <Modal isOpen={true} toggle={toggle}>
                 <ModalHeader toggle={toggle}>Sign Up</ModalHeader>
                 <ModalBody>
                     <Form onSubmit={handleSubmit}>
@@ -60,7 +76,7 @@ const Signup = (props) => {
                             <Label for="confirmPassword">Confirm Password</Label>
                             <Input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
                         </FormGroup>
-                        <Button color="primary" disabled={!validPassword()}>Submit</Button>
+                        <Button type='submit' color="primary" disabled={!validPassword()}>Submit</Button>
                     </Form>
                 </ModalBody>
             </Modal>

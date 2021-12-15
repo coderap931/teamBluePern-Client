@@ -6,16 +6,17 @@
 // import ListItemIcon from '@material-ui/core/ListItemIcon';
 // import ListItemText from '@material-ui/core/ListItemText';
 // import material ui icons for the sidebar visuals
-import { MenuIcon, AddIcon, HomeIcon, LoginIcon, HowToRegIcon, GamesIcon, ModeEditIcon } from '@material-ui/icons/Menu';
-// imports the components for the sidebar
+// import { MenuIcon, AddIcon, HomeIcon, LoginIcon, HowToRegIcon, GamesIcon, ModeEditIcon } from '@material-ui/icons/Menu';
+//! import SideBar react-burger-menu library
+import { slide as Menu } from 'react-burger-menu'; 
+//! imports the components for the sidebar
 import HomePage from './Home';
 import Login from '../auth/Login';
 import Signup from '../auth/Signup';
 import GameCreateModal from '../games/GameCreateModal';
 import GameEditDeleteModal from '../games/GameEditDeleteModal';
 // import GameViewModal from './GameViewModal';
-// import React features
-import { useHistory } from 'react-router-dom';
+//! import React features
 import { Routes, Route, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -34,77 +35,110 @@ import {
 
 const Sidebar = (props) => {
     console.log(props);
-    // const [open, setOpen] = useState(false);
-    // const [user, setUser] = useState(null);
-    // const [isAuthenticated, setIsAuthenticated] = useState(false);
-
     const [isOpen, setIsOpen] = useState(false);
-    const toggleCollapse = () => {
-        setIsOpen(!isOpen);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [loginModal, setLoginModal] = useState(false);
+
+    var styles = {
+        bmBurgerButton: {
+            position: 'fixed',
+            width: '36px',
+            height: '30px',
+            left: '36px',
+            top: '36px'
+        },
+        bmBurgerBars: {
+            background: '#373a47'
+        },
+        bmBurgerBarsHover: {
+            background: '#a90000'
+        },
+        bmCrossButton: {
+            height: '24px',
+            width: '24px'
+        },
+        bmCross: {
+            background: '#bdc3c7'
+        },
+        bmMenuWrap: {
+            position: 'fixed',
+            height: '100%'
+        },
+        bmMenu: {
+            background: '#373a47',
+            padding: '2.5em 1.5em 0',
+            fontSize: '1.15em'
+        },
+        bmMorphShape: {
+            fill: '#373a47'
+        },
+        bmItemList: {
+            color: '#b8b7ad',
+            padding: '0.8em'
+        },
+        bmItem: {
+            display: 'inline-block'
+        },
+        bmOverlay: {
+            background: 'rgba(0, 0, 0, 0.3)'
+        }
     }
 
-    // reacstrap sidebar where you can click home, log in, sign up, create game, edit game, and delete game
+    //! useEffect for token session
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+            setIsAuthenticated(true);
+        }
+    }, []);
+
+
+    // react-burger-menu sidebar
+    // terenary operator to determine if the user is authenticated or not
+    // if the user is authenticated, the sidebar will show logout
+    // if the user is not authenticated, the sidebar will show login and signup
     return (
-        <div>
-            <Navbar color="faded" light expand="md">
-                <NavbarToggler onClick={toggleCollapse} />
-                <Collapse isOpen={isOpen} navbar>
-                    <Nav className="ml-auto" navbar>
-                        <NavItem>
-                            <Link to="/home">
-                                <Button color="primary">
-
-                                </Button>
-                            </Link>
-                        </NavItem>
-                        <NavItem>
-                            <Link to="/login">
-                                <Button color="primary">
-
-                                </Button>
-                            </Link>
-                        </NavItem>
-                        <NavItem>
-                            <Link to="/signup">
-                                <Button color="primary">
-
-                                </Button>
-                            </Link>
-                        </NavItem>
-                        <NavItem>
-                            <Link to="/creategame">
-                                <Button color="primary">
-
-                                </Button>
-                            </Link>
-                        </NavItem>
-                        <NavItem>
-                            <Link to="/editgame">
-                                <Button color="primary">
-                                </Button>
-                            </Link>
-                        </NavItem>
-                    </Nav>
-                </Collapse>
-            </Navbar>
+        <div> 
+            <Menu styles={styles} isOpen={isOpen}>
+                <div className="sidebar-header">
+                    <h3>GameChest</h3>
+                </div>
+                <div className="sidebar-content">
+                            <Nav className="mr-auto" navbar>
+                                <NavItem>
+                                    <NavLink href="/home">Home</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="/login">Login</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="/signup">Register</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="/creategame">Create Game</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                <NavLink href="/editgame">Edit Game</NavLink>
+                            </NavItem>
+                            </Nav>
+                </div>
+            </Menu>
             <Routes>
                 <Route path="/home" element={<HomePage />} />
-                <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
+                <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken} loginModal={loginModal} setLoginModal={setLoginModal} />} />
                 <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
-                <Route path="/creategame" element={<GameCreateModal sessionToken={props.sessionToken}/>} />
-                {/* <Route path="/editgame" element={<GameEditDeleteModal sessionToken={props.sessionToken} games={props.games} fetchGames={props.fetchGames} updateOn={props.updateOn} updateOff={props.updateOff} editUpdateGame={props.editUpdateGame} />} /> */}
-                <Route path="/editgame" element={<GameEditDeleteModal 
-                                                        props={props}
-                                                        updateActive={props.updateActive} 
-                                                        updateGame={props.updateGame} 
-                                                        updateOn={props.updateOn} 
-                                                        updateOff={props.updateOff} 
-                                                        sessionToken={props.sessionToken} 
-                                                        games={props.games}
-                                                        updateModalActive={props.updateModalActive}
-                                                        editModalActive={props.editModalActive}
-                                                        gameMapper={props.gameMapper}
-                    />} />
+                <Route path="/creategame" element={<GameCreateModal sessionToken={props.sessionToken} />} />
+                <Route path="/editgame" element={<GameEditDeleteModal
+                    props={props}
+                    updateActive={props.updateActive}
+                    updateGame={props.updateGame}
+                    updateOn={props.updateOn}
+                    updateOff={props.updateOff}
+                    sessionToken={props.sessionToken}
+                    games={props.games}
+                    updateModalActive={props.updateModalActive}
+                    editModalActive={props.editModalActive}
+                    gameMapper={props.gameMapper}
+                />} />
             </Routes>
         </div>
     );
