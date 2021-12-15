@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import APIURL from "./helpers/environment";
 import GameUpdateModal from './games/GameUpdateModal';
 import { Table, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { MDBModalContent, MDBModalBody, MDBModalTitle, MDBModalHeader} from 'mdb-react-ui-kit';
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");
@@ -134,6 +135,33 @@ function App() {
     setUpdateActive(false);
   };
 
+//! Modal for GameView
+// !!! Change from mapper, mapper runs through whole DB, should be a normal method !!!
+  const gameModalMapper = (props) => {
+    return props.games.map((game, index) => {
+        return (
+            <MDBModalContent key={index}>
+                <MDBModalHeader>
+                    <MDBModalTitle>Game's Details:</MDBModalTitle>
+                </MDBModalHeader>
+                <MDBModalBody>
+                    Description: {game.gamedescription}
+                    <br/>
+                    ESRB Rating: {game.esrbrating}
+                    <br/>
+                    Rating: {game.reviewrating} / 10
+                    <br/>
+                    Review Description: {game.reviewdescription}
+                    <br/>
+                    Platforms: {game.platforms}
+                    <br/>
+                    Tags: {game.tags}
+                </MDBModalBody>
+            </MDBModalContent>
+        )
+    })
+  }
+
 //! useEffect for token session
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -160,6 +188,7 @@ function App() {
           updateModalActive={updateModalActive}
           editModalActive={editModalActive}
           gameMapper={gameMapper}
+          gameModalMapper={gameModalMapper}
         />
       </Router>
     </div>
