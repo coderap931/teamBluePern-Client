@@ -6,26 +6,31 @@ import { BrowserRouter as Router } from "react-router-dom";
 import APIURL from "./helpers/environment";
 import GameUpdateModal from './games/GameUpdateModal';
 import { Table, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { MDBModalContent, MDBModalBody, MDBModalTitle, MDBModalHeader} from 'mdb-react-ui-kit';
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");
   const [games, setGames] = useState({});
   const [updateGame, setUpdateGame] = useState({});
   const [updateActive, setUpdateActive] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
 
 //! Token fun for session
   const updateToken = (newToken) => {
     localStorage.setItem("token", newToken);
     setSessionToken(newToken);
+    setIsAuthenticated(true);
     console.log("This is the sessionToken:", sessionToken);
   };
 
-  const clearToken = () => {
-    localStorage.clear();
-    setSessionToken("");
-    console.log("This is the clearedToken:", sessionToken);
-  };
+//! Logout Function
+  const logout = () => {
+      localStorage.clear();
+      setSessionToken('')
+      setIsAuthenticated(false);
+      console.log("This is the {LogOut} clearedToken:", sessionToken);
+    }
 
 //! This is the fetch for the games
   const fetchGames = () => {
@@ -99,8 +104,8 @@ function App() {
             </ModalBody>
         </Modal>
     )
-  
-}
+  }
+
   //! Modal for Update
   //TODO - updateOff for GameUpdateModal to set updateActive to false for table to show again?
   const updateModalActive = (props) => {
@@ -134,6 +139,33 @@ function App() {
     setUpdateActive(false);
   };
 
+//! Modal for GameView
+// !!! Change from mapper, mapper runs through whole DB, should be a normal method !!!
+  const gameModalMapper = (props) => {
+    return props.games.map((game, index) => {
+        return (
+            <MDBModalContent key={index}>
+                <MDBModalHeader>
+                    <MDBModalTitle>Game's Details:</MDBModalTitle>
+                </MDBModalHeader>
+                <MDBModalBody>
+                    Description: {game.gamedescription}
+                    <br/>
+                    ESRB Rating: {game.esrbrating}
+                    <br/>
+                    Rating: {game.reviewrating} / 10
+                    <br/>
+                    Review Description: {game.reviewdescription}
+                    <br/>
+                    Platforms: {game.platforms}
+                    <br/>
+                    Tags: {game.tags}
+                </MDBModalBody>
+            </MDBModalContent>
+        )
+    })
+  }
+
 //! useEffect for token session
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -148,8 +180,9 @@ function App() {
       <Router>
         <Sidebar
           updateToken={updateToken}
-          clearToken={clearToken}
           sessionToken={sessionToken}
+          logout={logout}
+          isAuthenticated={isAuthenticated}
           games={games}
           fetchGames={fetchGames}
           updateGame={updateGame}
@@ -160,6 +193,7 @@ function App() {
           updateModalActive={updateModalActive}
           editModalActive={editModalActive}
           gameMapper={gameMapper}
+          gameModalMapper={gameModalMapper}
         />
       </Router>
     </div>
