@@ -44,10 +44,17 @@ const Signup = (props) => {
              navigate('/home');
         })
     }
-
     const toggle = () => {
         setModal(!modal);
     }
+
+        // toggle function that closes the modal when ModalHeader is clicked
+        const closeModal = () => {
+            setModal(false);
+            if (modal === false) {
+                navigate('/home');
+            }
+        }
 
     // validate password
     const validPassword = () => {
@@ -57,7 +64,7 @@ const Signup = (props) => {
     return (
         <div>
             <Modal isOpen={true} toggle={toggle}>
-                <ModalHeader toggle={toggle}>Sign Up</ModalHeader>
+                <ModalHeader toggle={closeModal}>Sign Up</ModalHeader>
                 <ModalBody>
                     <Form onSubmit={handleSubmit}>
                         <FormGroup>

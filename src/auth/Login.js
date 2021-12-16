@@ -51,9 +51,18 @@ const Login = (props) => {
         setModal(!modal);
     }
 
+    // toggle function that closes the modal when ModalHeader is clicked
+    const closeModal = () => {
+        setModal(false);
+        if (modal === false) {
+            navigate('/home');
+        }
+    }
+
         return (
-            <Modal isOpen={true} toggle={toggle}>
-                <ModalHeader toggle={toggle}>Login</ModalHeader>
+            <Modal isOpen={true}>
+                <ModalHeader toggle={closeModal}>Login</ModalHeader>
+                
                 <ModalBody>
                     <Form onSubmit={handleSubmit}>
                         <FormGroup>
