@@ -104,8 +104,8 @@ function App() {
             </ModalBody>
         </Modal>
     )
-  
-}
+  }
+
   //! Modal for Update
   //TODO - updateOff for GameUpdateModal to set updateActive to false for table to show again?
   const updateModalActive = (props) => {
