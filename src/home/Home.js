@@ -22,15 +22,15 @@
 import React, { useState } from 'react';
 import {Card, Button, CardBody, CardImg, CardTitle} from 'reactstrap';
 //TODO Switch between Heroku and Localhost here:
-//TODO Switch back to Heroku URL when committing. 
+//TODO Switch back to Heroku URL when committing.
 
 const HomePage = (props) => {
-    console.log("Props:", props)
-    console.log("Props.Games:", props.games)
+    console.log("Home Props:", props)
+    console.log("Home Props.Games:", props.games)
     const [button, setButton] = useState(false);
 
     const gameGridMapper = () => {
-        return props.games.map((game, index) => {
+        return props.games.games.map((game, index) => {
             return (
                 <Card key={index}>
                     <CardBody>
