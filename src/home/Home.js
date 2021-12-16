@@ -12,7 +12,7 @@ const HomePage = (props) => {
     const [button, setButton] = useState(false);
 
     const gameGridMapper = () => {
-        return props.games.games.map((game, index) => {
+        return props.games.games?.map((game, index) => {
             return (
                 <Card key={index}>
                     <CardBody>
@@ -32,23 +32,5 @@ const HomePage = (props) => {
         </div>
     )
 };
-
-// const HomePage = (props) => {
-//     console.log("Props:", props)
-//     console.log("Props.Games:", props.games)
-
-//     const gameGridMapper = () => {
-//         return props.games.map((game, index) => {
-//             return (
-//                 <MDBCard key={index}>
-//                     <MDBCardBody>
-//                         <MDBCardImage src={game.boxart} />
-//                         <MDBCardTitle>{game.name}</MDBCardTitle>
-//                         <MDBBtn onClick={props.gameModalMapper()}> View Game </MDBBtn>
-//                     </MDBCardBody>
-//                 </MDBCard>
-//             )
-//         })
-//     }
 
 export default HomePage;
