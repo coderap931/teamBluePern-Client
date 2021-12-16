@@ -6,7 +6,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import APIURL from "./helpers/environment";
 import GameUpdateModal from './games/GameUpdateModal';
 import { Table, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import { MDBModalContent, MDBModalBody, MDBModalTitle, MDBModalHeader} from 'mdb-react-ui-kit';
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");
@@ -47,7 +46,6 @@ function App() {
 
   const deleteGame = (game) => {
     console.log("deleteGame Function, games!:", games);
-    console.log("deleteGame Function, games.games.y2k!:", games.games);
     fetch(`${APIURL}/game/remove/${game.id}`, {
         method: 'DELETE',
         headers: new Headers({
@@ -59,8 +57,7 @@ function App() {
 
   const gameMapper = (props) => {
     console.log("gameMapper Function, games!:", games);
-    console.log("gameMapper Function, games.games.y2k!:", games.games);
-    return props.games.games.map((game, index) => {
+    return props.games.map((game, index) => {
         return (
             <tr key={index}>
                 <th scope='row'>{game.id}</th>
@@ -109,7 +106,7 @@ function App() {
     console.log("updateModalActive:", props)
       return (
         <GameUpdateModal
-            changeGame={changeGame(props.games.games[0])}
+            changeGame={changeGame(props.games[0])}
             updateOn={updateOn}
             isOpen={true}
             sessionToken={sessionToken}
@@ -137,30 +134,30 @@ function App() {
 
 //! Modal for GameView
 // !!! Change from mapper, mapper runs through whole DB, should be a normal method !!!
-  const gameModalMapper = (props) => {
-    return props.games.map((game, index) => {
-        return (
-            <MDBModalContent key={index}>
-                <MDBModalHeader>
-                    <MDBModalTitle>Game's Details:</MDBModalTitle>
-                </MDBModalHeader>
-                <MDBModalBody>
-                    Description: {game.gamedescription}
-                    <br/>
-                    ESRB Rating: {game.esrbrating}
-                    <br/>
-                    Rating: {game.reviewrating} / 10
-                    <br/>
-                    Review Description: {game.reviewdescription}
-                    <br/>
-                    Platforms: {game.platforms}
-                    <br/>
-                    Tags: {game.tags}
-                </MDBModalBody>
-            </MDBModalContent>
-        )
-    })
-  }
+  // const gameModalMapper = (props) => {
+  //   return props.games.map((game, index) => {
+  //       return (
+  //           <MDBModalContent key={index}>
+  //               <MDBModalHeader>
+  //                   <MDBModalTitle>Game's Details:</MDBModalTitle>
+  //               </MDBModalHeader>
+  //               <MDBModalBody>
+  //                   Description: {game.gamedescription}
+  //                   <br/>
+  //                   ESRB Rating: {game.esrbrating}
+  //                   <br/>
+  //                   Rating: {game.reviewrating} / 10
+  //                   <br/>
+  //                   Review Description: {game.reviewdescription}
+  //                   <br/>
+  //                   Platforms: {game.platforms}
+  //                   <br/>
+  //                   Tags: {game.tags}
+  //               </MDBModalBody>
+  //           </MDBModalContent>
+  //       )
+  //   })
+  // }
 
 //! useEffect for token session
   useEffect(() => {
@@ -188,7 +185,7 @@ function App() {
           updateModalActive={updateModalActive}
           editModalActive={editModalActive}
           gameMapper={gameMapper}
-          gameModalMapper={gameModalMapper}
+          // gameModalMapper={gameModalMapper}
         />
       </Router>
     </div>

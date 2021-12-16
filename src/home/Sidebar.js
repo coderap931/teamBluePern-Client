@@ -58,7 +58,7 @@ const Sidebar = (props) => {
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <Link to="/home">
+                            <Link to="/all">
                                 <Button color="primary">
 
                                 </Button>
@@ -79,14 +79,14 @@ const Sidebar = (props) => {
                             </Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/creategame">
+                            <Link to="/create">
                                 <Button color="primary">
 
                                 </Button>
                             </Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/editgame">
+                            <Link to="/editdeleteall">
                                 <Button color="primary">
                                 </Button>
                             </Link>
@@ -96,12 +96,12 @@ const Sidebar = (props) => {
             </Navbar>
             <Routes>
                 {/* <Route path={route} element={<HomePage games={props.games}/>} /> */}
-                <Route path="/home" element={<HomePage games={props.games} gameModalMapper={props.gameModalMapper}/>} />
+                <Route path="/all" element={<HomePage games={props.games}/>} />
                 <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
                 <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
-                <Route path="/creategame" element={<GameCreateModal sessionToken={props.sessionToken}/>} />
+                <Route path="/create" element={<GameCreateModal sessionToken={props.sessionToken}/>} />
                 {/* <Route path="/editgame" element={<GameEditDeleteModal sessionToken={props.sessionToken} games={props.games} fetchGames={props.fetchGames} updateOn={props.updateOn} updateOff={props.updateOff} editUpdateGame={props.editUpdateGame} />} /> */}
-                <Route path="/editgame" element={<GameEditDeleteModal 
+                <Route path="/editdeleteall" element={<GameEditDeleteModal 
                                                         props={props}
                                                         updateActive={props.updateActive} 
                                                         updateGame={props.updateGame} 
