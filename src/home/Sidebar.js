@@ -27,6 +27,9 @@ import {
     Button,
     NavLink,
 } from 'reactstrap';
+//! import of brandLogo from the assets folder
+import brandLogo from '../assets/Gamechest.png';
+
 
 //TODO add back to route when completed -> // <Route exact path="/gameview" component={GameView} />
 
@@ -104,7 +107,7 @@ const Sidebar = (props) => {
         <div>
             <Menu styles={styles} isOpen={isOpen}>
                 <div className="sidebar-header">
-                    <h3>GameChest</h3>
+                    <img src={brandLogo} width='200'></img>
                 </div>
                 <div className="sidebar-content">
                     <Nav className="mr-auto" navbar>
