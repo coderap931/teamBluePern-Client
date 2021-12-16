@@ -52,6 +52,7 @@
 | *11/30* | Signup.js working, but buggy, with MDB design. |
 | *12/4:*  | Signup.js reformatted and debugged. Fully working. Changed to Reactstrap design for consistency. |
 | *12/14:*  | Restyling. Upon clicking the link on sidebar, modal will immediately open and close on formSubmit to redirect to Home. Hidden if signed in on Sidebar.  |
+| *12/16:*  | useNavigator incorporated. Whether closing or submitting, the user is taken to the '/home' route. Need to add responses if passwords match as well as prompts for each corresponding field. |
 
 **Endpoint:** /user/login     
 **Completion Date:** TBD     
@@ -61,6 +62,7 @@
 | *11/30* | Login.js working, but buggy, with MDB design. |
 | *12/4:*  | Login.js reformatted and debugged. Fully working. Changed to Reactstrap design for consistency. |
 | *12/14:*  | Restyling. Upon clicking the link on sidebar, modal will immediately open and close on formSubmit to redirect to Home. Hidden if signed in on Sidebar. |
+| *12/16:*  | useNavigator incorporated. Whether closing or submitting, the user is taken to the '/home' route. Need to add responses if login is incorrect as well as prompts for each corresponding field. Need to add responses if login is correct on submit as well as prompts for each corresponding field. |
 
 **Additional Tasks**
 
@@ -74,6 +76,8 @@
 | *12/7* | ReadMe.md updated completely, reformatted | ReadMe.md updated completely. Reformatted to be more presentable and legible. Updated personal information and commits.
 | *12/14* | ReadMe.md styled like Server repo's | Sidebar styling updated and functional. Routing will need updated after other components functional. Needs integrated with teams update to Games components that effected Sidebar and App slightly. 
 | *12/14* | Added signout option | Added signout option that clears tokens and resets User to blank string. 
+| *12/15* | gameMapper debugged | small debug of making sure our gameMapper function was fully functional before debugging further with team on Thursday night.
+| *12/16* | sidebar conditional, modal logic, routing added | React-Router-Dom now incorporates the useNavigator feature. Incorporated in Login and Register modals depending on user input to send the user to a certain, appropriate route. Additionally, sidebar has a working conditional for whether a user is logged in or not and changes whether they see Logout or Register & Signin. 
 
 **Client components:**
 -   App.js
