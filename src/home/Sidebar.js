@@ -1,14 +1,11 @@
-// import material ui drawer+elements from material ui
-// import { makeStyles } from '@material-ui/core/styles';
-// import Drawer from '@material-ui/core/Drawer';
-// import List from '@material-ui/core/List';
-// import ListItem from '@material-ui/core/ListItem';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
-// import ListItemText from '@material-ui/core/ListItemText';
-// import material ui icons for the sidebar visuals
-// import { MenuIcon, AddIcon, HomeIcon, LoginIcon, HowToRegIcon, GamesIcon, ModeEditIcon } from '@material-ui/icons/Menu';
+//! import icons for Sidebar
+// import { HomeIcon } from 'react-icons-kit';
+// import { CgLogIn, CgLogOut } from 'react-icons/cg';
+// import { MdOutlineEditNote } from 'react-icons/md';
+// import { AiOutlinePlusCircle } from 'react-icons/ai';
+// import { BiUserPlus } from "react-icons/bi";
 //! import SideBar react-burger-menu library
-import { slide as Menu } from 'react-burger-menu'; 
+import { slide as Menu } from 'react-burger-menu';
 //! imports the components for the sidebar
 import HomePage from './Home';
 import Login from '../auth/Login';
@@ -35,13 +32,9 @@ import {
 
 const Sidebar = (props) => {
     console.log(props);
-    const [isOpen, setIsOpen] = useState(false);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [loginModal, setLoginModal] = useState(false);
-    const [route, setRoute] = useState('');
-    // const [open, setOpen] = useState(false);
-    // const [user, setUser] = useState(null);
-    // const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isOpen, setIsOpen] = useState(false); //used to open and close the sidebar
+    const [route, setRoute] = useState(''); //used to set the route to the current route
+    const [isAuthenticated, setIsAuthenticated] = useState(false); //used to check if the user is authenticated
 
     var styles = {
         bmBurgerButton: {
@@ -88,48 +81,63 @@ const Sidebar = (props) => {
         }
     }
 
-    //! useEffect for token session
+    //! setIsAuthenticated to true if the user is authenticated
     useEffect(() => {
-        if (localStorage.getItem("token")) {
-            setIsAuthenticated(true);
-        }
-    }, []);
+        setIsAuthenticated(props.isAuthenticated);
+    }, [props.isAuthenticated]);
 
+
+    //if "/home" or "/" is the route, then set sidebar to true. Else, set to false
+    useEffect(() => {
+        if (route === '/home') {
+            setIsOpen(true);
+        } else {
+            setIsOpen(false);
+        }
+    }, [route]);
 
     // react-burger-menu sidebar
     // terenary operator to determine if the user is authenticated or not
     // if the user is authenticated, the sidebar will show logout
     // if the user is not authenticated, the sidebar will show login and signup
     return (
-        <div> 
+        <div>
             <Menu styles={styles} isOpen={isOpen}>
                 <div className="sidebar-header">
                     <h3>GameChest</h3>
                 </div>
                 <div className="sidebar-content">
-                            <Nav className="mr-auto" navbar>
-                                <NavItem>
-                                    <NavLink href="/home">Home</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="/login">Login</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="/signup">Register</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="/creategame">Create Game</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                <NavLink href="/editgame">Edit Game</NavLink>
-                            </NavItem>
-                            </Nav>
+                    <Nav className="mr-auto" navbar>
+                        <NavItem>
+                            <NavLink href="/home" style={{color: 'white'}} activeStyle={{color: 'red'}}>Home</NavLink>
+                        </NavItem>
+                        {isAuthenticated ? (
+                            <NavItem>
+                            <NavLink href="/home" onClick={props.logout} style={{color: 'white'}}>Logout</NavLink>
+                        </NavItem>
+                        ) : (
+                            <>
+                        <NavItem>
+                            <NavLink href="/login" style={{color: 'white'}}>Login</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href="/signup" style={{color: 'white'}}>Register</NavLink>
+                        </NavItem>
+                        </>
+                        )}
+                        <NavItem>
+                            <NavLink href="/creategame" style={{color: 'white'}}>Create Game</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href="/editgame" style={{color: 'white'}}>Edit Game</NavLink>
+                        </NavItem>
+                    </Nav>
                 </div>
             </Menu>
             <Routes>
                 {/* <Route path={route} element={<HomePage games={props.games}/>} /> 
                 <Route path="/" element={<HomePage games={props.games} gameModalMapper={props.gameModalMapper}/>} />*/}
-                <Route path="/home" element={<HomePage games={props.games} gameModalMapper={props.gameModalMapper}/>} />
+                <Route path="/home" element={<HomePage games={props.games} gameModalMapper={props.gameModalMapper} />} />
                 <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
                 <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
                 <Route path="/creategame" element={<GameCreateModal sessionToken={props.sessionToken} />} />

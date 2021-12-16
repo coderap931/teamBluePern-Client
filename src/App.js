@@ -29,7 +29,7 @@ function App() {
       localStorage.clear();
       setSessionToken('')
       setIsAuthenticated(false);
-      console.log("This is the {LogOut} clearedToken:", sessionToken);;
+      console.log("This is the {LogOut} clearedToken:", sessionToken);
     }
 
 //! This is the fetch for the games
