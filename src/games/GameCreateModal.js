@@ -21,6 +21,7 @@ const GameCreateModal = (props) => {
     const [serverResponse, setServerResponse] = useState('');
     const [serverStatus, setServerStatus] = useState('');
     const navigate = useNavigate();
+    
 
     const handleSubmit = (event) => {
         event.preventDefault();
