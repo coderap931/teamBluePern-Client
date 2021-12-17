@@ -167,8 +167,6 @@ const Sidebar = (props) => {
                 </div>
             </Menu>
             <Routes>
-                {/* <Route path={route} element={<HomePage games={props.games}/>} /> 
-                <Route path="/" element={<HomePage games={props.games} gameModalMapper={props.gameModalMapper}/>} />*/}
                 <Route path="/all" element={<HomePage games={props.games} />} />
                 <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
                 <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken} />} />

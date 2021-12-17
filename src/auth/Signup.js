@@ -61,6 +61,68 @@ const Signup = (props) => {
         return password.length > 8 && password.match(/[A-Z]/) !== null && password.match(/[a-z]/) !== null && password.match(/[0-9]/) !== null;
     }
 
+    // validate confirm password. return error if passwords don't match
+    const validConfirmPassword = () => {
+        if (password !== confirmPassword) {
+            return 'Passwords do not match!';
+        }
+        return '';
+    }
+
+    // validate email
+    const validEmail = () => {
+        if (email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) === null) {
+            return 'Invalid email!';
+        }
+        return '';
+    }
+
+    // validate username
+    const validUsername = () => {
+        if (username.length < 3) {
+            return 'Username must be at least 3 characters long!';
+        }
+    }
+    // return a checkmark once you validate all fields
+    const validAll = () => {
+        if (validEmail() && validUsername() && validPassword() && validConfirmPassword() === '') {
+            return '✔';
+        }
+        return '';
+    }
+
+    // show user password requirements until they're met
+    const passwordRequirements = () => {
+        if (password.length < 8) {
+            return "Password must be at least 8 characters long.";
+        }
+        else if (password.match(/[A-Z]/) === null) {
+            return "Password must contain at least one uppercase letter.";
+        }
+        else if (password.match(/[a-z]/) === null) {
+            return "Password must contain at least one lowercase letter.";
+        }
+        else if (password.match(/[0-9]/) === null) {
+            return "Password must contain at least one number.";
+        }
+        else {
+            return "";
+        }
+    }
+
+
+    //* custom color button
+    const customButton = {
+        backgroundColor: '#0c7b93',
+        color: 'white',
+        border: 'none',
+        borderRadius: '5px',
+        padding: '10px',
+        fontSize: '16px',
+        margin: '10px',
+        cursor: 'pointer'
+    }
+
     return (
         <div>
             <Modal isOpen={true} toggle={toggle}>
@@ -69,27 +131,35 @@ const Signup = (props) => {
                     <Form onSubmit={handleSubmit}>
                         <FormGroup>
                             <Label for="username">Username</Label>
-                            <Input type="text" name="username" id="username" placeholder="Username" value={username} onChange={(event) => setUsername(event.target.value)} />
+                            <Input type="text" name="username" id="username" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                            {validUsername()}
                         </FormGroup>
                         <FormGroup>
                             <Label for="email">Email</Label>
-                            <Input type="email" name="email" id="email" placeholder="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
+                            <Input type="text" name="email" id="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                            {validEmail()}
                         </FormGroup>
                         <FormGroup>
                             <Label for="password">Password</Label>
-                            <Input type="password" name="password" id="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} />
+                            <Input type="password" name="password" id="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                            {passwordRequirements()}
                         </FormGroup>
                         <FormGroup>
                             <Label for="confirmPassword">Confirm Password</Label>
-                            <Input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
+                            <Input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                            {validConfirmPassword()}
                         </FormGroup>
-                        <Button type='submit' color="primary" disabled={!validPassword()}>Submit</Button>
+                        <Button style={customButton} type="submit">Sign Up</Button>
+                        <p>{validAll()}</p>
                     </Form>
                 </ModalBody>
             </Modal>
         </div>
     )
-}
+    }
+    
+
+
 
 
 
