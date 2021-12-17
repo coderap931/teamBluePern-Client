@@ -14,7 +14,7 @@ import GameCreateModal from '../games/GameCreateModal';
 import GameEditDeleteModal from '../games/GameEditDeleteModal';
 // import GameViewModal from './GameViewModal';
 //! import React features
-import { Routes, Route, Link, Router } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import {
@@ -25,7 +25,6 @@ import {
     Nav,
     NavItem,
     Button,
-    NavLink,
 } from 'reactstrap';
 //! import of brandLogo from the assets folder
 import brandLogo from '../assets/Gamechest.png';
@@ -139,12 +138,12 @@ const Sidebar = (props) => {
                 <div className="sidebar-content">
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <Link to="/home" style={linkStyle}>Home</Link>
+                            <Link to="/all" style={linkStyle}>Home</Link>
                         </NavItem>
                         {isAuthenticated ? (
                             <div>
                                 <NavItem>
-                                    <Link to="/home" onClick={props.logout} style={linkStyle} >Logout</Link>
+                                    <Link to="/all" onClick={props.logout} style={linkStyle} >Logout</Link>
                                 </NavItem>
                             </div>
                         ) : (
@@ -158,10 +157,10 @@ const Sidebar = (props) => {
                             </div>
                         )}
                         <NavItem>
-                            <Link to="/creategame" style={linkStyle} >Create Game</Link>
+                            <Link to="/create" style={linkStyle} >Create Game</Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/editgame" style={linkStyle} >Edit Game</Link>
+                            <Link to="/editdeleteall" style={linkStyle} >Edit Game</Link>
                         </NavItem>
                     </Nav>
                 </div>
@@ -169,13 +168,14 @@ const Sidebar = (props) => {
             <Routes>
                 {/* <Route path={route} element={<HomePage games={props.games}/>} /> 
                 <Route path="/" element={<HomePage games={props.games} gameModalMapper={props.gameModalMapper}/>} />*/}
-                <Route path="/home" element={<HomePage games={props.games} gameModalMapper={props.gameModalMapper} />} />
+                <Route path="/all" element={<HomePage games={props.games} />} />
                 <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
                 <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
-                <Route path="/creategame" element={<GameCreateModal sessionToken={props.sessionToken} />} />
-                <Route path="/editgame" element={<GameEditDeleteModal
+                <Route path="/create" element={<GameCreateModal sessionToken={props.sessionToken} />} />
+                <Route path="/editdeleteall" element={<GameEditDeleteModal
                     props={props}
                     updateActive={props.updateActive}
+                    fetchYourGames={props.fetchYourGames}
                     updateGame={props.updateGame}
                     updateOn={props.updateOn}
                     updateOff={props.updateOff}

@@ -2,7 +2,7 @@
 // //TODO Switch between Heroku and Localhost here:
 // //TODO Switch back to Heroku URL when committing. 
 import React, { useState } from 'react';
-import {Card, Button, CardBody, CardImg, CardTitle} from 'reactstrap';
+import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardImage} from 'mdb-react-ui-kit';
 //TODO Switch between Heroku and Localhost here:
 //TODO Switch back to Heroku URL when committing.
 
@@ -14,13 +14,23 @@ const HomePage = (props) => {
     const gameGridMapper = () => {
         return props.games.games?.map((game, index) => {
             return (
-                <Card key={index}>
-                    <CardBody>
-                        <CardImg src={game.boxart} />
-                        <CardTitle>{game.name}</CardTitle>
-                        <Button onClick={() => {setButton(!button)}}> View Game </Button>
-                    </CardBody>
-                </Card>
+                <MDBCard key={index}>
+                    <MDBCardBody>
+                        <MDBCardImage src={game.boxart} />
+                        <MDBCardTitle>{game.name}</MDBCardTitle>
+                        Description: {game.gamedescription}
+                        <br/>
+                        ESRB Rating: {game.esrbrating}
+                        <br/>
+                        Rating: {game.reviewrating} / 10
+                        <br/>
+                        Review Description: {game.reviewdescription}
+                        <br/>
+                        Platforms: {game.platforms}
+                        <br/>
+                        Tags: {game.tags}
+                    </MDBCardBody>
+                </MDBCard>
             )
         })
     }
@@ -28,9 +38,9 @@ const HomePage = (props) => {
     return (
         <div className="home-page">
             {gameGridMapper()}
-            {button ? props.gameModalMapper(props) : null}
         </div>
     )
 };
+
 
 export default HomePage;
