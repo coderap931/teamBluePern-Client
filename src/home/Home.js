@@ -4,7 +4,7 @@ import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardImage} from 'mdb-react-ui-ki
 const HomePage = (props) => {
     //TODO props.games.games?.map is the working version. ensure that's what's listed. 
     const gameGridMapper = () => {
-        return props.games.games?.map((game, index) => {
+        return props.games.map((game, index) => {
             return (
                 <MDBCard key={index}>
                     <MDBCardBody>

@@ -21,6 +21,7 @@ const GameCreateModal = (props) => {
     const [serverResponse, setServerResponse] = useState('');
     const [serverStatus, setServerStatus] = useState('');
     const navigate = useNavigate();
+    
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -54,19 +55,19 @@ const GameCreateModal = (props) => {
             <ModalBody>
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
-                        <Label htmlFor='name' />
+                        <Label>Game Name</Label>
                         <Input name='name' value={name} onChange={(event) => setName(event.target.value)} />
                     </FormGroup>
                     <FormGroup>
-                        <Label htmlFor='boxart' />
+                        <Label>Game Boxart (Link)</Label>
                         <Input name='boxart' value={boxart} onChange={(event) => setBoxart(event.target.value)} />
                     </FormGroup>
                     <FormGroup>
-                        <Label htmlFor='gamedescription' />
+                        <Label>Game Description</Label>
                         <Input name='gamedescription' value={gamedescription} onChange={(event) => setGamedescription(event.target.value)} />
                     </FormGroup>
                     <FormGroup>
-                        <Label htmlFor='esrbrating' />
+                        <Label>ESRB Rating</Label>
                         <Input type='select' name='esrbrating' value={esrbrating} onChange={(event) => setEsrbrating(event.target.value)}>
                             <option value='eC'>Early Childhood (eC)</option>
                             <option value='E'>Everyone (E)</option>
@@ -77,7 +78,7 @@ const GameCreateModal = (props) => {
                         </Input>
                     </FormGroup>
                     <FormGroup>
-                        <Label htmlFor='reviewrating' />
+                        <Label>Review Score (Out of 10)</Label>
                         <Input type='select' name='reviewrating' value={reviewrating} onChange={(event) => setReviewrating(event.target.value)}>
                             <option value='1'>1/10</option>
                             <option value='2'>2/10</option>
@@ -92,11 +93,11 @@ const GameCreateModal = (props) => {
                         </Input>
                     </FormGroup>
                     <FormGroup>
-                        <Label htmlFor='reviewdescription' />
+                        <Label>Review Details</Label>
                         <Input name='reviewdescription' value={reviewdescription} onChange={(event) => setReviewdescription(event.target.value)} />
                     </FormGroup>
                     <FormGroup>
-                        <Label htmlFor='platforms' />
+                        <Label>Platform Played On</Label>
                         <Input type='select' name='platforms' value={platforms} onChange={(event) => setPlatforms(event.target.value)}>
                             <option value='nswitch'>Nintendo Switch</option>
                             <option value='xone'>Xbox One</option>
@@ -107,7 +108,7 @@ const GameCreateModal = (props) => {
                         </Input>
                     </FormGroup>
                     <FormGroup>
-                        <Label htmlFor='tags' />
+                        <Label>Tags (Comma Seperated)</Label>
                         <Input name='tags' value={tags} onChange={(event) => setTags(event.target.value)} />
                     </FormGroup>
                     <Button type='submit'>Submit Game</Button>
