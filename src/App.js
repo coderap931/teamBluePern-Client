@@ -72,6 +72,7 @@ function App() {
     window.location.href = `${APIURL}/all`;
 
   }
+  };
 
   //! Delete Game
   const deleteGame = (game) => {
