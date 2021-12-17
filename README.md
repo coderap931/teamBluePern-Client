@@ -2,7 +2,7 @@
 
 >  A responsive website that allows public users to see a list of video games and their reviews. 
 >  Registered users are able to create a new video game entry, create new reviews of games,
->  give a rating number, as well as one day being able to keep a log of their video games.
+> give a rating number, as well as one day being able to keep a log of their video games.
 
 **Technology Used:**
 
@@ -12,47 +12,29 @@
 
 | Portfolio  Sites | Direct Link |
 | ------ | ------ |
-| GitHub | [https://github.com/coderap931][Adam-Github] |
-| LinkedIn | [https://www.linkedin.com/in/adam-patrick-06a970159/][Adam-LinkedIn] |
-| PokeRandom | [https://coderap931.github.io/pokeRandom/][Adam-Pokemon] |
-| GiphySearch | [https://giphyapi-afc12.web.app/][Adam-Giphy] |
+| GitHub | [github.com/coderap931][Adam-Github] |
+| LinkedIn | [linkedin.com/in/adam-patrick-06a970159/][Adam-LinkedIn] |
+| Portfolio | [coderap931.github.io/][Adam-Portfolio] |
 
 ### Assigned Tasks
 
-**Endpoint:** /game/create    
-**Completion Date:** WIP / [completion date]
+**Endpoint:** /game/create 
+**Completion Date:** 11/29 
 
-| Date | Files, Commits and Comments |
-| ------ | ------ |
-| [date] | [focused items / files] */consider your commit message |
-| [date] | [focused items / files] */consider your commit message |
-| [date] | [focused items / files] */consider your commit message |
+**Endpoint:** /game/edit 
+**Completion Date:** 11/29 
 
-**Endpoint:** /game/edit   
-**Completion Date:** WIP / [completion date]
-
-| Date | Files, Commits and Comments |
-| ------ | ------ |
-| [date] | [focused items / files] */consider your commit message |
-| [date] | [focused items / files] */consider your commit message |
-| [date] | [focused items / files] */consider your commit message |
-
-**Endpoint:** /game/delete    
-**Completion Date:** WIP / [completion date]
-
-| Date | Files, Commits and Comments |
-| ------ | ------ |
-| [date] | [focused items / files] */consider your commit message |
-| [date] | [focused items / files] */consider your commit message |
-| [date] | [focused items / files] */consider your commit message |
+**Endpoint:** /game/delete 
+**Completion Date:** 11/29 
 
 **Additional Tasks**
 - Git Master
+    - **Completion Date:** Once a Git Master, always a Git Master
 
 **Client Components:** 
-- [insert here]
-- [insert here]
-- [insert here]
+- GameCreateModal.js: Initial completed pass 12/1, no bugs found to date
+- GameEditDeleteModal.js: Initial completed pass 12/1, minor styling changes and relocation of certain components to parent elements 12/4
+- GameUpdateModal.js: Initial completed pass 12/1, minor styling changes and corrected props passes with team 12/9
 ----
 ## Alex Myers
 | Portfolio  Sites | Direct Link |
@@ -64,20 +46,23 @@
 ### Assigned Tasks
 
 **Endpoint:** /user/register   
-**Completion Date:** 12/4
-
+**Completion Date:** 12/4   
 | Date | Files, Commits and Comments |
 | ------ | ------ |
 | *11/30* | Signup.js working, but buggy, with MDB design. |
 | *12/4:*  | Signup.js reformatted and debugged. Fully working. Changed to Reactstrap design for consistency. |
+| *12/14:*  | Restyling. Upon clicking the link on sidebar, modal will immediately open and close on formSubmit to redirect to Home. Hidden if signed in on Sidebar.  |
+| *12/16:*  | useNavigator incorporated. Whether closing or submitting, the user is taken to the '/home' route. Need to add responses if passwords match as well as prompts for each corresponding field. |
 
-**Endpoint:** /user/login    
-**Completion Date:** 12/4
+**Endpoint:** /user/login     
+**Completion Date:** TBD     
 
 | Date | Files, Commits and Comments |
 | ------ | ------ |
 | *11/30* | Login.js working, but buggy, with MDB design. |
 | *12/4:*  | Login.js reformatted and debugged. Fully working. Changed to Reactstrap design for consistency. |
+| *12/14:*  | Restyling. Upon clicking the link on sidebar, modal will immediately open and close on formSubmit to redirect to Home. Hidden if signed in on Sidebar. |
+| *12/16:*  | useNavigator incorporated. Whether closing or submitting, the user is taken to the '/home' route. Need to add responses if login is incorrect as well as prompts for each corresponding field. Need to add responses if login is correct on submit as well as prompts for each corresponding field. |
 
 **Additional Tasks**
 
@@ -89,9 +74,10 @@
 | *12/6* | LocalHost<->Heroku Setup | Debugged and setup a way to quickly switch between local and deployed testing. Local testing worked perfect, Heroku testing is a WIP and will be done with team.
 | *12/7* | LocalHost<->Heroku Testing Instructions | Created a [guide][LocalHostInstructions] on how to switch between LocalHost and Heroku fetches to test on all instances. Next up is how to properly do so for Heroku specifically with team.
 | *12/7* | ReadMe.md updated completely, reformatted | ReadMe.md updated completely. Reformatted to be more presentable and legible. Updated personal information and commits.
-| *12/7* | Team Session: Updated Props | Spent time with the entire team debugging how props are passing through. The only material at this point not properly going through is updating a game, which we will be working on during our 12/8 meetup. Potentially, GameView and GameGrid need tuned slightly different to become fully functional. 
-| *12/8* | Team Session: GameEditDeleteModal+GameUpdateModal logic | Spent roughly 4 hours total of working out our logic for how we want to perform our GameEditDeleteModal, a table with a button called "Update", that will call in the GameUpdateModal component to update a pre-existing game. We have a baseline now that we will attempt tomorrow with continued debugging throughout.
-| *12/9* | Team Session: GameEditDeleteModal+GameUpdateModal now functional! | After three days of debugging from getting the modal to properly show up, every prop getting passed correctly, and making sure the fetch for updating a game was working correctly, we have reached the summit of completing those modals. MVP is hit for functionality but not UI, so that is next up in our slate before we declare ourselves at least ready enough for dec 18."
+| *12/14* | ReadMe.md styled like Server repo's | Sidebar styling updated and functional. Routing will need updated after other components functional. Needs integrated with teams update to Games components that effected Sidebar and App slightly. 
+| *12/14* | Added signout option | Added signout option that clears tokens and resets User to blank string. 
+| *12/15* | gameMapper debugged | small debug of making sure our gameMapper function was fully functional before debugging further with team on Thursday night.
+| *12/16* | sidebar conditional, modal logic, routing added | React-Router-Dom now incorporates the useNavigator feature. Incorporated in Login and Register modals depending on user input to send the user to a certain, appropriate route. Additionally, sidebar has a working conditional for whether a user is logged in or not and changes whether they see Logout or Register & Signin. 
 
 **Client components:**
 -   App.js
@@ -109,13 +95,13 @@
 
 ### Assigned Tasks
 
-**Endpoint:** /game/listAll    
+**Endpoint:** /game/listAll
 **Completion Date:** WIP
 | Date | Files, Commits and Comments |
 | ------ | ------ |
 | Date | Files, Commits and Comments |
 
-**Endpoint:** /game/view/{id}    
+**Endpoint:** /game/view/{id}
 **Completion Date:** WIP / [completion date]
 | Date | Files, Commits and Comments |
 | ------ | ------ |
@@ -133,6 +119,7 @@ Client components:
    [Adam-Pokemon]: <http://daringfireball.net>
    [Adam-CSS]: <http://daringfireball.net/projects/markdown/>
    [Adam-Giphy]: <https://github.com/markdown-it/markdown-it>
+   [Adam-Portfolio]: <https://coderap931.github.io/>
    [Alex-Github]: <http://ace.ajax.org>
    [Alex-LinkedIn]: <http://nodejs.org>
    [Alex-Portfolio]: <http://twitter.github.com/bootstrap/>

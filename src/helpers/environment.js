@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 let APIURL = '';
 
 switch (window.location.hostname) {
@@ -7,5 +8,6 @@ switch (window.location.hostname) {
     case 'amp-my-gamechest-react.herokuapp.com':
         APIURL = 'https://amp-my-gamechest.herokuapp.com'
 }
+
 
 export default APIURL;

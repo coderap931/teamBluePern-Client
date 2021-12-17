@@ -1,8 +1,11 @@
 //* Insert imports here
 import { useState } from 'react';
-//import material ui modal, button, and form
+// navigate to switch between pages on React-Router-Dom https://dev.to/salehmubashar/usenavigate-tutorial-react-js-aop
+import { useNavigate} from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
+//TODO Switch between Heroku and Localhost here:
 import APIURL from '../helpers/environment';
+//TODO Switch back to Heroku URL when committing. 
 
 const Signup = (props) => {
     const [username, setUsername] = useState('');
@@ -10,8 +13,12 @@ const Signup = (props) => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [modal, setModal] = useState(false);
+    const [serverResponse, setServerResponse] = useState('');
+    const [serverStatus, setServerStatus] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
+        let responseStatus;
         event.preventDefault();
         fetch(`${APIURL}/user/register`, {
             method: 'POST',
@@ -20,15 +27,34 @@ const Signup = (props) => {
                 'Content-Type': 'application/json'
             })
         }).then(
-            (response) => response.json()
+            (response) => {
+                setServerStatus(`${response.status}`);
+                console.log(response.status);
+                responseStatus = response.status;
+                console.log(responseStatus);
+                return response.json();
+            }
+
         ).then((data) => {
             props.updateToken(data.sessionToken)
+            setServerResponse(data.message);
+            console.log("data.message: " + data.message);
+            console.log("responseStatus:", responseStatus);
+            if (responseStatus == '200')
+             navigate('/all');
         })
     }
-
     const toggle = () => {
         setModal(!modal);
     }
+
+        // toggle function that closes the modal when ModalHeader is clicked
+        const closeModal = () => {
+            setModal(false);
+            if (modal === false) {
+                navigate('/all');
+            }
+        }
 
     // validate password
     const validPassword = () => {
@@ -37,9 +63,8 @@ const Signup = (props) => {
 
     return (
         <div>
-            <Button color="primary" onClick={toggle}>Sign Up</Button>
-            <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>Sign Up</ModalHeader>
+            <Modal isOpen={true} toggle={toggle}>
+                <ModalHeader toggle={closeModal}>Sign Up</ModalHeader>
                 <ModalBody>
                     <Form onSubmit={handleSubmit}>
                         <FormGroup>
@@ -58,7 +83,7 @@ const Signup = (props) => {
                             <Label for="confirmPassword">Confirm Password</Label>
                             <Input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
                         </FormGroup>
-                        <Button color="primary" disabled={!validPassword()}>Submit</Button>
+                        <Button type='submit' color="primary" disabled={!validPassword()}>Submit</Button>
                     </Form>
                 </ModalBody>
             </Modal>
