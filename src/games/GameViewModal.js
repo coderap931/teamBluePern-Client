@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     MDBBtn,
     MDBModal,
@@ -9,6 +8,10 @@ import {
     MDBModalTitle,
     MDBModalBody
 } from 'mdb-react-ui-kit';
+//TODO Switch between Heroku and Localhost here:
+import APIURL from '../helpers/environment';
+// const APIURL = 'http://localhost:3000'
+//TODO Switch back to Heroku URL when committing. 
 
 
 const GameViewModal = (props) => {
@@ -16,9 +19,9 @@ const GameViewModal = (props) => {
     const [optSmModal, setOptSmModal] = useState(false);
 
 
-    const viewGame = (e) => {
+    const ViewGame = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:3000/game/${props.id}`, {
+        fetch(`${APIURL}/game/${props.id}`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -31,7 +34,7 @@ const GameViewModal = (props) => {
     }
 
     useEffect(() => {
-        viewGame();
+        ViewGame()
     }, [])
 
     const gameModalMapper = () => {
@@ -56,7 +59,7 @@ const GameViewModal = (props) => {
 
     return (
         <div className="game-view-modal">
-            <MDBBtn onClick={viewGame}>View Game</MDBBtn>
+            <MDBBtn onClick={ViewGame}>View Game</MDBBtn>
             <MDBModal show={optSmModal} tabIndex='-1' setShow={setOptSmModal}>
                 <MDBModalDialog size='sm'>
                     <MDBModalContent>

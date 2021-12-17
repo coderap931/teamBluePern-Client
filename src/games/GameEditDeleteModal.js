@@ -1,19 +1,24 @@
 import React from 'react';
 import { Table, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+//TODO Switch between Heroku and Localhost here:
+import APIURL from '../helpers/environment';
+// const APIURL = 'http://localhost:3000'
+//TODO Switch back to Heroku URL when committing. 
 
 const GameTable = (props) => {
+    console.log("EditDelete:", props)
     const deleteGame = (game) => {
-        fetch(`http://localhost:3000/game/remove/${game.id}`, {
+        fetch(`${APIURL}/game/remove/${game.id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.token}`
+                'Authorization': `Bearer ${props.sessionToken}`
             })
         }).then(() => props.fetchGames())
     }
 
     const gameMapper = () => {
-        return props.games.map((game, index) => {
+        return props.games.games.map((game, index) => {
             return (
                 <tr key={index}>
                     <th scope='row'>{game.id}</th>
