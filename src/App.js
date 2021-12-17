@@ -8,24 +8,32 @@ import GameUpdateModal from './games/GameUpdateModal';
 import { Table, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 function App() {
+  //* Authentication useStates
   const [sessionToken, setSessionToken] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+    //* Games useStates
   const [games, setGames] = useState({});
   const [updateGame, setUpdateGame] = useState({});
   const [updateActive, setUpdateActive] = useState(false);
+  const [gameToUpdate, setGameToUpdate] = useState([]);
+  const [yourGames, setYourGames] = useState([]);
 
 
 //! Token fun for session
   const updateToken = (newToken) => {
     localStorage.setItem("token", newToken);
     setSessionToken(newToken);
+    setIsAuthenticated(true);
     console.log("This is the sessionToken:", sessionToken);
   };
 
-  const clearToken = () => {
-    localStorage.clear();
-    setSessionToken("");
-    console.log("This is the clearedToken:", sessionToken);
-  };
+//! Logout Function
+  const logout = () => {
+      localStorage.clear();
+      setSessionToken('')
+      setIsAuthenticated(false);
+      console.log("This is the {LogOut} clearedToken:", sessionToken);
+    }
 
 //! This is the fetch for the games
   const fetchGames = () => {
@@ -41,25 +49,45 @@ function App() {
       });
   };
 
-//! GameEditDeleteModal and GameUpdateModal 
-//TODO - get this thing to work
+//! Fetching Individual Games
+const fetchYourGames = () => {
+  if (sessionToken !== ''){
+    fetch(`${APIURL}/game/editdeleteall`, {
+      method: "GET",
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionToken}`
+      })
+    }).then((res) => res.json())
+      .then((yourGameData) => {
+      console.log(yourGameData);
+      setYourGames(yourGameData);
+    })
+  } else {
+    alert("You have no games, returning to home page");
 
+    //!CHANGE TO 'APIURL' FOR HEROKU DEPLOYMENT
+    window.location.href = 'http://localhost:3001/home';
+  }
+}
+
+//! Delete Game
   const deleteGame = (game) => {
     console.log("deleteGame Function, games!:", games);
-    console.log("deleteGame Function, games.games.y2k!:", games.games);
     fetch(`${APIURL}/game/remove/${game.id}`, {
         method: 'DELETE',
         headers: new Headers({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${sessionToken}`
         })
-    }).then(() => fetchGames())
+    }).then(() => fetchYourGames())
   }
 
+
+  //! Maps the games to the table
   const gameMapper = (props) => {
-    console.log("gameMapper Function, games!:", games);
-    console.log("gameMapper Function, games.games.y2k!:", games.games);
-    return props.games.games.map((game, index) => {
+    console.log(yourGames);
+    return yourGames.map((game, index) => {
         return (
             <tr key={index}>
                 <th scope='row'>{game.id}</th>
@@ -67,7 +95,7 @@ function App() {
                 <td>{game.boxart}</td>
                 <td>{game.reviewrating}</td>
                 <td>
-                    <Button color='warning' onClick={() => { updateModalActive(props); }}>Update</Button>
+                    <Button color='warning' onClick={() => { setGameToUpdate(game); updateModalActive(props); }}>Update</Button>
                     <Button color='danger' onClick={() => { deleteGame(game) }}>Delete</Button>
                 </td>
             </tr>
@@ -99,8 +127,8 @@ function App() {
             </ModalBody>
         </Modal>
     )
-  
-}
+  }
+
   //! Modal for Update
   //TODO - updateOff for GameUpdateModal to set updateActive to false for table to show again?
   const updateModalActive = (props) => {
@@ -108,12 +136,12 @@ function App() {
     console.log("updateModalActive:", props)
       return (
         <GameUpdateModal
-            changeGame={changeGame(props.games.games[0])}
+            changeGame={changeGame(gameToUpdate)}
             updateOn={updateOn}
             isOpen={true}
             sessionToken={sessionToken}
             updateOff={updateOff}
-            fetchGames={fetchGames}
+            fetchYourGames={fetchYourGames}
         />
       )
 }
@@ -134,6 +162,34 @@ function App() {
     setUpdateActive(false);
   };
 
+
+// //! Modal for GameView
+//   const gameModalMapper = (props) => {
+//     return props.games.map((game, index) => {
+//         return (
+//             <MDBModalContent key={index}>
+//                 <MDBModalHeader>
+//                     <MDBModalTitle>Game's Details:</MDBModalTitle>
+//                 </MDBModalHeader>
+//                 <MDBModalBody>
+//                     Description: {game.gamedescription}
+//                     <br/>
+//                     ESRB Rating: {game.esrbrating}
+//                     <br/>
+//                     Rating: {game.reviewrating} / 10
+//                     <br/>
+//                     Review Description: {game.reviewdescription}
+//                     <br/>
+//                     Platforms: {game.platforms}
+//                     <br/>
+//                     Tags: {game.tags}
+//                 </MDBModalBody>
+//             </MDBModalContent>
+//         )
+//     })
+//   }
+
+
 //! useEffect for token session
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -148,10 +204,12 @@ function App() {
       <Router>
         <Sidebar
           updateToken={updateToken}
-          clearToken={clearToken}
           sessionToken={sessionToken}
+          logout={logout}
+          isAuthenticated={isAuthenticated}
           games={games}
           fetchGames={fetchGames}
+          fetchYourGames = {fetchYourGames}
           updateGame={updateGame}
           updateOn={updateOn}
           updateOff={updateOff}
@@ -160,6 +218,7 @@ function App() {
           updateModalActive={updateModalActive}
           editModalActive={editModalActive}
           gameMapper={gameMapper}
+          // gameModalMapper={gameModalMapper}
         />
       </Router>
     </div>
