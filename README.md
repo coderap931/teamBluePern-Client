@@ -1,3 +1,4 @@
+
 **Project Name**
 
               [Brief description of project build]  *This will be different between client and server.  It can be detailed as you see fit (look over other ReadMe files for examples)
@@ -10,30 +11,32 @@ Team Member #1  [Adam Patrick]
 
         Github: https://github.com/coderap931
         LinkedIn: https://www.linkedin.com/in/adam-patrick-06a970159/
-        Portfolio links: (PokeRandom) -- https://coderap931.github.io/pokeRandom/ || (CSS Creature) -- https://codepen.io/coderap931/full/GRmbBeW || (GIPHY Search) -- https://giphyapi-afc12.web.app/
+        Portfolio links: https://coderap931.github.io/
 
 Assigned Tasks
 
 Git Master
+Completion Date: Once a Git Master, always a Git Master
 
 Endpoint: /game/create
-Completion Date: WIP / [completion date]
-[date]: [focused items / files] */consider your commit message
-[date]: [focused items / files]
-[date]: [focused items / files]
-Ex: 11/29: Navbar.jsx – build out routing and styling.
+Completion Date: Completed 11/29
 
 Endpoint: /game/edit
-Completion Date: WIP / [completion date]
-[date]: [focused items / files]
-[date]: [focused items / files]
+Completion Date: Completed 11/29
 
 Endpoint: /game/delete
-Completion Date: WIP / [completion date]
-[date]: [focused items / files]
-[date]: [focused items / files]
+Completion Date: Completed 11/29
 
-Server components: games table, model, and controller, and headers middleware
+Client Components: 
+-GameCreateModal.js: Initial completed pass 12/1, no bugs found to date
+-GameEditDeleteModal.js: Initial completed pass 12/1, minor styling changes and relocation of certain components to parent elements 12/4
+-GameUpdateModal.js: Initial completed pass 12/1, minor styling changes and corrected props passes with team 12/9
+
+Server components:
+-games table: 11/28
+-games model: 11/28
+-games controller for my routes: 11/28
+-headers middleware: 11/28
  
 
 __**Team Member #2  [Alex Myers]**__
