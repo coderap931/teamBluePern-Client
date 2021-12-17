@@ -41,7 +41,7 @@ const Signup = (props) => {
             console.log("data.message: " + data.message);
             console.log("responseStatus:", responseStatus);
             if (responseStatus == '200')
-             navigate('/home');
+             navigate('/all');
         })
     }
     const toggle = () => {
@@ -52,7 +52,7 @@ const Signup = (props) => {
         const closeModal = () => {
             setModal(false);
             if (modal === false) {
-                navigate('/home');
+                navigate('/all');
             }
         }
 
