@@ -44,7 +44,7 @@ const GameCreateModal = (props) => {
                 setTags('');
                 setOwner_id('');
                 // props.fetchGames(); --Pretty sure this is only for loading a new page, unneseccary since is modal, leaving for now
-                navigate('/home');
+                navigate('/all');
             })
     }
 
@@ -116,6 +116,5 @@ const GameCreateModal = (props) => {
         </Modal>
     )
 }
-
 
 export default GameCreateModal;

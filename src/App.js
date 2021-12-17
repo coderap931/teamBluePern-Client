@@ -2,12 +2,13 @@ import "./App.css";
 import Sidebar from "./home/Sidebar";
 import "bootstrap/dist/css/bootstrap.css";
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
 import APIURL from "./helpers/environment";
 import GameUpdateModal from './games/GameUpdateModal';
 import { Table, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
+  
   //* Authentication useStates
   const [sessionToken, setSessionToken] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -17,6 +18,10 @@ function App() {
   const [updateActive, setUpdateActive] = useState(false);
   const [gameToUpdate, setGameToUpdate] = useState([]);
   const [yourGames, setYourGames] = useState([]);
+
+  const [serverResponse, setServerResponse] = useState('');
+  const [serverStatus, setServerStatus] = useState('');
+  let navigate = useNavigate();
 
 
 //! Token fun for session
@@ -51,6 +56,7 @@ function App() {
 
 //! Fetching Individual Games
 const fetchYourGames = () => {
+  let responseStatus;
   if (sessionToken !== ''){
     fetch(`${APIURL}/game/editdeleteall`, {
       method: "GET",
@@ -58,18 +64,22 @@ const fetchYourGames = () => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${sessionToken}`
       })
-    }).then((res) => res.json())
-      .then((yourGameData) => {
-      console.log(yourGameData);
-      setYourGames(yourGameData);
+    }).then((response) => {
+      setServerStatus(`${response.status}`);
+      console.log(response.status);
+      responseStatus = response.status;
+      console.log(responseStatus);
+      return response.json();
+    }).then((data) => {
+      setYourGames(data);
+      console.log("data.message: " + data.message);
+      console.log("responseStatus:", responseStatus);
+      if (responseStatus == '200')
+        navigate('/all');
     })
-  } else {
-    alert("You have no games, returning to home page");
-
-    //!CHANGE TO 'APIURL' FOR HEROKU DEPLOYMENT
-    window.location.href = 'http://localhost:3001/home';
   }
 }
+    
 
 //! Delete Game
   const deleteGame = (game) => {
@@ -201,7 +211,6 @@ const fetchYourGames = () => {
 //! App Return
   return (
     <div className="App">
-      <Router>
         <Sidebar
           updateToken={updateToken}
           sessionToken={sessionToken}
@@ -220,7 +229,6 @@ const fetchYourGames = () => {
           gameMapper={gameMapper}
           // gameModalMapper={gameModalMapper}
         />
-      </Router>
     </div>
   );
 }
