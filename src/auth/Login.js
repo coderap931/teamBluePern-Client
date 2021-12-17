@@ -1,9 +1,9 @@
 //* Imports replaced here
 import React from 'react';
 import { useState } from 'react';
-// navigate to switch between pages on React-Router-Dom https://dev.to/salehmubashar/usenavigate-tutorial-react-js-aop
-import { useNavigate} from 'react-router-dom';
-//import from reactstrap the modal component, and the button component, and the input component, and the row and col components, and the container component
+//* navigate to switch between pages on React-Router-Dom | Reference: https://dev.to/salehmubashar/usenavigate-tutorial-react-js-aop
+import { useNavigate } from 'react-router-dom';
+//*import from reactstrap
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
 //TODO Switch between Heroku and Localhost here:
 import APIURL from '../helpers/environment';
@@ -42,7 +42,7 @@ const Login = (props) => {
             console.log("data.message: " + data.message);
             console.log("responseStatus:", responseStatus);
             if (responseStatus == '200')
-             navigate('/all');
+                navigate('/all');
         })
     }
 
@@ -59,30 +59,94 @@ const Login = (props) => {
         }
     }
 
-        return (
-            <Modal isOpen={true}>
-                <ModalHeader toggle={closeModal}>Login</ModalHeader>
-                
-                <ModalBody>
-                    <Form onSubmit={handleSubmit}>
-                        <FormGroup>
-                            <Label for="username">Username</Label>
-                            <Input type="text" name="username" id="username" placeholder="Username" value={username} onChange={(event) => setUsername(event.target.value)} />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="email">Email</Label>
-                            <Input type="email" name="email" id="email" placeholder="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="password">Password</Label>
-                            <Input type="password" name="password" id="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} />
-                        </FormGroup>
-                        <Button color="primary">Login</Button>
-                    </Form>
-                </ModalBody>
-            </Modal>
-        )
-}
+    //* custom color button
+    const customButton = {
+        backgroundColor: '#0c7b93',
+        color: 'white',
+        border: 'none',
+        borderRadius: '5px',
+        padding: '10px',
+        fontSize: '16px',
+        margin: '10px',
+        cursor: 'pointer'
+    }
 
+    //! Show password and its button
+// button in password to show/hide password
+    const showPassword = () => {
+        let x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+    const showPasswordButton = {
+        backgroundColor: '#FCD1D1',
+        color: 'black',
+        border: 'none',
+        borderRadius: '5px',
+        padding: '10px',
+        fontSize: '16px',
+        margin: '10px',
+        cursor: 'pointer',
+        float: 'right',
+        width: '50px',
+        height: '25px',
+        backgroundImage: 'url(https://img.icons8.com/material/15/000000/visible--v1.png)',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        position: 'absolute',
+        right: '20px',
+        top: '167px',
+    }
+
+    //! When user hits login button, if it is not valid, it will show an error message
+    const errorMessage = {
+        color: '#27496D',
+        fontSize: '15px',
+        margin: '0px',
+        padding: '0px',
+        textAlign: 'center',
+        fontFamily: 'Arial',
+        fontWeight: 'bold',
+        display: 'block',
+        float: 'right',
+        position: 'relative',
+        right: '20px',
+        top: '25px',
+    }
+
+    // errorMessageFunction
+    const errorMessageFunction = () => {
+        if (serverStatus === '500') {
+            return <p style={errorMessage}>There was an error logging in, please try again.</p>
+        }
+    }
+
+
+    return (
+        <Modal isOpen={true} toggle={toggle}>
+        <ModalHeader toggle={closeModal}>Login</ModalHeader>
+
+        <ModalBody>
+            <Form onSubmit={handleSubmit}>
+                <FormGroup>
+                <Label for="username-and-email">Username or Email</Label>
+                <Input type="text" name="username-and-email" id="username-and-email" placeholder="Username or Email" value={username, email} onChange={(e) => { setUsername(e.target.value); setEmail(e.target.value) }} />
+                </FormGroup>
+                <FormGroup>
+                <Label for="password">Password</Label>
+                
+                <Input type="password" name="password" id="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <Button style={showPasswordButton} onClick={showPassword}></Button>
+                </FormGroup>
+                <Button style={customButton} type="submit">Login</Button>
+                {errorMessageFunction()}
+            </Form>
+            </ModalBody>
+        </Modal>
+    )
+}
 
 export default Login;
