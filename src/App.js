@@ -92,7 +92,7 @@ const fetchYourGames = () => {
             <tr key={index}>
                 <th scope='row'>{game.id}</th>
                 <td>{game.name}</td>
-                <td>{game.boxart}</td>
+                <td><img src={game.boxart}/></td>
                 <td>{game.reviewrating}</td>
                 <td>
                     <Button color='warning' onClick={() => { setGameToUpdate(game); updateModalActive(props); }}>Update</Button>
