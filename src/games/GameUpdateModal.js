@@ -27,7 +27,7 @@ const GameUpdateModal = (props) => {
                 'Authorization': `Bearer ${props.sessionToken}`
             })
         }).then(() => {
-            props.fetchGames();
+            props.fetchYourGames();
             props.updateOff();
         })
     }

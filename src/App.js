@@ -75,7 +75,7 @@ function App() {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${sessionToken}`
         })
-    }).then(() => fetchGames())
+    }).then(() => fetchYourGames())
   }
 
   const gameMapper = (props) => {
@@ -134,7 +134,7 @@ function App() {
             isOpen={true}
             sessionToken={sessionToken}
             updateOff={updateOff}
-            fetchGames={fetchGames}
+            fetchYourGames={fetchYourGames}
         />
       )
 }
