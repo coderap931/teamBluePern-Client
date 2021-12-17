@@ -67,9 +67,10 @@ function App() {
     } else {
       alert("You have no games, returning to home page");
 
-      //!CHANGE TO 'APIURL' FOR HEROKU DEPLOYMENT
-      window.location.href = 'http://localhost:3001/home';
-    }
+
+    //!CHANGE TO 'APIURL' FOR HEROKU DEPLOYMENT
+    window.location.href = `${APIURL}/all`;
+
   }
 
   //! Delete Game
@@ -89,6 +90,7 @@ function App() {
   const gameMapper = (props) => {
     console.log(yourGames);
     return yourGames.map((game, index) => {
+
       return (
         <tr key={index}>
           <th scope='row'>{game.id}</th>
@@ -101,6 +103,7 @@ function App() {
           </td>
         </tr>
       )
+
     })
   }
 
