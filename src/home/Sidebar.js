@@ -90,6 +90,7 @@ const Sidebar = (props) => {
     }, [props.isAuthenticated]);
 
 
+
     //if "/home" or "/" is the route, then set sidebar to true. Else, set to false
     useEffect(() => {
         if (route === '/home') {
@@ -135,33 +136,35 @@ const Sidebar = (props) => {
                             </div>
                         )}
                         <NavItem>
-                            <Link to="/creategame" style={{ color: 'white' }}>Create Game</Link>
+                            <Link to="/create" style={{ color: 'white' }}>Create Game</Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/editgame" style={{ color: 'white' }}>Edit Game</Link>
+                            <Link to="/editdeleteall" style={{ color: 'white' }}>Edit Game</Link>
+
                         </NavItem>
                     </Nav>
                 </div>
             </Menu>
             <Routes>
-                {/* <Route path={route} element={<HomePage games={props.games}/>} /> 
-                <Route path="/" element={<HomePage games={props.games} gameModalMapper={props.gameModalMapper}/>} />*/}
-                <Route path="/home" element={<HomePage games={props.games} gameModalMapper={props.gameModalMapper} />} />
+                {/* <Route path={route} element={<HomePage games={props.games}/>} /> */}
+                <Route path="/all" element={<HomePage games={props.games}/>} />
                 <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
                 <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
-                <Route path="/creategame" element={<GameCreateModal sessionToken={props.sessionToken} />} />
-                <Route path="/editgame" element={<GameEditDeleteModal
-                    props={props}
-                    updateActive={props.updateActive}
-                    updateGame={props.updateGame}
-                    updateOn={props.updateOn}
-                    updateOff={props.updateOff}
-                    sessionToken={props.sessionToken}
-                    games={props.games}
-                    updateModalActive={props.updateModalActive}
-                    editModalActive={props.editModalActive}
-                    gameMapper={props.gameMapper}
-                />} />
+                <Route path="/create" element={<GameCreateModal sessionToken={props.sessionToken}/>} />
+                {/* <Route path="/editgame" element={<GameEditDeleteModal sessionToken={props.sessionToken} games={props.games} fetchGames={props.fetchGames} updateOn={props.updateOn} updateOff={props.updateOff} editUpdateGame={props.editUpdateGame} />} /> */}
+                <Route path="/editdeleteall" element={<GameEditDeleteModal 
+                                                        props={props}
+                                                        fetchYourGames={props.fetchYourGames}
+                                                        updateActive={props.updateActive} 
+                                                        updateGame={props.updateGame} 
+                                                        updateOn={props.updateOn} 
+                                                        updateOff={props.updateOff} 
+                                                        sessionToken={props.sessionToken} 
+                                                        games={props.games}
+                                                        updateModalActive={props.updateModalActive}
+                                                        editModalActive={props.editModalActive}
+                                                        gameMapper={props.gameMapper}
+                    />} />
             </Routes>
         </div>
     );
