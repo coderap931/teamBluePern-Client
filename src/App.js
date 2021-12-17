@@ -8,16 +8,15 @@ import GameUpdateModal from './games/GameUpdateModal';
 import { Table, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 function App() {
+  //* Authentication useStates
   const [sessionToken, setSessionToken] = useState("");
-
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+    //* Games useStates
   const [games, setGames] = useState({});
-  const [yourGames, setYourGames] = useState([]);
   const [updateGame, setUpdateGame] = useState({});
   const [updateActive, setUpdateActive] = useState(false);
   const [gameToUpdate, setGameToUpdate] = useState([]);
-
+  const [yourGames, setYourGames] = useState([]);
 
 
 //! Token fun for session
@@ -50,30 +49,29 @@ function App() {
       });
   };
 
-//! GameEditDeleteModal and GameUpdateModal 
-//TODO - get this thing to work
-
-  const fetchYourGames = () => {
-    if (sessionToken !== ''){
-      fetch(`${APIURL}/game/editdeleteall`, {
-        method: "GET",
-        headers: new Headers({
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${sessionToken}`
-        })
-      }).then((res) => res.json())
-        .then((yourGameData) => {
-        console.log(yourGameData);
-        setYourGames(yourGameData);
+//! Fetching Individual Games
+const fetchYourGames = () => {
+  if (sessionToken !== ''){
+    fetch(`${APIURL}/game/editdeleteall`, {
+      method: "GET",
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionToken}`
       })
-    } else {
-      alert("You have no games, returning to home page");
+    }).then((res) => res.json())
+      .then((yourGameData) => {
+      console.log(yourGameData);
+      setYourGames(yourGameData);
+    })
+  } else {
+    alert("You have no games, returning to home page");
 
-      //!CHANGE TO 'APIURL' FOR HEROKU DEPLOYMENT
-      window.location.href = 'http://localhost:3001/home';
-    }
+    //!CHANGE TO 'APIURL' FOR HEROKU DEPLOYMENT
+    window.location.href = 'http://localhost:3001/home';
   }
+}
 
+//! Delete Game
   const deleteGame = (game) => {
     console.log("deleteGame Function, games!:", games);
     fetch(`${APIURL}/game/remove/${game.id}`, {
@@ -85,6 +83,8 @@ function App() {
     }).then(() => fetchYourGames())
   }
 
+
+  //! Maps the games to the table
   const gameMapper = (props) => {
     console.log(yourGames);
     return yourGames.map((game, index) => {
@@ -162,32 +162,33 @@ function App() {
     setUpdateActive(false);
   };
 
-//! Modal for GameView
-// !!! Change from mapper, mapper runs through whole DB, should be a normal method !!!
-  // const gameModalMapper = (props) => {
-  //   return props.games.map((game, index) => {
-  //       return (
-  //           <MDBModalContent key={index}>
-  //               <MDBModalHeader>
-  //                   <MDBModalTitle>Game's Details:</MDBModalTitle>
-  //               </MDBModalHeader>
-  //               <MDBModalBody>
-  //                   Description: {game.gamedescription}
-  //                   <br/>
-  //                   ESRB Rating: {game.esrbrating}
-  //                   <br/>
-  //                   Rating: {game.reviewrating} / 10
-  //                   <br/>
-  //                   Review Description: {game.reviewdescription}
-  //                   <br/>
-  //                   Platforms: {game.platforms}
-  //                   <br/>
-  //                   Tags: {game.tags}
-  //               </MDBModalBody>
-  //           </MDBModalContent>
-  //       )
-  //   })
-  // }
+
+// //! Modal for GameView
+//   const gameModalMapper = (props) => {
+//     return props.games.map((game, index) => {
+//         return (
+//             <MDBModalContent key={index}>
+//                 <MDBModalHeader>
+//                     <MDBModalTitle>Game's Details:</MDBModalTitle>
+//                 </MDBModalHeader>
+//                 <MDBModalBody>
+//                     Description: {game.gamedescription}
+//                     <br/>
+//                     ESRB Rating: {game.esrbrating}
+//                     <br/>
+//                     Rating: {game.reviewrating} / 10
+//                     <br/>
+//                     Review Description: {game.reviewdescription}
+//                     <br/>
+//                     Platforms: {game.platforms}
+//                     <br/>
+//                     Tags: {game.tags}
+//                 </MDBModalBody>
+//             </MDBModalContent>
+//         )
+//     })
+//   }
+
 
 //! useEffect for token session
   useEffect(() => {

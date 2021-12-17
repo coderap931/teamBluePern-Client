@@ -25,7 +25,6 @@ import {
     Nav,
     NavItem,
     Button,
-    NavLink,
 } from 'reactstrap';
 //! import of brandLogo from the assets folder
 import brandLogo from '../assets/Gamechest.png';
@@ -81,7 +80,30 @@ const Sidebar = (props) => {
         },
         bmOverlay: {
             background: 'rgba(0, 0, 0, 0.3)'
-        }
+        },
+    }
+
+    // style for links in the sidebar
+    const linkStyle = {
+        color: '#FCD1D1',
+        textDecoration: 'none',
+        letterSpacing: '0.4em',
+        fontSize: '1em',
+        fontWeight: 'bold',
+        padding: '0.8em',
+        display: 'inline-block',
+        textAlign: 'center',
+        width: '100%',
+        transition: 'all easeOut 300ms',
+        textTransform: 'uppercase',
+    }
+    // style for links in the sidebar when hovered over
+    const linkHoverStyle = {
+        color: '#FCD1D1',
+        textDecoration: 'none',
+        letterSpacing: '0.4em',
+        fontSize: '1em',
+        fontWeight: 'bold',
     }
 
     //! setIsAuthenticated to true if the user is authenticated
@@ -117,54 +139,53 @@ const Sidebar = (props) => {
                 <div className="sidebar-content">
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <Link to="/home" style={{ color: 'white' }} activeStyle={{ color: 'red' }}>Home</Link>
+                            <Link to="/all" style={linkStyle}>Home</Link>
                         </NavItem>
                         {isAuthenticated ? (
                             <div>
                                 <NavItem>
-                                    <Link to="/home" onClick={props.logout} style={{ color: 'white' }}>Logout</Link>
+                                    <Link to="/all" onClick={props.logout} style={linkStyle} >Logout</Link>
                                 </NavItem>
                             </div>
                         ) : (
                             <div>
                                 <NavItem>
-                                    <Link to="/login" style={{ color: 'white' }}>Login</Link>
+                                    <Link to="/login" style={linkStyle} >Login</Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/signup" style={{ color: 'white' }}>Register</Link>
+                                    <Link to="/signup" style={linkStyle} >Register</Link>
                                 </NavItem>
                             </div>
                         )}
                         <NavItem>
-                            <Link to="/create" style={{ color: 'white' }}>Create Game</Link>
+                            <Link to="/create" style={linkStyle} >Create Game</Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/editdeleteall" style={{ color: 'white' }}>Edit Game</Link>
-
+                            <Link to="/editdeleteall" style={linkStyle} >Edit Game</Link>
                         </NavItem>
                     </Nav>
                 </div>
             </Menu>
             <Routes>
-                {/* <Route path={route} element={<HomePage games={props.games}/>} /> */}
-                <Route path="/all" element={<HomePage games={props.games}/>} />
+                {/* <Route path={route} element={<HomePage games={props.games}/>} /> 
+                <Route path="/" element={<HomePage games={props.games} gameModalMapper={props.gameModalMapper}/>} />*/}
+                <Route path="/all" element={<HomePage games={props.games} />} />
                 <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
                 <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
-                <Route path="/create" element={<GameCreateModal sessionToken={props.sessionToken}/>} />
-                {/* <Route path="/editgame" element={<GameEditDeleteModal sessionToken={props.sessionToken} games={props.games} fetchGames={props.fetchGames} updateOn={props.updateOn} updateOff={props.updateOff} editUpdateGame={props.editUpdateGame} />} /> */}
-                <Route path="/editdeleteall" element={<GameEditDeleteModal 
-                                                        props={props}
-                                                        fetchYourGames={props.fetchYourGames}
-                                                        updateActive={props.updateActive} 
-                                                        updateGame={props.updateGame} 
-                                                        updateOn={props.updateOn} 
-                                                        updateOff={props.updateOff} 
-                                                        sessionToken={props.sessionToken} 
-                                                        games={props.games}
-                                                        updateModalActive={props.updateModalActive}
-                                                        editModalActive={props.editModalActive}
-                                                        gameMapper={props.gameMapper}
-                    />} />
+                <Route path="/create" element={<GameCreateModal sessionToken={props.sessionToken} />} />
+                <Route path="/editdeleteall" element={<GameEditDeleteModal
+                    props={props}
+                    updateActive={props.updateActive}
+                    fetchYourGames={props.fetchYourGames}
+                    updateGame={props.updateGame}
+                    updateOn={props.updateOn}
+                    updateOff={props.updateOff}
+                    sessionToken={props.sessionToken}
+                    games={props.games}
+                    updateModalActive={props.updateModalActive}
+                    editModalActive={props.editModalActive}
+                    gameMapper={props.gameMapper}
+                />} />
             </Routes>
         </div>
     );

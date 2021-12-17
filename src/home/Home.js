@@ -1,7 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardImage} from 'mdb-react-ui-kit';
-//TODO Switch between Heroku and Localhost here:
-//TODO Switch back to Heroku URL when committing.
 
 const HomePage = (props) => {
 
@@ -23,7 +21,6 @@ const HomePage = (props) => {
                         Platforms: {game.platforms}
                         <br/>
                         Tags: {game.tags}
-                    {/* <MDBBtn onClick={GameViewModal(props)}> View Game </MDBBtn> */}
                     </MDBCardBody>
                 </MDBCard>
             )
@@ -47,9 +44,9 @@ const HomePage = (props) => {
     return (
         <div className="home-page">
             {gameGridMapper()}
-            {/* {button ? props.gameModalMapper(props) : null} */}
         </div>
     )
 };
+
 
 export default HomePage;
