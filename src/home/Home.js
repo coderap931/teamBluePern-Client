@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import {Card, Button, CardBody, CardImg, CardTitle} from 'reactstrap';
 //TODO Switch between Heroku and Localhost here:
-//TODO Switch back to Heroku URL when committing. 
+//TODO Switch back to Heroku URL when committing.
 
 const HomePage = (props) => {
     console.log("Home Props:", props)

@@ -14,7 +14,7 @@ import GameCreateModal from '../games/GameCreateModal';
 import GameEditDeleteModal from '../games/GameEditDeleteModal';
 // import GameViewModal from './GameViewModal';
 //! import React features
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, Router } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import {
@@ -81,7 +81,30 @@ const Sidebar = (props) => {
         },
         bmOverlay: {
             background: 'rgba(0, 0, 0, 0.3)'
-        }
+        },
+    }
+
+    // style for links in the sidebar
+    const linkStyle = {
+        color: '#FCD1D1',
+        textDecoration: 'none',
+        letterSpacing: '0.4em',
+        fontSize: '1em',
+        fontWeight: 'bold',
+        padding: '0.8em',
+        display: 'inline-block',
+        textAlign: 'center',
+        width: '100%',
+        transition: 'all easeOut 300ms',
+        textTransform: 'uppercase',
+    }
+    // style for links in the sidebar when hovered over
+    const linkHoverStyle = {
+        color: '#FCD1D1',
+        textDecoration: 'none',
+        letterSpacing: '0.4em',
+        fontSize: '1em',
+        fontWeight: 'bold',
     }
 
     //! setIsAuthenticated to true if the user is authenticated
@@ -116,29 +139,29 @@ const Sidebar = (props) => {
                 <div className="sidebar-content">
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <Link to="/home" style={{ color: 'white' }} activeStyle={{ color: 'red' }}>Home</Link>
+                            <Link to="/home" style={linkStyle}>Home</Link>
                         </NavItem>
                         {isAuthenticated ? (
                             <div>
                                 <NavItem>
-                                    <Link to="/home" onClick={props.logout} style={{ color: 'white' }}>Logout</Link>
+                                    <Link to="/home" onClick={props.logout} style={linkStyle} >Logout</Link>
                                 </NavItem>
                             </div>
                         ) : (
                             <div>
                                 <NavItem>
-                                    <Link to="/login" style={{ color: 'white' }}>Login</Link>
+                                    <Link to="/login" style={linkStyle} >Login</Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/signup" style={{ color: 'white' }}>Register</Link>
+                                    <Link to="/signup" style={linkStyle} >Register</Link>
                                 </NavItem>
                             </div>
                         )}
                         <NavItem>
-                            <Link to="/creategame" style={{ color: 'white' }}>Create Game</Link>
+                            <Link to="/creategame" style={linkStyle} >Create Game</Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/editgame" style={{ color: 'white' }}>Edit Game</Link>
+                            <Link to="/editgame" style={linkStyle} >Edit Game</Link>
                         </NavItem>
                     </Nav>
                 </div>
