@@ -67,7 +67,7 @@ const fetchYourGames = () => {
     alert("You have no games, returning to home page");
 
     //!CHANGE TO 'APIURL' FOR HEROKU DEPLOYMENT
-    window.location.href = 'http://localhost:3001/home';
+    window.location.href = `${APIURL}/all`;
   }
 }
 
