@@ -8,11 +8,14 @@ import APIURL from '../helpers/environment';
 //TODO Switch back to Heroku URL when committing. 
 
 const Signup = (props) => {
+    //* username and email state variable and setter
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
+    //* password is not stored in state, but is used to hash the password
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [modal, setModal] = useState(false);
+    //* useState and variable to store server response and redirect to home page
     const [serverResponse, setServerResponse] = useState('');
     const [serverStatus, setServerStatus] = useState('');
     const navigate = useNavigate();
@@ -41,7 +44,7 @@ const Signup = (props) => {
             console.log("data.message: " + data.message);
             console.log("responseStatus:", responseStatus);
             if (responseStatus == '200')
-             navigate('/home');
+             navigate('/all');
         })
     }
     const toggle = () => {
@@ -52,7 +55,7 @@ const Signup = (props) => {
         const closeModal = () => {
             setModal(false);
             if (modal === false) {
-                navigate('/home');
+                navigate('/all');
             }
         }
 
@@ -111,6 +114,7 @@ const Signup = (props) => {
     }
 
 
+
     //* custom color button
     const customButton = {
         backgroundColor: '#0c7b93',
@@ -132,12 +136,12 @@ const Signup = (props) => {
                         <FormGroup>
                             <Label for="username">Username</Label>
                             <Input type="text" name="username" id="username" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-                            {validUsername()}
+                            <p style={{color: '#27496D', fontSize: '0.7em'}}>{validUsername()}</p>
                         </FormGroup>
                         <FormGroup>
                             <Label for="email">Email</Label>
                             <Input type="text" name="email" id="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                            {validEmail()}
+                            <p style={{color: '#27496D', fontSize: '0.7em'}}>{validEmail()}</p>
                         </FormGroup>
                         <FormGroup>
                             <Label for="password">Password</Label>
@@ -150,7 +154,7 @@ const Signup = (props) => {
                             {validConfirmPassword()}
                         </FormGroup>
                         <Button style={customButton} type="submit">Sign Up</Button>
-                        <p>{validAll()}</p>
+                        {validAll()}
                     </Form>
                 </ModalBody>
             </Modal>

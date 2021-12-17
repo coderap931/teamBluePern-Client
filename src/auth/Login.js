@@ -42,7 +42,7 @@ const Login = (props) => {
             console.log("data.message: " + data.message);
             console.log("responseStatus:", responseStatus);
             if (responseStatus == '200')
-                navigate('/home');
+                navigate('/all');
         })
     }
 
@@ -55,7 +55,7 @@ const Login = (props) => {
     const closeModal = () => {
         setModal(false);
         if (modal === false) {
-            navigate('/home');
+            navigate('/all');
         }
     }
 
@@ -71,31 +71,58 @@ const Login = (props) => {
         cursor: 'pointer'
     }
 
+    //! Show password and its button
+// button in password to show/hide password
+    const showPassword = () => {
+        let x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+    const showPasswordButton = {
+        backgroundColor: '#FCD1D1',
+        color: 'black',
+        border: 'none',
+        borderRadius: '5px',
+        padding: '10px',
+        fontSize: '16px',
+        margin: '10px',
+        cursor: 'pointer',
+        float: 'right',
+        width: '50px',
+        height: '25px',
+        backgroundImage: 'url(https://img.icons8.com/material/15/000000/visible--v1.png)',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        position: 'absolute',
+        right: '20px',
+        top: '167px',
+    }
+
+
     return (
-        <Modal isOpen={true}>
-            <ModalHeader toggle={closeModal}>Login</ModalHeader>
+        <Modal isOpen={true} toggle={toggle}>
+        <ModalHeader toggle={closeModal}>Login</ModalHeader>
 
-            <ModalBody>
-                <Form onSubmit={handleSubmit}>
-                    <FormGroup>
-                        <Label for="username">Username</Label>
-                        <Input type="text" name="username" id="username" placeholder="Username" value={username} onChange={(event) => setUsername(event.target.value)} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="email">Email</Label>
-                        <Input type="email" name="email" id="email" placeholder="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="password">Password</Label>
-                        <Input type="password" name="password" id="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} />
-                    </FormGroup>
-                    <Button style={customButton}>Login</Button>
-                </Form>
-
+        <ModalBody>
+            <Form onSubmit={handleSubmit}>
+                <FormGroup>
+                <Label for="username-and-email">Username or Email</Label>
+                <Input type="text" name="username-and-email" id="username-and-email" placeholder="Username or Email" value={username, email} onChange={(e) => { setUsername(e.target.value); setEmail(e.target.value) }} />
+                </FormGroup>
+                <FormGroup>
+                <Label for="password">Password</Label>
+                
+                <Input type="password" name="password" id="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <Button style={showPasswordButton} onClick={showPassword}></Button>
+                </FormGroup>
+                <Button style={customButton} type="submit">Login</Button>
+            </Form>
             </ModalBody>
         </Modal>
     )
 }
-
 
 export default Login;
