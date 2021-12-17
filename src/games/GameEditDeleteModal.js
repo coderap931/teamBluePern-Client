@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Container } from 'reactstrap';
 //TODO Switch between Heroku and Localhost here:
 import APIURL from '../helpers/environment';
@@ -6,7 +6,9 @@ import APIURL from '../helpers/environment';
 
 
 const GameTable = (props) => {
-
+    useEffect(() => {
+        props.fetchYourGames();
+      }, []);
 
     return (
         <Container>

@@ -25,7 +25,6 @@ import {
     Nav,
     NavItem,
     Button,
-    NavLink,
 } from 'reactstrap';
 //! import of brandLogo from the assets folder
 import brandLogo from '../assets/Gamechest.png';
@@ -35,7 +34,7 @@ import brandLogo from '../assets/Gamechest.png';
 
 const Sidebar = (props) => {
     console.log(props);
-    const [isOpen, setIsOpen] = useState(false); //used to open and close the sidebar
+    const [toggleSidebar, setToggleSidebar] = useState(false); //used to open and close the sidebar
     const [route, setRoute] = useState(''); //used to set the route to the current route
     const [isAuthenticated, setIsAuthenticated] = useState(false); //used to check if the user is authenticated
 
@@ -81,7 +80,30 @@ const Sidebar = (props) => {
         },
         bmOverlay: {
             background: 'rgba(0, 0, 0, 0.3)'
-        }
+        },
+    }
+
+    // style for links in the sidebar
+    const linkStyle = {
+        color: '#FCD1D1',
+        textDecoration: 'none',
+        letterSpacing: '0.4em',
+        fontSize: '1em',
+        fontWeight: 'bold',
+        padding: '0.8em',
+        display: 'inline-block',
+        textAlign: 'center',
+        width: '100%',
+        transition: 'all easeOut 300ms',
+        textTransform: 'uppercase',
+    }
+    // style for links in the sidebar when hovered over
+    const linkHoverStyle = {
+        color: '#FCD1D1',
+        textDecoration: 'none',
+        letterSpacing: '0.4em',
+        fontSize: '1em',
+        fontWeight: 'bold',
     }
 
     //! setIsAuthenticated to true if the user is authenticated
@@ -90,63 +112,65 @@ const Sidebar = (props) => {
     }, [props.isAuthenticated]);
 
 
+
     //if "/home" or "/" is the route, then set sidebar to true. Else, set to false
     useEffect(() => {
         if (route === '/home') {
-            setIsOpen(true);
-        } else {
-            setIsOpen(false);
-        }
+            setToggleSidebar(true);
+        } 
     }, [route]);
 
-    // react-burger-menu sidebar
-    // terenary operator to determine if the user is authenticated or not
-    // if the user is authenticated, the sidebar will show logout
-    // if the user is not authenticated, the sidebar will show login and signup
+    //const for sidebar that returns ternary if a user is authenticated to show logout, if not show register and login
+
+    //! react-burger-menu sidebar and its ternary
+    //* ternary operator to determine if the user is authenticated or not
+    //* if the user is authenticated, the sidebar will show logout
+    //* if the user is not authenticated, the sidebar will show login and signup
     return (
         <div>
-            <Menu styles={styles} isOpen={isOpen}>
+            <Menu styles={styles} isOpen={toggleSidebar}>
                 <div className="sidebar-header">
                     <img src={brandLogo} width='200'></img>
                 </div>
                 <div className="sidebar-content">
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <NavLink href="/home" style={{color: 'white'}} activeStyle={{color: 'red'}}>Home</NavLink>
+                            <Link to="/all" style={linkStyle}>Home</Link>
                         </NavItem>
                         {isAuthenticated ? (
-                            <NavItem>
-                            <NavLink href="/home" onClick={props.logout} style={{color: 'white'}}>Logout</NavLink>
-                        </NavItem>
+                            <div>
+                                <NavItem>
+                                    <Link to="/all" onClick={props.logout} style={linkStyle} >Logout</Link>
+                                </NavItem>
+                            </div>
                         ) : (
-                            <>
-                        <NavItem>
-                            <NavLink href="/login" style={{color: 'white'}}>Login</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="/signup" style={{color: 'white'}}>Register</NavLink>
-                        </NavItem>
-                        </>
+                            <div>
+                                <NavItem>
+                                    <Link to="/login" style={linkStyle} >Login</Link>
+                                </NavItem>
+                                <NavItem>
+                                    <Link to="/signup" style={linkStyle} >Register</Link>
+                                </NavItem>
+                            </div>
                         )}
                         <NavItem>
-                            <NavLink href="/creategame" style={{color: 'white'}}>Create Game</NavLink>
+                            <Link to="/create" style={linkStyle} >Create Game</Link>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/editgame" style={{color: 'white'}}>Edit Game</NavLink>
+                            <Link to="/editdeleteall" style={linkStyle} >Edit Game</Link>
                         </NavItem>
                     </Nav>
                 </div>
             </Menu>
             <Routes>
-                {/* <Route path={route} element={<HomePage games={props.games}/>} /> 
-                <Route path="/" element={<HomePage games={props.games} gameModalMapper={props.gameModalMapper}/>} />*/}
-                <Route path="/home" element={<HomePage games={props.games} gameModalMapper={props.gameModalMapper} />} />
-                <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
-                <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken} />} />
-                <Route path="/creategame" element={<GameCreateModal sessionToken={props.sessionToken} />} />
-                <Route path="/editgame" element={<GameEditDeleteModal
+                <Route path="/all" element={<HomePage games={props.games} />} />
+                <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken} toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar} />} />
+                <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken}  toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar} />} />
+                <Route path="/create" element={<GameCreateModal sessionToken={props.sessionToken} />} />
+                <Route path="/editdeleteall" element={<GameEditDeleteModal
                     props={props}
                     updateActive={props.updateActive}
+                    fetchYourGames={props.fetchYourGames}
                     updateGame={props.updateGame}
                     updateOn={props.updateOn}
                     updateOff={props.updateOff}
