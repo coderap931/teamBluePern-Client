@@ -7,20 +7,20 @@ const HomePage = (props) => {
         return props.games.games?.map((game, index) => {
             return (
                 <MDBCard key={index}>
-                    <MDBCardBody>
-                        <MDBCardImage src={game.boxart} />
+                    <MDBCardBody className="cardbody">
+                        <MDBCardImage className="boxart" src={game.boxart} />
                         <MDBCardTitle>{game.name}</MDBCardTitle>
-                        Description: {game.gamedescription}
+                        <p>Description:</p> {game.gamedescription}
                         <br />
-                        ESRB Rating: {game.esrbrating}
+                        <p>ESRB Rating:</p>  {game.esrbrating}
                         <br />
-                        Rating: {game.reviewrating} / 10
+                        <p>Rating:</p>  {game.reviewrating} / 10
                         <br />
-                        Review Description: {game.reviewdescription}
+                        <p>Review Description:</p>  {game.reviewdescription}
                         <br />
-                        Platforms: {game.platforms}
+                        <p>Platforms:</p>  {game.platforms}
                         <br />
-                        Tags: {game.tags}
+                        <p>Tags:</p>  {game.tags}
                     </MDBCardBody>
                 </MDBCard>
             )
