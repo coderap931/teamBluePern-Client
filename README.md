@@ -2,12 +2,15 @@
 
 >  A responsive website that allows public users to see a list of video games and their reviews. 
 >  Registered users are able to create a new video game entry, create new reviews of games,
-> give a rating number, as well as one day being able to keep a log of their video games.
+>  give a rating number, as well as one day being able to keep a log of their video games.
 
 **Technology Used:**
 
-              React, HTML5, CSS3, Node.js, Express, Heroku, Reactstrap, Material UI
+              React, HTML5, CSS3, Node.js, Express, Heroku, Reactstrap, React-Burger-Menu
 ----
+## Heroku Deploy
+[Click me][HerokuURL] to view our live deploy through Heroku.
+
 ## Adam Patrick
 
 | Portfolio  Sites | Direct Link |
@@ -77,7 +80,9 @@
 | *12/14* | ReadMe.md styled like Server repo's | Sidebar styling updated and functional. Routing will need updated after other components functional. Needs integrated with teams update to Games components that effected Sidebar and App slightly. 
 | *12/14* | Added signout option | Added signout option that clears tokens and resets User to blank string. 
 | *12/15* | gameMapper debugged | small debug of making sure our gameMapper function was fully functional before debugging further with team on Thursday night.
-| *12/16* | sidebar conditional, modal logic, routing added | React-Router-Dom now incorporates the useNavigator feature. Incorporated in Login and Register modals depending on user input to send the user to a certain, appropriate route. Additionally, sidebar has a working conditional for whether a user is logged in or not and changes whether they see Logout or Register & Signin. 
+| *12/16* Morning | sidebar conditional, modal logic, routing added | React-Router-Dom now incorporates the useNavigator feature. Incorporated in Login and Register modals depending on user input to send the user to a certain, appropriate route. Additionally, sidebar has a working conditional for whether a user is logged in or not and changes whether they see Logout or Register & Signin. 
+| *12/16* Team Session | debugged and pushed MVP to Heroku | The entire team debugged heavily from 1-9:30PM. We tested before deploying to Heroku that we could login, signup, that it changes to logout when doing so, you can only edit games you've created, and create a game. All functional. Team will be figuring out why Heroku has CORS issues first. Then breaking up to style components. Adam and Jaylon will be taking on all Games styling tomorrow. I will be sprucing up Sidebar as well as Login/Register UI features I will list in the appropriate above component logs.
+| *12/16* After-Class Jaylen+Alex | Jaylon git pull finalized | Helped Jaylon pull everything correctly into his branch to be able to help tomorrow. Fully tested and working locally for him.
 
 **Client components:**
 -   App.js
@@ -127,3 +132,4 @@ Client components:
    [Jaylen-LinkedIn]: <http://www.google.com>
    [Jaylen-Portfolio]: <http://www.google.com>
    [LocalHostInstructions]: <https://github.com/coderap931/teamBluePern-Client/blob/develop/src/helpers/LocalhostInstructions.md>
+   [HerokuURL]: <https://amp-my-gamechest-react.herokuapp.com/>
