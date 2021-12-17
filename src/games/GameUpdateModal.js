@@ -26,7 +26,7 @@ const GameUpdateModal = (props) => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${props.sessionToken}`
             })
-        }).then((res) => {
+        }).then(() => {
             props.fetchGames();
             props.updateOff();
         })

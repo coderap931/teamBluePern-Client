@@ -10,8 +10,10 @@ import { Table, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 function App() {
   const [sessionToken, setSessionToken] = useState("");
   const [games, setGames] = useState({});
+  const [yourGames, setYourGames] = useState([]);
   const [updateGame, setUpdateGame] = useState({});
   const [updateActive, setUpdateActive] = useState(false);
+  const [gameToUpdate, setGameToUpdate] = useState([]);
 
 
 //! Token fun for session
@@ -44,6 +46,27 @@ function App() {
 //! GameEditDeleteModal and GameUpdateModal 
 //TODO - get this thing to work
 
+  const fetchYourGames = () => {
+    if (sessionToken !== ''){
+      fetch(`${APIURL}/game/editdeleteall`, {
+        method: "GET",
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionToken}`
+        })
+      }).then((res) => res.json())
+        .then((yourGameData) => {
+        console.log(yourGameData);
+        setYourGames(yourGameData);
+      })
+    } else {
+      alert("You have no games, returning to home page");
+
+      //!CHANGE TO 'APIURL' FOR HEROKU DEPLOYMENT
+      window.location.href = 'http://localhost:3001/home';
+    }
+  }
+
   const deleteGame = (game) => {
     console.log("deleteGame Function, games!:", games);
     fetch(`${APIURL}/game/remove/${game.id}`, {
@@ -56,8 +79,8 @@ function App() {
   }
 
   const gameMapper = (props) => {
-    console.log("gameMapper Function, games!:", games);
-    return props.games.map((game, index) => {
+    console.log(yourGames);
+    return yourGames.map((game, index) => {
         return (
             <tr key={index}>
                 <th scope='row'>{game.id}</th>
@@ -65,7 +88,7 @@ function App() {
                 <td>{game.boxart}</td>
                 <td>{game.reviewrating}</td>
                 <td>
-                    <Button color='warning' onClick={() => { updateModalActive(props); }}>Update</Button>
+                    <Button color='warning' onClick={() => { setGameToUpdate(game); updateModalActive(props); }}>Update</Button>
                     <Button color='danger' onClick={() => { deleteGame(game) }}>Delete</Button>
                 </td>
             </tr>
@@ -106,7 +129,7 @@ function App() {
     console.log("updateModalActive:", props)
       return (
         <GameUpdateModal
-            changeGame={changeGame(props.games[0])}
+            changeGame={changeGame(gameToUpdate)}
             updateOn={updateOn}
             isOpen={true}
             sessionToken={sessionToken}
@@ -177,6 +200,7 @@ function App() {
           sessionToken={sessionToken}
           games={games}
           fetchGames={fetchGames}
+          fetchYourGames = {fetchYourGames}
           updateGame={updateGame}
           updateOn={updateOn}
           updateOff={updateOff}

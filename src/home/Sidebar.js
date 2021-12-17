@@ -103,6 +103,7 @@ const Sidebar = (props) => {
                 {/* <Route path="/editgame" element={<GameEditDeleteModal sessionToken={props.sessionToken} games={props.games} fetchGames={props.fetchGames} updateOn={props.updateOn} updateOff={props.updateOff} editUpdateGame={props.editUpdateGame} />} /> */}
                 <Route path="/editdeleteall" element={<GameEditDeleteModal 
                                                         props={props}
+                                                        fetchYourGames={props.fetchYourGames}
                                                         updateActive={props.updateActive} 
                                                         updateGame={props.updateGame} 
                                                         updateOn={props.updateOn} 
