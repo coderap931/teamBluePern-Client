@@ -101,6 +101,29 @@ const Login = (props) => {
         top: '167px',
     }
 
+    //! When user hits login button, if it is not valid, it will show an error message
+    const errorMessage = {
+        color: '#27496D',
+        fontSize: '15px',
+        margin: '0px',
+        padding: '0px',
+        textAlign: 'center',
+        fontFamily: 'Arial',
+        fontWeight: 'bold',
+        display: 'block',
+        float: 'right',
+        position: 'relative',
+        right: '20px',
+        top: '25px',
+    }
+
+    // errorMessageFunction
+    const errorMessageFunction = () => {
+        if (serverStatus === '500') {
+            return <p style={errorMessage}>There was an error logging in, please try again.</p>
+        }
+    }
+
 
     return (
         <Modal isOpen={true} toggle={toggle}>
@@ -119,6 +142,7 @@ const Login = (props) => {
                 <Button style={showPasswordButton} onClick={showPassword}></Button>
                 </FormGroup>
                 <Button style={customButton} type="submit">Login</Button>
+                {errorMessageFunction()}
             </Form>
             </ModalBody>
         </Modal>
