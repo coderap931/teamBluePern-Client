@@ -7,11 +7,12 @@ import APIURL from "./helpers/environment";
 import GameUpdateModal from './games/GameUpdateModal';
 import { Table, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
+
 function App() {
   //* Authentication useStates
   const [sessionToken, setSessionToken] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-    //* Games useStates
+  //* Games useStates
   const [games, setGames] = useState({});
   const [updateGame, setUpdateGame] = useState({});
   const [updateActive, setUpdateActive] = useState(false);
@@ -19,7 +20,7 @@ function App() {
   const [yourGames, setYourGames] = useState([]);
 
 
-//! Token fun for session
+  //! Token fun for session
   const updateToken = (newToken) => {
     localStorage.setItem("token", newToken);
     setSessionToken(newToken);
@@ -27,15 +28,15 @@ function App() {
     console.log("This is the sessionToken:", sessionToken);
   };
 
-//! Logout Function
+  //! Logout Function
   const logout = () => {
-      localStorage.clear();
-      setSessionToken('')
-      setIsAuthenticated(false);
-      console.log("This is the {LogOut} clearedToken:", sessionToken);
-    }
+    localStorage.clear();
+    setSessionToken('')
+    setIsAuthenticated(false);
+    console.log("This is the {LogOut} clearedToken:", sessionToken);
+  }
 
-//! This is the fetch for the games
+  //! This is the fetch for the games
   const fetchGames = () => {
     fetch(`${APIURL}/game/all`, {
       method: "GET",
@@ -49,37 +50,38 @@ function App() {
       });
   };
 
-//! Fetching Individual Games
-const fetchYourGames = () => {
-  if (sessionToken !== ''){
-    fetch(`${APIURL}/game/editdeleteall`, {
-      method: "GET",
+  //! Fetching Individual Games
+  const fetchYourGames = () => {
+    if (sessionToken !== '') {
+      fetch(`${APIURL}/game/editdeleteall`, {
+        method: "GET",
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionToken}`
+        })
+      }).then((res) => res.json())
+        .then((yourGameData) => {
+          console.log(yourGameData);
+          setYourGames(yourGameData);
+        })
+    } else {
+      alert("You have no games, returning to home page");
+
+
+    //!CHANGE TO 'APIURL' FOR HEROKU DEPLOYMENT
+    window.location.href = `${APIURL}/all`;
+
+  }
+
+  //! Delete Game
+  const deleteGame = (game) => {
+    console.log("deleteGame Function, games!:", games);
+    fetch(`${APIURL}/game/remove/${game.id}`, {
+      method: 'DELETE',
       headers: new Headers({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${sessionToken}`
       })
-    }).then((res) => res.json())
-      .then((yourGameData) => {
-      console.log(yourGameData);
-      setYourGames(yourGameData);
-    })
-  } else {
-    alert("You have no games, returning to home page");
-
-    //!CHANGE TO 'APIURL' FOR HEROKU DEPLOYMENT
-    window.location.href = `${APIURL}/all`;
-  }
-}
-
-//! Delete Game
-  const deleteGame = (game) => {
-    console.log("deleteGame Function, games!:", games);
-    fetch(`${APIURL}/game/remove/${game.id}`, {
-        method: 'DELETE',
-        headers: new Headers({
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${sessionToken}`
-        })
     }).then(() => fetchYourGames())
   }
 
@@ -88,18 +90,20 @@ const fetchYourGames = () => {
   const gameMapper = (props) => {
     console.log(yourGames);
     return yourGames.map((game, index) => {
-        return (
-            <tr key={index}>
-                <th scope='row'>{game.id}</th>
-                <td>{game.name}</td>
-                <td><img src={game.boxart}/></td>
-                <td>{game.reviewrating}</td>
-                <td>
-                    <Button color='warning' onClick={() => { setGameToUpdate(game); updateModalActive(props); }}>Update</Button>
-                    <Button color='danger' onClick={() => { deleteGame(game) }}>Delete</Button>
-                </td>
-            </tr>
-        )
+
+      return (
+        <tr key={index}>
+          <th scope='row'>{game.id}</th>
+          <td>{game.name}</td>
+          <td>{game.boxart}</td>
+          <td>{game.reviewrating}</td>
+          <td>
+            <Button color='warning' onClick={() => { setGameToUpdate(game); updateModalActive(props); }}>Update</Button>
+            <Button color='danger' onClick={() => { deleteGame(game) }}>Delete</Button>
+          </td>
+        </tr>
+      )
+
     })
   }
 
@@ -108,24 +112,24 @@ const fetchYourGames = () => {
     console.log("editModalActive:", props)
 
     return (
-        <Modal isOpen={true}>
-            <ModalHeader>Edit/Delete a Game</ModalHeader>
-            <ModalBody>
-                <Table striped>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Boxart</th>
-                            <th>Review Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {gameMapper(props)}
-                    </tbody>
-                </Table>
-            </ModalBody>
-        </Modal>
+      <Modal isOpen={true}>
+        <ModalHeader>Edit/Delete a Game</ModalHeader>
+        <ModalBody>
+          <Table striped>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Boxart</th>
+                <th>Review Rating</th>
+              </tr>
+            </thead>
+            <tbody>
+              {gameMapper(props)}
+            </tbody>
+          </Table>
+        </ModalBody>
+      </Modal>
     )
   }
 
@@ -134,23 +138,23 @@ const fetchYourGames = () => {
   const updateModalActive = (props) => {
     updateOn(true)
     console.log("updateModalActive:", props)
-      return (
-        <GameUpdateModal
-            changeGame={changeGame(gameToUpdate)}
-            updateOn={updateOn}
-            isOpen={true}
-            sessionToken={sessionToken}
-            updateOff={updateOff}
-            fetchYourGames={fetchYourGames}
-        />
-      )
-}
+    return (
+      <GameUpdateModal
+        changeGame={changeGame(gameToUpdate)}
+        updateOn={updateOn}
+        isOpen={true}
+        sessionToken={sessionToken}
+        updateOff={updateOff}
+        fetchYourGames={fetchYourGames}
+      />
+    )
+  }
 
   const changeGame = (game) => {
     setUpdateGame(game);
     console.log("changeGame:", updateGame)
-    return ( 
-        updateGame
+    return (
+      updateGame
     )
   };
 
@@ -163,34 +167,34 @@ const fetchYourGames = () => {
   };
 
 
-// //! Modal for GameView
-//   const gameModalMapper = (props) => {
-//     return props.games.map((game, index) => {
-//         return (
-//             <MDBModalContent key={index}>
-//                 <MDBModalHeader>
-//                     <MDBModalTitle>Game's Details:</MDBModalTitle>
-//                 </MDBModalHeader>
-//                 <MDBModalBody>
-//                     Description: {game.gamedescription}
-//                     <br/>
-//                     ESRB Rating: {game.esrbrating}
-//                     <br/>
-//                     Rating: {game.reviewrating} / 10
-//                     <br/>
-//                     Review Description: {game.reviewdescription}
-//                     <br/>
-//                     Platforms: {game.platforms}
-//                     <br/>
-//                     Tags: {game.tags}
-//                 </MDBModalBody>
-//             </MDBModalContent>
-//         )
-//     })
-//   }
+  // //! Modal for GameView
+  //   const gameModalMapper = (props) => {
+  //     return props.games.map((game, index) => {
+  //         return (
+  //             <MDBModalContent key={index}>
+  //                 <MDBModalHeader>
+  //                     <MDBModalTitle>Game's Details:</MDBModalTitle>
+  //                 </MDBModalHeader>
+  //                 <MDBModalBody>
+  //                     Description: {game.gamedescription}
+  //                     <br/>
+  //                     ESRB Rating: {game.esrbrating}
+  //                     <br/>
+  //                     Rating: {game.reviewrating} / 10
+  //                     <br/>
+  //                     Review Description: {game.reviewdescription}
+  //                     <br/>
+  //                     Platforms: {game.platforms}
+  //                     <br/>
+  //                     Tags: {game.tags}
+  //                 </MDBModalBody>
+  //             </MDBModalContent>
+  //         )
+  //     })
+  //   }
 
 
-//! useEffect for token session
+  //! useEffect for token session
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setSessionToken(localStorage.getItem("token"));
@@ -198,7 +202,7 @@ const fetchYourGames = () => {
     fetchGames();
   }, []);
 
-//! App Return
+  //! App Return
   return (
     <div className="App">
       <Router>
@@ -209,7 +213,7 @@ const fetchYourGames = () => {
           isAuthenticated={isAuthenticated}
           games={games}
           fetchGames={fetchGames}
-          fetchYourGames = {fetchYourGames}
+          fetchYourGames={fetchYourGames}
           updateGame={updateGame}
           updateOn={updateOn}
           updateOff={updateOff}
@@ -218,7 +222,7 @@ const fetchYourGames = () => {
           updateModalActive={updateModalActive}
           editModalActive={editModalActive}
           gameMapper={gameMapper}
-          // gameModalMapper={gameModalMapper}
+        // gameModalMapper={gameModalMapper}
         />
       </Router>
     </div>
