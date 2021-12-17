@@ -6,7 +6,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import APIURL from "./helpers/environment";
 import GameUpdateModal from './games/GameUpdateModal';
 import { Table, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import { MDBModalContent, MDBModalBody, MDBModalTitle, MDBModalHeader} from 'mdb-react-ui-kit';
 
 function App() {
   //* Authentication useStates
@@ -75,7 +74,6 @@ const fetchYourGames = () => {
 //! Delete Game
   const deleteGame = (game) => {
     console.log("deleteGame Function, games!:", games);
-    console.log("deleteGame Function, games.games.y2k!:", games.games);
     fetch(`${APIURL}/game/remove/${game.id}`, {
         method: 'DELETE',
         headers: new Headers({
@@ -164,6 +162,7 @@ const fetchYourGames = () => {
     setUpdateActive(false);
   };
 
+
 // //! Modal for GameView
 //   const gameModalMapper = (props) => {
 //     return props.games.map((game, index) => {
@@ -189,6 +188,7 @@ const fetchYourGames = () => {
 //         )
 //     })
 //   }
+
 
 //! useEffect for token session
   useEffect(() => {

@@ -112,6 +112,7 @@ const Sidebar = (props) => {
     }, [props.isAuthenticated]);
 
 
+
     //if "/home" or "/" is the route, then set sidebar to true. Else, set to false
     useEffect(() => {
         if (route === '/home') {
