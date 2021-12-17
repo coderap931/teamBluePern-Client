@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
-import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardImage} from 'mdb-react-ui-kit';
+import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardImage } from 'mdb-react-ui-kit';
 
 const HomePage = (props) => {
-
+    //TODO props.games.games?.map is the working version. ensure that's what's listed. 
     const gameGridMapper = () => {
-        return props.games.map((game, index) => {
+        return props.games.games?.map((game, index) => {
             return (
                 <MDBCard key={index}>
-                    <MDBCardBody>
-                        <MDBCardImage src={game.boxart} />
+                    <MDBCardBody className="cardbody">
+                        <MDBCardImage className="boxart" src={game.boxart} />
                         <MDBCardTitle>{game.name}</MDBCardTitle>
-                        Description: {game.gamedescription}
-                        <br/>
-                        ESRB Rating: {game.esrbrating}
-                        <br/>
-                        Rating: {game.reviewrating} / 10
-                        <br/>
-                        Review Description: {game.reviewdescription}
-                        <br/>
-                        Platforms: {game.platforms}
-                        <br/>
-                        Tags: {game.tags}
+                        <p>Description:</p> {game.gamedescription}
+                        <br />
+                        <p>ESRB Rating:</p>  {game.esrbrating}
+                        <br />
+                        <p>Rating:</p>  {game.reviewrating} / 10
+                        <br />
+                        <p>Review Description:</p>  {game.reviewdescription}
+                        <br />
+                        <p>Platforms:</p>  {game.platforms}
+                        <br />
+                        <p>Tags:</p>  {game.tags}
                     </MDBCardBody>
                 </MDBCard>
             )

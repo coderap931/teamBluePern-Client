@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
 // navigate to switch between pages on React-Router-Dom https://dev.to/salehmubashar/usenavigate-tutorial-react-js-aop
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 //TODO Switch between Heroku and Localhost here:
 import Sidebar from '../home/Sidebar';
 import APIURL from '../helpers/environment';
@@ -55,6 +55,7 @@ const GameCreateModal = (props) => {
             <ModalBody>
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
+
                         <Label>Game Name</Label>
                         <Input name='name' value={name} onChange={(event) => setName(event.target.value)} />
                     </FormGroup>
@@ -68,6 +69,7 @@ const GameCreateModal = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <Label>ESRB Rating</Label>
+
                         <Input type='select' name='esrbrating' value={esrbrating} onChange={(event) => setEsrbrating(event.target.value)}>
                             <option value='eC'>Early Childhood (eC)</option>
                             <option value='E'>Everyone (E)</option>
@@ -78,7 +80,9 @@ const GameCreateModal = (props) => {
                         </Input>
                     </FormGroup>
                     <FormGroup>
+
                         <Label>Review Score (Out of 10)</Label>
+
                         <Input type='select' name='reviewrating' value={reviewrating} onChange={(event) => setReviewrating(event.target.value)}>
                             <option value='1'>1/10</option>
                             <option value='2'>2/10</option>
@@ -93,11 +97,13 @@ const GameCreateModal = (props) => {
                         </Input>
                     </FormGroup>
                     <FormGroup>
+
                         <Label>Review Details</Label>
                         <Input name='reviewdescription' value={reviewdescription} onChange={(event) => setReviewdescription(event.target.value)} />
                     </FormGroup>
                     <FormGroup>
                         <Label>Platform Played On</Label>
+
                         <Input type='select' name='platforms' value={platforms} onChange={(event) => setPlatforms(event.target.value)}>
                             <option value='nswitch'>Nintendo Switch</option>
                             <option value='xone'>Xbox One</option>
