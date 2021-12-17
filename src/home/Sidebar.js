@@ -99,6 +99,10 @@ const Sidebar = (props) => {
         }
     }, [route]);
 
+    //const for sidebar that returns ternary if a user is authenticated to show logout, if not show register and login
+
+
+
     // react-burger-menu sidebar
     // terenary operator to determine if the user is authenticated or not
     // if the user is authenticated, the sidebar will show logout
@@ -112,27 +116,29 @@ const Sidebar = (props) => {
                 <div className="sidebar-content">
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <NavLink href="/home" style={{color: 'white'}} activeStyle={{color: 'red'}}>Home</NavLink>
+                            <Link to="/home" style={{ color: 'white' }} activeStyle={{ color: 'red' }}>Home</Link>
                         </NavItem>
                         {isAuthenticated ? (
-                            <NavItem>
-                            <NavLink href="/home" onClick={props.logout} style={{color: 'white'}}>Logout</NavLink>
-                        </NavItem>
+                            <div>
+                                <NavItem>
+                                    <Link to="/home" onClick={props.logout} style={{ color: 'white' }}>Logout</Link>
+                                </NavItem>
+                            </div>
                         ) : (
-                            <>
-                        <NavItem>
-                            <NavLink href="/login" style={{color: 'white'}}>Login</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="/signup" style={{color: 'white'}}>Register</NavLink>
-                        </NavItem>
-                        </>
+                            <div>
+                                <NavItem>
+                                    <Link to="/login" style={{ color: 'white' }}>Login</Link>
+                                </NavItem>
+                                <NavItem>
+                                    <Link to="/signup" style={{ color: 'white' }}>Register</Link>
+                                </NavItem>
+                            </div>
                         )}
                         <NavItem>
-                            <NavLink href="/creategame" style={{color: 'white'}}>Create Game</NavLink>
+                            <Link to="/creategame" style={{ color: 'white' }}>Create Game</Link>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/editgame" style={{color: 'white'}}>Edit Game</NavLink>
+                            <Link to="/editgame" style={{ color: 'white' }}>Edit Game</Link>
                         </NavItem>
                     </Nav>
                 </div>

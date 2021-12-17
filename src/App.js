@@ -10,7 +10,7 @@ import { MDBModalContent, MDBModalBody, MDBModalTitle, MDBModalHeader} from 'mdb
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");
-  const [games, setGames] = useState({});
+  const [games, setGames] = useState([]);
   const [updateGame, setUpdateGame] = useState({});
   const [updateActive, setUpdateActive] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -104,8 +104,8 @@ function App() {
             </ModalBody>
         </Modal>
     )
-  
-}
+  }
+
   //! Modal for Update
   //TODO - updateOff for GameUpdateModal to set updateActive to false for table to show again?
   const updateModalActive = (props) => {
