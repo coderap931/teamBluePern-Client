@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
+// navigate to switch between pages on React-Router-Dom https://dev.to/salehmubashar/usenavigate-tutorial-react-js-aop
+import { useNavigate} from 'react-router-dom';
 //TODO Switch between Heroku and Localhost here:
 import Sidebar from '../home/Sidebar';
 import APIURL from '../helpers/environment';
-// const APIURL = 'http://localhost:3000'
 //TODO Switch back to Heroku URL when committing. 
 
 const GameCreateModal = (props) => {
@@ -17,6 +18,9 @@ const GameCreateModal = (props) => {
     const [platforms, setPlatforms] = useState('');
     const [tags, setTags] = useState('');
     const [owner_id, setOwner_id] = useState('');
+    const [serverResponse, setServerResponse] = useState('');
+    const [serverStatus, setServerStatus] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -40,6 +44,7 @@ const GameCreateModal = (props) => {
                 setTags('');
                 setOwner_id('');
                 // props.fetchGames(); --Pretty sure this is only for loading a new page, unneseccary since is modal, leaving for now
+                navigate('/home');
             })
     }
 
