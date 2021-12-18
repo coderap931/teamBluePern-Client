@@ -13,108 +13,34 @@
   color: white;
 }
 
-
-
 .App-link {
   color: #61dafb;
 }
 
-.cardbody{
-  background: linear-gradient(-45deg, #FCD1D1 0%, #fcf5d1 13%, #d1fcde 25%, #0C7B93 38%, #0c6193 50%, #0C7B93 62%, #27576d 75%, #27496D 87%, #142850 100%);;
-  background-size: 400% 400%;
-  animation: animate 60s ease-in-out infinite;
+ .cardbody{
+  background-color: #27496d ;
   color: #fcd1d1;
   font-family: Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* three columns. very lef column contains .boxart of the game. .homeCardHeader is title of the game. .cardColumnLeft is the left column of the card. .cardColumnRight is the right column of the card. */
-
 .boxart{
-  margin-top: 20px;
-  margin-bottom: 2rem;
-  border-color: #0c7b93;
-  border-width: 5px;
-  border-style: solid;
-  border-radius: 10px;
-  padding: 10px;
-  background-color: #fcf5d1;
-  box-shadow: 0px 0px 10px #0c7b93;
+  height: 150px;
+  width: 150px;
+  margin-bottom: 1rem;
+  border-color: #0c7b93 ;
 }
 
   .card-title {
-  letter-spacing: 0.2em;
-  text-shadow: 2px 2px #01242c59;
-  font-size: 2rem;
+  letter-spacing: 0.4em;
+}
+
+p {
   font-weight: bold;
-  color: #fcf5d1;
-  text-align: center;
-  margin-bottom: 1rem;
-  border-top: 2px solid #0c7b93;
-  border-bottom: 2px solid #0c7b93;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  background-color: #fcf5d13a;
-  box-shadow: 0px 0px 10px #0c7b93;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.cardDescriptionRow1{
-  margin-top: 2rem;
-}
-
-.cardDescriptionRow1, .cardDescriptionRow2, .cardDescriptionRow3, .cardDescriptionRow4, .cardDescriptionRow5, .cardDescriptionRow6{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  border-top: 2px solid #0c7b93;
-  border-bottom: 2px solid #0c7b93;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  background-color: #fcf5d131;
-  box-shadow: 0px 0px 10px #0c7b93;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.cardColumnLeft{
-  width: 50%;
-  float: left;
-  margin-right: 1rem;
-}
-
-.cardColumnRight{
-  width: 50%;
-  float: right;
-  margin-left: 1rem;
-}
-
-.homeCardHeaders {
   display: inline;
-  text-shadow: 2px 2px #01242c59;
-  font-size: 1.5rem;
-  color: #dcdddd;
-  font-weight: 900;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin-right: .5rem;
 }
-
-.homeCardInfo {
-  font-size: 1.5rem;
-  color: #0c7b93;
-  text-shadow: 2px 2px #01242c59;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 
 
 section{
@@ -135,9 +61,4 @@ section{
   100%{
     background-position: 0 50%;
   }
-}
-
-a {
-  border-top: #FCD1D1 solid 1px;
-  border-bottom: #FCD1D1 solid 12px;
 }

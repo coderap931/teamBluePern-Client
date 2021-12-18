@@ -12,7 +12,7 @@ const GameTable = (props) => {
 
     return (
         <Container>
-        <div>{props.updateActive ? props.updateModalActive(props) : props.editModalActive(props)}</div>
+        <>{props.updateActive ? props.updateModalActive(props) : props.editModalActive(props)}</>
         </Container>
     )
 }
