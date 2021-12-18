@@ -201,6 +201,7 @@ const fetchYourGames = () => {
 //! App Return
   return (
     <div className="App">
+    <section>
       <Router>
         <Sidebar
           updateToken={updateToken}
@@ -221,6 +222,7 @@ const fetchYourGames = () => {
           // gameModalMapper={gameModalMapper}
         />
       </Router>
+      </section>
     </div>
   );
 }
