@@ -113,9 +113,10 @@
 
 
 Client components: 
-- [Home.js]
-- [App.js]
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen.)
+- [Home.js Completed and functional displays games on homepage on screen load]
+- [App.js Completed and functional me Alex and Adam added view by id and view all fetch to app.js instead of making components]
+
+  [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen.)
 
    [Adam-Github]: <https://github.com/joemccann/dillinger>
    [Adam-LinkedIn]: <https://github.com/joemccann/dillinger.git>
