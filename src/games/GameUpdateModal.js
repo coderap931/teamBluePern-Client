@@ -43,19 +43,19 @@ const GameUpdateModal = (props) => {
                 <Form onSubmit={gameUpdate}>
                     <FormGroup>
                         <Label>Game Name</Label>
-                        <Input name='name' value={editName} defaultValue={props.changeGame.name} onChange={(event) => setEditName(event.target.value)} />
+                        <Input name='name' value={editName} placeholder={props.changeGame.name} onChange={(event) => setEditName(event.target.value)} />
                     </FormGroup>
                     <FormGroup>
                         <Label>Game Boxart (Link)</Label>
-                        <Input name='boxart' value={editBoxart} defaultValue={props.changeGame.boxart} onChange={(event) => setEditBoxart(event.target.value)} />
+                        <Input name='boxart' value={editBoxart} placeholder={props.changeGame.boxart} onChange={(event) => setEditBoxart(event.target.value)} />
                     </FormGroup>
                     <FormGroup>
                         <Label>Game Description</Label>
-                        <Input name='gamedescription' value={editGamedescription} defaultValue={props.changeGame.gamedescription} onChange={(event) => setEditGamedescription(event.target.value)} />
+                        <Input name='gamedescription' value={editGamedescription} placeholder={props.changeGame.gamedescription} onChange={(event) => setEditGamedescription(event.target.value)} />
                     </FormGroup>
                     <FormGroup>
                         <Label>ESRB Rating</Label>
-                        <Input type='select' name='esrbrating' value={editEsrbrating} defaultValue={props.changeGame.esrbrating} onChange={(event) => setEditEsrbrating(event.target.value)}>
+                        <Input type='select' name='esrbrating' value={editEsrbrating} placeholder={props.changeGame.esrbrating} onChange={(event) => setEditEsrbrating(event.target.value)}>
                             <option value='eC'>Early Childhood (eC)</option>
                             <option value='E'>Everyone (E)</option>
                             <option value='E10+'>Everyone 10+ (E10+)</option>
@@ -66,7 +66,7 @@ const GameUpdateModal = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <Label>Review Score (Out of 10)</Label>
-                        <Input type='select' name='reviewrating' value={editReviewrating} defaultValue={props.changeGame.reviewrating} onChange={(event) => setEditReviewrating(event.target.value)}>
+                        <Input type='select' name='reviewrating' value={editReviewrating} placeholder={props.changeGame.reviewrating} onChange={(event) => setEditReviewrating(event.target.value)}>
                             <option value='1'>1/10</option>
                             <option value='2'>2/10</option>
                             <option value='3'>3/10</option>
@@ -81,11 +81,11 @@ const GameUpdateModal = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <Label>Review Details</Label>
-                        <Input name='reviewdescription' value={editReviewdescription} defaultValue={props.changeGame.reviewdescription} onChange={(event) => setEditReviewdescription(event.target.value)} />
+                        <Input name='reviewdescription' value={editReviewdescription} placeholder={props.changeGame.reviewdescription} onChange={(event) => setEditReviewdescription(event.target.value)} />
                     </FormGroup>
                     <FormGroup>
                         <Label>Platfrom Played On</Label>
-                        <Input type='select' name='platforms' value={editPlatforms} defaultValue={props.changeGame.platforms} onChange={(event) => setEditPlatforms(event.target.value)}>
+                        <Input type='select' name='platforms' value={editPlatforms} placeholder={props.changeGame.platforms} onChange={(event) => setEditPlatforms(event.target.value)}>
                             <option value='3DS'>3DS</option>
                             <option value='DS'>DS</option>
                             <option value='GB'>Game Boy</option>
@@ -111,7 +111,7 @@ const GameUpdateModal = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <Label>Tags (Comma Seperated)</Label>
-                        <Input name='tags' value={editTags} defaultValue={props.changeGame.tags} onChange={(event) => setEditTags(event.target.value)} />
+                        <Input name='tags' value={editTags} placeholder={props.changeGame.tags} onChange={(event) => setEditTags(event.target.value)} />
                     </FormGroup>
                     <Button type='submit'>Submit Game</Button>
                 </Form>
