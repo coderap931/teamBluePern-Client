@@ -21,6 +21,7 @@ const HomePage = (props) => {
                         <p>Platforms:</p>  {game.platforms}
                         <br />
                         <p>Tags:</p>  {game.tags}
+                        
                     </MDBCardBody>
                 </MDBCard>
             )
