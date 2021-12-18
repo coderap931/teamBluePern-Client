@@ -96,16 +96,16 @@
 ## Jaylen Wilson
 | Portfolio  Sites | Direct Link |
 | ------ | ------ |
-| GitHub | [Link Needed][Jaylen-Github] |
-| LinkedIn | [Link Needed][Jaylen-LinkedIn] |
-| Portfolio | [Link Needed][Jaylen-Portfolio] |
+| GitHub | [https://github.com/Jaylenwilson][Jaylen-Github] |
+| LinkedIn | [https:www.linkedin.com/in/jaylenwilson12][Jaylen-LinkedIn] |
+| Portfolio | [https://jaylenwilson.github.io/][Jaylen-Portfolio] |
 
 ### Assigned Tasks
 
 **Endpoint:** /game/listAll
 **Completion Date:** WIP
 | Date | Files, Commits and Comments |
-| ------ | ------ |
+| 12/28 | completed list all endpoint no bugs had to remove validateJWT|
 | Date | Files, Commits and Comments |
 
 **Endpoint:** /game/view/{id}
@@ -130,8 +130,8 @@ Client components:
    [Alex-Github]: <http://ace.ajax.org>
    [Alex-LinkedIn]: <http://nodejs.org>
    [Alex-Portfolio]: <http://twitter.github.com/bootstrap/>
-   [Jaylen-GitHub]: <http://www.google.com>
-   [Jaylen-LinkedIn]: <http://www.google.com>
-   [Jaylen-Portfolio]: <http://www.google.com>
+   [Jaylen-GitHub]: <https://github.com/Jaylenwilson>
+   [Jaylen-LinkedIn]: <https:www.linkedin.com/in/jaylenwilson12>
+   [Jaylen-Portfolio]: <https://jaylenwilson.github.io/>
    [LocalHostInstructions]: <https://github.com/coderap931/teamBluePern-Client/blob/develop/src/helpers/LocalhostInstructions.md>
    [HerokuURL]: <https://amp-my-gamechest-react.herokuapp.com/>
