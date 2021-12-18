@@ -86,7 +86,13 @@ const Signup = (props) => {
     //! Validation fields
     //* validate password
     const validPassword = () => {
-        return password.length > 8 && password.match(/[A-Z]/) !== null && password.match(/[a-z]/) !== null && password.match(/[0-9]/) !== null;
+        if (password.length > 8 && password.match(/[A-Z]/) !== null && password.match(/[a-z]/) !== null && password.match(/[0-9]/) !== null) {
+            return true;
+        } else {
+            return false;
+        }
+
+
     }
 
     //* validate confirm password. return error if passwords don't match
@@ -94,33 +100,70 @@ const Signup = (props) => {
         if (password !== confirmPassword) {
             return 'Passwords do not match!';
         }
-        return '';
+        return true;
     }
 
     //* validate email
     const validEmail = () => {
         if (email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) === null) {
-            return 'Invalid email!';
+            return 'Invalid email address!';
         }
-        return '';
+        return true;
     }
 
     //* validate username
     const validUsername = () => {
         if (username.length < 3) {
             return 'Username must be at least 3 characters long!';
+        } else if (username.match(/[^a-zA-Z0-9]/) !== null) {
+            return 'Username must only contain letters and numbers!';
+        } else {
+            return true;
         }
     }
 
     //TODO get this working
-    //* return a checkmark once you validate all fields
+    //* validate all fields
     const validAll = () => {
-        if (validEmail() && validUsername() && validPassword() && validConfirmPassword() === '') {
-            return '✔';
-        }
-        return '';
+        if (validEmail() && validUsername() && validPassword() && validConfirmPassword() === true) {
+            return true;
+        } else {
+        return false;
     }
+    }
+
+    console.log("Signup.js: validAll: ", validAll());
+    console.log("Signup.js: validEmail: ", validEmail());
+    console.log("Signup.js: validUsername: ", validUsername());
+    console.log("Signup.js: validPassword: ", validPassword());
+    console.log("Signup.js: validConfirmPassword: ", validConfirmPassword());
+
+        //! Submit <button> styling
+        const submitButtonStyle = {
+            backgroundColor: '#0c7b93',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            padding: '10px',
+            fontSize: '16px',
+            margin: '10px',
+            cursor: 'pointer'
+        }
     
+    //! if validation is successful, submit to server. if not, disable button
+    const submitButton = () => {
+        if (validAll() === true) {
+            return <div>
+            <Button style={submitButtonStyle} type="submit">Sign Up</Button>
+            <p style={{color: '#0C7B93', fontSize: '0.7em'}}>Welcome to GameChest!!</p>
+            </div>
+        } else {
+            return <div><Button style={submitButtonStyle} disabled>Sign Up</Button>
+            <p style={{color: '#0C7B93', fontSize: '0.7em'}}>Check the errors above to be able to register.</p></div>
+        }
+    }
+
+    console.log("Signup.js: submitButton: ", submitButton());
 
     //* show user password requirements until they're met
     const passwordRequirements = () => {
@@ -142,17 +185,6 @@ const Signup = (props) => {
     }   //! End of validation fields
     
 
-    //! Submit <button>
-    const submitButton = {
-        backgroundColor: '#0c7b93',
-        color: 'white',
-        border: 'none',
-        borderRadius: '5px',
-        padding: '10px',
-        fontSize: '16px',
-        margin: '10px',
-        cursor: 'pointer'
-    }
 
     //* show Password fields
     //! showPassword function()
@@ -183,7 +215,7 @@ const Signup = (props) => {
         backgroundPosition: 'center',
         position: 'absolute',
         right: '20px',
-        top: '315px',
+        top: '333px',
     }
 
     //* show Confirm Password fields
@@ -215,7 +247,7 @@ const Signup = (props) => {
         backgroundPosition: 'center',
         position: 'absolute',
         right: '20px',
-        top: '445px',
+        top: '470px',
     }
 
     return (
@@ -246,8 +278,11 @@ const Signup = (props) => {
                             <p style={{color: '#0C7B93', fontSize: '0.7em'}}>{validConfirmPassword()}</p>
                             <Button style={showConfirmPasswordButton} onClick={showConfirmPassword}></Button>
                         </FormGroup>
-                        <Button style={submitButton} type="submit">Sign Up</Button>
-                        <p>{validAll()}</p>
+                        
+                        <div>
+                            {submitButton()}
+                        </div>
+
                     </Form>
                 </ModalBody>
             </Modal>
