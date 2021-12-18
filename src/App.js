@@ -113,6 +113,7 @@ function App() {
     console.log("editModalActive:", props)
 
     return (
+      <div className="editModal">
       <Modal isOpen={true}>
         <ModalHeader>Edit/Delete a Game</ModalHeader>
         <ModalBody>
@@ -131,6 +132,7 @@ function App() {
           </Table>
         </ModalBody>
       </Modal>
+      </div>
     )
   }
 
