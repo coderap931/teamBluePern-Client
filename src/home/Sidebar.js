@@ -106,11 +106,14 @@ const Sidebar = (props) => {
         fontWeight: 'bold',
     }
 
-    //! setIsAuthenticated to true if the user is authenticated
+    //! setIsAuthenticated to true if the status code is 200o or there is a sessionToken, else setIsAuthenticated to false
     useEffect(() => {
-        setIsAuthenticated(props.isAuthenticated);
-    }, [props.isAuthenticated]);
-
+        if (props.statusCode === 200 || props.sessionToken) {
+            setIsAuthenticated(true);
+        } else {
+            setIsAuthenticated(false);
+        }
+    }, [props.statusCode, props.sessionToken]);
 
 
     //if "/home" or "/" is the route, then set sidebar to true. Else, set to false

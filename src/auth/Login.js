@@ -118,9 +118,16 @@ const Login = (props) => {
     }
 
     // errorMessageFunction
-    const errorMessageFunction = () => {
+    const errorLoginMessage = () => {
         if (serverStatus === '500') {
             return <p style={errorMessage}>There was an error logging in, please try again.</p>
+        }
+    }
+
+    // errorMessageFunction
+    const invalidLoginMessage = () => {
+        if (serverStatus === '401') {
+            return <p style={errorMessage}>Please enter a valid username and password.</p>
         }
     }
 
@@ -142,7 +149,8 @@ const Login = (props) => {
                 <Button style={showPasswordButton} onClick={showPassword}></Button>
                 </FormGroup>
                 <Button style={customButton} type="submit">Login</Button>
-                {errorMessageFunction()}
+                {errorLoginMessage()}
+                {invalidLoginMessage()}
             </Form>
             </ModalBody>
         </Modal>
