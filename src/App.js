@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import APIURL from "./helpers/environment";
 import GameUpdateModal from './games/GameUpdateModal';
 import { Table, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import GameChestLogo from './assets/GameChestLogo.png';
 
 
 function App() {
@@ -169,33 +170,48 @@ function App() {
     setUpdateActive(false);
   };
 
+  //! gameChestLoad styling.
+  //* Very center of the screen always. Text is centered, and dynamic with screen size.
+  const gameChestLoad = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    textAlign: "center",
+    fontSize: "50px",
+    color: "white",
+    fontFamily: "Courier New",
+    fontWeight: "bold",
+    backgroundColor: "rgba(0,0,0,0.5)",
+    borderRadius: "10px",
+    padding: "10px",
+    width: "50%",
+    height: "50%",
+    zIndex: "1"
+  };
 
-  // //! Modal for GameView
-  //   const gameModalMapper = (props) => {
-  //     return props.games.map((game, index) => {
-  //         return (
-  //             <MDBModalContent key={index}>
-  //                 <MDBModalHeader>
-  //                     <MDBModalTitle>Game's Details:</MDBModalTitle>
-  //                 </MDBModalHeader>
-  //                 <MDBModalBody>
-  //                     Description: {game.gamedescription}
-  //                     <br/>
-  //                     ESRB Rating: {game.esrbrating}
-  //                     <br/>
-  //                     Rating: {game.reviewrating} / 10
-  //                     <br/>
-  //                     Review Description: {game.reviewdescription}
-  //                     <br/>
-  //                     Platforms: {game.platforms}
-  //                     <br/>
-  //                     Tags: {game.tags}
-  //                 </MDBModalBody>
-  //             </MDBModalContent>
-  //         )
-  //     })
-  //   }
+  //! GameChestLogo styling. Image right above the gameChestLoad. 
+  const gameChestLogo = {
+    position: "absolute",
+    marginBottom: "140px",
 
+  };
+
+  //! centerDiv that holds the gameChestLoad and gameChestLogo. GameChestLogo always is above the gameChestLoad. Responsive.
+  const centerDiv = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "auto",
+    zIndex: "0",
+    size: "50%",
+  };
 
   //! useEffect for token session
   useEffect(() => {
@@ -208,6 +224,10 @@ function App() {
   //! App Return
   return (
     <div className="App">
+    <div style={centerDiv}>
+        <img src={GameChestLogo} alt="GameChest Logo" style={gameChestLogo} />
+        <p style={gameChestLoad}>Click the sidebar to open the GameChest!</p>
+      </div>
     <section>
       <Router>
         <Sidebar
