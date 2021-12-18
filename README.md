@@ -105,19 +105,16 @@
 **Endpoint:** /game/listAll
 **Completion Date:** WIP
 | 12/28 | completed list all endpoint no bugs had to remove validateJWT|
-| Date | Files, Commits and Comments |
+
 
 **Endpoint:** /game/view/{id}
 **Completion Date:** WIP / [completion date]
-| Date | Files, Commits and Comments |
-| ------ | ------ |
-| Date | Files, Commits and Comments |
+| 12/28 | Completed view by id endpoint no nugs passed testing |
+
 
 Client components: 
-- [insert here]
-- [insert here]
-- [insert here]
-
+- [Home.js]
+- [App.js]
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen.)
 
    [Adam-Github]: <https://github.com/joemccann/dillinger>
