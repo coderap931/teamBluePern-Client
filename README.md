@@ -33,6 +33,8 @@
 **Additional Tasks**
 - Git Master
     - **Completion Date:** Once a Git Master, always a Git Master
+- Heroku Deployer
+    - **Completion Date:** Final Deploy, morning 12/18
 
 **Client Components:** 
 - GameCreateModal.js: Initial completed pass 12/1, no bugs found to date

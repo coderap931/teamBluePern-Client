@@ -169,7 +169,7 @@ const Sidebar = (props) => {
                 <Route path="/all" element={<HomePage games={props.games} />} />
                 <Route path="/login" element={<Login updateToken={props.updateToken} sessionToken={props.sessionToken} toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar} />} />
                 <Route path="/signup" element={<Signup updateToken={props.updateToken} sessionToken={props.sessionToken}  toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar} />} />
-                <Route path="/create" element={<GameCreateModal sessionToken={props.sessionToken} />} />
+                <Route path="/create" element={<GameCreateModal sessionToken={props.sessionToken} fetchGames={props.fetchGames}/>} />
                 <Route path="/editdeleteall" element={<GameEditDeleteModal
                     props={props}
                     updateActive={props.updateActive}
