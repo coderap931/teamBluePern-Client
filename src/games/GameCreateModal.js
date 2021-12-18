@@ -46,6 +46,7 @@ const GameCreateModal = (props) => {
                 setTags('');
                 setOwner_id('');
                 // props.fetchGames(); --Pretty sure this is only for loading a new page, unneseccary since is modal, leaving for now
+                props.fetchGames();
                 navigate('/all');
             })
     }
@@ -101,7 +102,6 @@ const GameCreateModal = (props) => {
         { value: 'T', label: 'T (Teen)' },
         { value: 'M', label: 'M (Mature)' },
         { value: 'AO', label: 'AO (Adults Only)' },
-        { value: 'RP', label: 'RP (Rating Pending)' },
     ]
 
     //*list of review ratings
