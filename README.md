@@ -103,12 +103,12 @@
 ### Assigned Tasks
 
 **Endpoint:** /game/listAll
-**Completion Date:** WIP
+**Completion Date:** 12/28
 | 12/28 | completed list all endpoint no bugs had to remove validateJWT|
 
 
 **Endpoint:** /game/view/{id}
-**Completion Date:** WIP / [completion date]
+**Completion Date:** 12/28 / 
 | 12/28 | Completed view by id endpoint no nugs passed testing |
 
 
