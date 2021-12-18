@@ -104,7 +104,6 @@
 
 **Endpoint:** /game/listAll
 **Completion Date:** WIP
-| Date | Files, Commits and Comments |
 | 12/28 | completed list all endpoint no bugs had to remove validateJWT|
 | Date | Files, Commits and Comments |
 
