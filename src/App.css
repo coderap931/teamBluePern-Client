@@ -27,7 +27,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* boxart to the left, card title to the right above the card body */
+/* three columns. very lef column contains .boxart of the game. .homeCardHeader is title of the game. .cardColumnLeft is the left column of the card. .cardColumnRight is the right column of the card. */
 
 .boxart{
   margin-top: 20px;
@@ -55,6 +55,9 @@
   padding-bottom: 1rem;
   background-color: #fcf5d13a;
   box-shadow: 0px 0px 10px #0c7b93;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .cardDescriptionRow1{
@@ -73,6 +76,9 @@
   padding-bottom: 1rem;
   background-color: #fcf5d131;
   box-shadow: 0px 0px 10px #0c7b93;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .cardColumnLeft{
@@ -88,18 +94,23 @@
 }
 
 .homeCardHeaders {
-  font-weight: bold;
   display: inline;
   text-shadow: 2px 2px #01242c59;
   font-size: 1.5rem;
   color: #dcdddd;
   font-weight: 900;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .homeCardInfo {
   font-size: 1.5rem;
   color: #0c7b93;
   text-shadow: 2px 2px #01242c59;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 
