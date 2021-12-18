@@ -87,6 +87,29 @@ function App() {
     }).then(() => fetchYourGames())
   }
 
+    //! Button Styling for Update
+    const updateButton = {
+      backgroundColor: '#0c7b93',
+      color: 'white',
+      border: 'none',
+      borderRadius: '5px',
+      padding: '10px',
+      fontSize: '16px',
+      margin: '10px',
+      cursor: 'pointer'
+  }
+
+  //! Button Styling for Delete
+  const deleteButton = {
+    backgroundColor: '#ff0000',
+    color: 'white',
+    border: 'none',
+    borderRadius: '5px',
+    padding: '10px',
+    fontSize: '16px',
+    margin: '10px',
+    cursor: 'pointer'
+}
 
   //! Maps the games to the table
   const gameMapper = (props) => {
@@ -100,8 +123,8 @@ function App() {
           <td>{game.boxart}</td>
           <td>{game.reviewrating}</td>
           <td>
-            <Button color='warning' onClick={() => { setGameToUpdate(game); updateModalActive(props); }}>Update</Button>
-            <Button color='danger' onClick={() => { deleteGame(game) }}>Delete</Button>
+            <Button style={updateButton} onClick={() => { setGameToUpdate(game); updateModalActive(props); }}>Update</Button>
+            <Button style={deleteButton} onClick={() => { deleteGame(game) }}>Delete</Button>
           </td>
         </tr>
       )
