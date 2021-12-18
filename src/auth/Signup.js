@@ -215,7 +215,7 @@ const Signup = (props) => {
         backgroundPosition: 'center',
         position: 'absolute',
         right: '20px',
-        top: '315px',
+        top: '333px',
     }
 
     //* show Confirm Password fields
@@ -247,7 +247,7 @@ const Signup = (props) => {
         backgroundPosition: 'center',
         position: 'absolute',
         right: '20px',
-        top: '445px',
+        top: '470px',
     }
 
     return (
