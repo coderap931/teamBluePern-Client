@@ -206,6 +206,7 @@ function App() {
   //! App Return
   return (
     <div className="App">
+    <section>
       <Router>
         <Sidebar
           updateToken={updateToken}
@@ -226,6 +227,7 @@ function App() {
         // gameModalMapper={gameModalMapper}
         />
       </Router>
+      </section>
     </div>
   );
 }
