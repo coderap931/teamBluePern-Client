@@ -65,6 +65,7 @@
 | *12/4:*  | Signup.js reformatted and debugged. Fully working. Changed to Reactstrap design for consistency. |
 | *12/14:*  | Restyling. Upon clicking the link on sidebar, modal will immediately open and close on formSubmit to redirect to Home. Hidden if signed in on Sidebar.  |
 | *12/16:*  | useNavigator incorporated. Whether closing or submitting, the user is taken to the '/home' route. Need to add responses if passwords match as well as prompts for each corresponding field. |
+| *12/16:*  | 12/16 features now fully updated. Awaiting to deploy. |
 
 **Endpoint:** /user/login     
 **Initial Completion Date:** 12/4     
@@ -76,6 +77,7 @@
 | *12/4:*  | Login.js reformatted and debugged. Fully working. Changed to Reactstrap design for consistency. |
 | *12/14:*  | Restyling. Upon clicking the link on sidebar, modal will immediately open and close on formSubmit to redirect to Home. Hidden if signed in on Sidebar. |
 | *12/16:*  | useNavigator incorporated. Whether closing or submitting, the user is taken to the '/home' route. Need to add responses if login is incorrect as well as prompts for each corresponding field. Need to add responses if login is correct on submit as well as prompts for each corresponding field. |
+| *12/17:*  | 12/16 features now fully updated. Awaiting to deploy. |
 
 **Additional Tasks**
 
